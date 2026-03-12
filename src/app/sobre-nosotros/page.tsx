@@ -4,28 +4,28 @@ import Footer from "@/app/components/Footer";
 const valores = [
   {
     n: "01",
-    title: "Rigor Analítico",
-    desc: "Toda nuestra investigación se sustenta en metodologías sólidas y datos verificables.",
+    title: "Innovación",
+    desc: "Buscamos nuevas soluciones a problemas públicos desde otra mirada, incorporando a nuestros procesos nuevas tecnologías y metodologías para obtener mejores resultados.",
   },
   {
     n: "02",
     title: "Independencia",
-    desc: "Mantenemos una perspectiva libre de intereses partidarios o corporativos.",
+    desc: "Defendemos nuestro derecho a ser libres a la hora de construir ideas. La autonomía intelectual es, para nosotros, esencial para enriquecer el debate público.",
   },
   {
     n: "03",
     title: "Transparencia",
-    desc: "Hacemos públicas nuestras metodologías y procesos de investigación.",
+    desc: "Trabajamos con apertura y creemos en el valor de nuestros procesos y en la nitidez desde donde nacen.",
   },
   {
     n: "04",
-    title: "Innovación",
-    desc: "Incorporamos nuevas herramientas y enfoques para el análisis político contemporáneo.",
+    title: "Responsabilidad",
+    desc: "Trabajamos con el objetivo de aportar y construir una democracia más fuerte, en miras de un Chile más libre.",
   },
   {
     n: "05",
-    title: "Compromiso Democrático",
-    desc: "Trabajamos por el fortalecimiento de las instituciones y el debate democrático.",
+    title: "Excelencia",
+    desc: "Buscamos altos estándares de investigación, análisis y producción de conocimiento.",
   },
 ];
 
@@ -99,9 +99,7 @@ export default function SobreNosotros() {
             Sobre <span className="text-[#F48FB1]">Nosotros</span>
           </h1>
           <p className="text-[#F5F5F5]/60 text-lg max-w-lg leading-relaxed">
-            Un think tank político comprometido con el análisis riguroso,
-            la investigación independiente y el fortalecimiento del debate
-            democrático en Chile.
+            Somos un centro de estudios dedicado a la investigación, la divulgación y la promoción de la democracia representativa liberal. Nos posicionamos como un espacio de análisis de coyunturas de interés público en el marco de los complejos procesos y desafíos que gobiernan las democracias liberales actuales.
           </p>
         </div>
       </section>
@@ -118,9 +116,7 @@ export default function SobreNosotros() {
             </h2>
             <div className="w-12 h-px bg-[#D81B60] mb-8" />
             <p className="text-[#424242]/70 text-lg leading-relaxed">
-              Generar conocimiento político riguroso e independiente para
-              fortalecer el debate público, la toma de decisiones y la
-              comprensión de los procesos democráticos en Chile.
+              Analizamos problemas de alta complejidad buscando fortalecer la estabilidad democrática y la cohesión social, así como potenciar el desarrollo humano en un entorno justo y equitativo.
             </p>
           </div>
           <div className="bg-[#880E4F] p-10 relative overflow-hidden">
@@ -145,8 +141,8 @@ export default function SobreNosotros() {
 
       {/* ── Visión ── */}
       <section className="bg-[#424242] py-24 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div className="border-l-4 border-[#D81B60] pl-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="border-l-4 border-[#D81B60] pl-8 max-w-3xl">
             <p className="text-[#F48FB1] text-xs tracking-[0.3em] uppercase font-medium mb-3">
               Visión
             </p>
@@ -154,29 +150,8 @@ export default function SobreNosotros() {
               Nuestra Visión
             </h2>
             <p className="text-[#F5F5F5]/65 text-lg leading-relaxed">
-              Ser el principal think tank político de Chile, reconocido por la
-              calidad de su investigación y su contribución efectiva al
-              fortalecimiento de la democracia y el debate ciudadano.
+              Queremos ser referentes, tanto a nivel nacional como internacional, en la generación de conocimiento, propuestas y debates que impulsen una sociedad más inclusiva, justa, libre, próspera y democrática.
             </p>
-          </div>
-          <div className="flex flex-col gap-5">
-            {[
-              { label: "Años de trayectoria", value: "4+" },
-              { label: "Estudios publicados", value: "18" },
-              { label: "Columnas de opinión", value: "96+" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="flex items-center justify-between border-b border-[#F5F5F5]/10 pb-5 last:border-0 last:pb-0"
-              >
-                <span className="text-[#F5F5F5]/50 text-sm tracking-wide">
-                  {stat.label}
-                </span>
-                <span className="serif text-3xl font-bold text-[#D81B60]">
-                  {stat.value}
-                </span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -207,57 +182,6 @@ export default function SobreNosotros() {
                 </h3>
                 <p className="text-[#424242]/55 text-sm leading-relaxed">
                   {v.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Historia ── */}
-      <section className="bg-[#880E4F] py-24 px-6 relative overflow-hidden">
-        <div className="absolute left-0 top-0 w-1 h-full bg-[#D81B60]" />
-        <div
-          className="absolute top-0 right-0 w-[30vw] h-[30vw] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(244,143,177,0.12) 0%, transparent 70%)",
-          }}
-        />
-        <div className="max-w-7xl mx-auto relative z-10 pl-4">
-          <p className="text-[#F48FB1] text-xs tracking-[0.3em] uppercase font-medium mb-3">
-            Historia
-          </p>
-          <h2 className="serif text-4xl font-bold text-[#F5F5F5] mb-12">
-            Nuestra Historia
-          </h2>
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                year: "2022",
-                title: "Fundación",
-                desc: "Fabrica Chile nació como respuesta a la creciente necesidad de análisis político riguroso e independiente en el Chile contemporáneo.",
-              },
-              {
-                year: "2023",
-                title: "Expansión Digital",
-                desc: "Lanzamos nuestra presencia en redes sociales, con especial foco en Instagram, llevando el análisis político a nuevas audiencias.",
-              },
-              {
-                year: "2024–2025",
-                title: "Consolidación",
-                desc: "Publicamos nuestros estudios más relevantes y posicionamos a Fabrica Chile como referente del pensamiento político contemporáneo.",
-              },
-            ].map((item) => (
-              <div key={item.year} className="border-t border-[#F5F5F5]/15 pt-6">
-                <span className="serif text-4xl font-bold text-[#D81B60]">
-                  {item.year}
-                </span>
-                <h3 className="serif text-xl font-bold text-[#F5F5F5] mt-3 mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-[#F5F5F5]/55 text-sm leading-relaxed">
-                  {item.desc}
                 </p>
               </div>
             ))}

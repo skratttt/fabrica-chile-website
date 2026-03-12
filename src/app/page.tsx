@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import TeamCarousel from "@/app/components/TeamCarousel";
@@ -15,133 +16,8 @@ const INSTAGRAM_URL = "https://www.instagram.com/fabrica_chile/?hl=es";
    STATIC FALLBACK DATA
    Shown when Sanity/IG have no content yet.
 ───────────────────────────────────────────── */
-const fallbackColumnas: Columna[] = [
-  {
-    _id: "1",
-    category: "ANÁLISIS",
-    title: "La Erosión de la Confianza Institucional en los Sistemas Democráticos",
-    excerpt:
-      "Una década de datos revela un patrón preocupante: en todo el espectro político, la fe en las instituciones democráticas ha caído casi un 40%.",
-    author: "Dra. Elena Marchetti",
-    publishedAt: "2026-02-22T00:00:00Z",
-    readTime: 12,
-    featured: true,
-    slug: { current: "erosion-confianza-institucional" },
-  },
-  {
-    _id: "2",
-    category: "OPINIÓN",
-    title: "Política Climática y el Nuevo Cálculo Político",
-    excerpt:
-      "Por qué la tradicional división izquierda-derecha ya no explica cómo los votantes piensan sobre regulación ambiental.",
-    author: "Rodrigo Fuentes",
-    publishedAt: "2026-02-19T00:00:00Z",
-    readTime: 8,
-    featured: false,
-    slug: { current: "politica-climatica-calculo-politico" },
-  },
-  {
-    _id: "3",
-    category: "COLUMNA",
-    title: "Algoritmos, Indignación y la Arquitectura de la Polarización",
-    excerpt:
-      "Las decisiones de diseño de las plataformas se han convertido en una de las decisiones políticas más influyentes de nuestra era.",
-    author: "Valentina Cruz",
-    publishedAt: "2026-02-15T00:00:00Z",
-    readTime: 10,
-    featured: false,
-    slug: { current: "algoritmos-polarizacion" },
-  },
-];
-
-const fallbackEstudios: Estudio[] = [
-  {
-    _id: "1",
-    number: "001",
-    title:
-      "Discurso en Redes Sociales y Polarización Política: Estudio Longitudinal 2024–2025",
-    abstract:
-      "Analizando 2,3M de publicaciones en distintas plataformas, este estudio identifica marcadores lingüísticos que predicen la clusterización ideológica y las condiciones para el diálogo transversal.",
-    tags: ["Redes Sociales", "Polarización", "Ciencia de Datos"],
-    year: "2025",
-    pages: "84 págs.",
-  },
-  {
-    _id: "2",
-    number: "002",
-    title:
-      "Comportamiento Electoral en la Era de la Curación Algorítmica de la Información",
-    abstract:
-      "Cómo los entornos de información curada reconfiguran las preferencias políticas y las condiciones bajo las cuales los votantes revisan posiciones arraigadas.",
-    tags: ["Comportamiento Electoral", "Teoría de la Información", "Democracia"],
-    year: "2025",
-    pages: "61 págs.",
-  },
-];
-
-const fallbackIgPosts = [
-  {
-    id: "1",
-    media_url: "",
-    permalink: INSTAGRAM_URL,
-    bg: "linear-gradient(135deg, #880E4F 0%, #D81B60 100%)",
-    caption: "Nuevo estudio sobre polarización política — link en bio",
-    like_count: 4200,
-    comments_count: 238,
-  },
-  {
-    id: "2",
-    media_url: "",
-    permalink: INSTAGRAM_URL,
-    bg: "linear-gradient(135deg, #424242 0%, #880E4F 100%)",
-    caption: "Hilo: ¿Cómo se ve realmente la erosión democrática?",
-    like_count: 3800,
-    comments_count: 194,
-  },
-  {
-    id: "3",
-    media_url: "",
-    permalink: INSTAGRAM_URL,
-    bg: "linear-gradient(135deg, #D81B60 0%, #4DB6AC 100%)",
-    caption: "Nuestra infografía más compartida este mes",
-    like_count: 6100,
-    comments_count: 412,
-  },
-  {
-    id: "4",
-    media_url: "",
-    permalink: INSTAGRAM_URL,
-    bg: "linear-gradient(135deg, #880E4F 0%, #F48FB1 100%)",
-    caption: "Opinión: El algoritmo tiene preferencia política",
-    like_count: 2900,
-    comments_count: 167,
-  },
-  {
-    id: "5",
-    media_url: "",
-    permalink: INSTAGRAM_URL,
-    bg: "linear-gradient(135deg, #4DB6AC 0%, #424242 100%)",
-    caption: "Lanzamiento del estudio de comportamiento electoral 2025",
-    like_count: 5400,
-    comments_count: 321,
-  },
-  {
-    id: "6",
-    media_url: "",
-    permalink: INSTAGRAM_URL,
-    bg: "linear-gradient(135deg, #D81B60 0%, #880E4F 100%)",
-    caption: "Columna destacada de la Dra. Elena Marchetti",
-    like_count: 3200,
-    comments_count: 203,
-  },
-];
-
 const tickerItems = [
-  "Nuevo estudio: Redes Sociales y Polarización Política — Descarga ya",
-  "Columna destacada: Instituciones Democráticas bajo Presión",
-  "Instagram Highlights: Posts más compartidos de enero",
-  "Avance: Comportamiento Electoral en la Era Algorítmica",
-  "Opinión: La Nueva Geografía Política — Dr. E. Marchetti",
+  "Síguenos en nuestras redes para estar al tanto"
 ];
 
 /* ─────────────────────────────────────────
@@ -194,10 +70,16 @@ function Hero() {
         }}
       />
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 serif font-bold text-[#F5F5F5] leading-none select-none pointer-events-none"
-        style={{ fontSize: "clamp(8rem, 22vw, 22rem)", opacity: 0.05 }}
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-[0.05]"
+        style={{ width: "clamp(20rem, 50vw, 55rem)", height: "clamp(20rem, 50vw, 55rem)" }}
       >
-        2026
+        <Image
+          src="/assets/gear.png"
+          alt="Logo Gear Background"
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-contain object-left -scale-x-100"
+        />
       </div>
       <div className="absolute left-0 top-0 w-1 h-full bg-[#D81B60]" />
       <div
@@ -248,23 +130,6 @@ function Hero() {
             Seguir en Instagram
           </a>
         </div>
-
-        <div className="flex flex-wrap gap-12 mt-20 pt-8 border-t border-[#F5F5F5]/10">
-          {[
-            { value: "240+", label: "Posts en Instagram" },
-            { value: "18", label: "Estudios" },
-            { value: "96", label: "Columnas de Opinión" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="serif text-3xl font-bold text-[#F5F5F5]">
-                {s.value}
-              </div>
-              <div className="text-[#F5F5F5]/35 text-xs tracking-[0.25em] uppercase mt-1">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -290,6 +155,19 @@ function Ticker() {
 }
 
 function ColumnsSection({ columnas }: { columnas: Columna[] }) {
+  if (!columnas || columnas.length === 0) {
+    return (
+      <section id="columns" className="bg-[#F5F5F5] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <h2 className="serif text-3xl font-bold text-[#424242] mb-4">
+          Columnas &amp; Opiniones
+        </h2>
+        <p className="text-[#424242]/55 tracking-wide">
+          Estamos trabajando en esta sección.
+        </p>
+      </section>
+    );
+  }
+
   const featured = columnas.find((c) => c.featured) ?? columnas[0];
   const rest = columnas.filter((c) => c._id !== featured._id).slice(0, 2);
 
@@ -406,6 +284,19 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
 }
 
 function InstagramSection({ posts }: { posts: DisplayPost[] }) {
+  if (!posts || posts.length === 0) {
+    return (
+      <section id="instagram" className="bg-[#424242] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <h2 className="serif text-3xl font-bold text-[#F5F5F5] mb-4">
+          Destacados de Instagram
+        </h2>
+        <p className="text-[#F5F5F5]/60 tracking-wide">
+          Estamos trabajando en esta sección.
+        </p>
+      </section>
+    );
+  }
+
   return (
     <section id="instagram" className="bg-[#424242] py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -487,6 +378,19 @@ function InstagramSection({ posts }: { posts: DisplayPost[] }) {
 }
 
 function StudiesSection({ estudios }: { estudios: Estudio[] }) {
+  if (!estudios || estudios.length === 0) {
+    return (
+      <section id="studies" className="bg-[#F5F5F5] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <h2 className="serif text-3xl font-bold text-[#424242] mb-4">
+          Estudios &amp; Informes
+        </h2>
+        <p className="text-[#424242]/55 tracking-wide">
+          Estamos trabajando en esta sección.
+        </p>
+      </section>
+    );
+  }
+
   return (
     <section id="studies" className="bg-[#F5F5F5] py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -585,9 +489,6 @@ export default async function Home() {
     getInstagramPosts(6).catch(() => [] as IgPost[]),
   ]);
 
-  const displayColumnas = columnas.length > 0 ? columnas : fallbackColumnas;
-  const displayEstudios = estudios.length > 0 ? estudios : fallbackEstudios;
-
   const displayPosts: DisplayPost[] =
     igPosts.length > 0
       ? igPosts.map((p) => ({
@@ -598,16 +499,16 @@ export default async function Home() {
         like_count: p.like_count,
         comments_count: p.comments_count,
       }))
-      : fallbackIgPosts;
+      : [];
 
   return (
     <main>
       <Navbar />
       <Hero />
       <Ticker />
-      <ColumnsSection columnas={displayColumnas} />
+      <ColumnsSection columnas={columnas} />
       <InstagramSection posts={displayPosts} />
-      <StudiesSection estudios={displayEstudios} />
+      <StudiesSection estudios={estudios} />
       <TeamCarousel />
       <NewsletterForm />
       <Footer />

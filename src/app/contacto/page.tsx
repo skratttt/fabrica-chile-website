@@ -25,6 +25,8 @@ export default function Contacto() {
     mensaje: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   function handleChange(
     e: React.ChangeEvent<
@@ -34,9 +36,32 @@ export default function Contacto() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (form.nombre && form.email && form.mensaje) setSubmitted(true);
+    if (!form.nombre || !form.email || !form.mensaje) return;
+
+    setIsSubmitting(true);
+    setErrorMsg("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al enviar el mensaje");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setErrorMsg(err.message || "Ocurrió un error inesperado al enviar.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -184,11 +209,16 @@ export default function Contacto() {
                   />
                 </div>
 
+                {errorMsg && (
+                  <p className="text-red-500 text-sm mt-2">{errorMsg}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="self-start bg-[#D81B60] text-white px-10 py-4 text-xs tracking-[0.3em] uppercase font-semibold hover:bg-[#880E4F] transition-all duration-300 mt-2"
+                  disabled={isSubmitting}
+                  className="self-start bg-[#D81B60] text-white px-10 py-4 text-xs tracking-[0.3em] uppercase font-semibold hover:bg-[#880E4F] transition-all duration-300 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Enviar mensaje
+                  {isSubmitting ? "Enviando..." : "Enviar mensaje"}
                 </button>
               </form>
             )}

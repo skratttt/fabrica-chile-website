@@ -6,52 +6,51 @@ interface TeamMember {
   id: number;
   name: string;
   role: string;
-  bio: string;
-  bg: string;
+  image: string;
 }
 
 const team: TeamMember[] = [
   {
     id: 1,
-    name: "María González",
-    role: "Directora Ejecutiva",
-    bio: "Politóloga con 15 años de experiencia en análisis político y comunicación estratégica.",
-    bg: "linear-gradient(135deg, #880E4F 0%, #D81B60 100%)",
+    name: "Nicolás Freire",
+    role: "Director Ejecutivo",
+    image: "/assets/nicolas freire.jpeg",
   },
   {
     id: 2,
-    name: "Carlos Herrera",
-    role: "Analista Político Senior",
-    bio: "Especialista en sistemas electorales y comportamiento político en América Latina.",
-    bg: "linear-gradient(135deg, #424242 0%, #880E4F 100%)",
+    name: "José Francisco Aravena",
+    role: "Coordinador de Equipo",
+    image: "/assets/Jose Francisco Aravena .jpg",
   },
   {
     id: 3,
-    name: "Valentina Rivas",
-    role: "Investigadora Digital",
-    bio: "Experta en comunicación política digital y análisis de redes sociales.",
-    bg: "linear-gradient(135deg, #D81B60 0%, #F48FB1 100%)",
+    name: "Bartolomé Reus",
+    role: "Jefe de Comunicaciones",
+    image: "/assets/bartolome reus.jpeg",
   },
   {
     id: 4,
-    name: "Andrés Morales",
-    role: "Especialista Legislativo",
-    bio: "Abogado y analista parlamentario con amplio conocimiento del proceso legislativo chileno.",
-    bg: "linear-gradient(135deg, #4DB6AC 0%, #424242 100%)",
+    name: "Tomás Domínguez",
+    role: "Periodista",
+    image: "/assets/Tomás Domínguez.jpg",
   },
   {
     id: 5,
-    name: "Sofía Castillo",
-    role: "Analista de Opinión Pública",
-    bio: "Socióloga especializada en metodología de investigación y medición de opinión ciudadana.",
-    bg: "linear-gradient(135deg, #880E4F 0%, #4DB6AC 100%)",
+    name: "Nicolás Germain",
+    role: "Analista de Datos",
+    image: "/assets/Nicolas Germain.jpeg",
   },
   {
     id: 6,
-    name: "Diego Fuentes",
-    role: "Coordinador de Proyectos",
-    bio: "Cientista político con experiencia en gestión de proyectos de investigación aplicada.",
-    bg: "linear-gradient(135deg, #D81B60 0%, #424242 100%)",
+    name: "Arantzasu Foppiano",
+    role: "Analista Jurídica",
+    image: "/assets/Arantzasu Foppiano.jpg",
+  },
+  {
+    id: 7,
+    name: "Francisco Oyarce",
+    role: "Analista - Cientista Político",
+    image: "/assets/Fransisco oyarce.jpg",
   },
 ];
 
@@ -105,22 +104,13 @@ export default function TeamCarousel() {
               className="snap-start shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
             >
               <div
-                className="w-full aspect-square mb-5 relative overflow-hidden"
-                style={{ background: member.bg }}
+                className="w-full aspect-square mb-5 relative overflow-hidden bg-black/20"
               >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="serif text-5xl font-bold text-white/20 select-none">
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
-                </div>
-                <div className="absolute inset-0 bg-[#D81B60]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                  <p className="text-white text-xs leading-relaxed">
-                    {member.bio}
-                  </p>
-                </div>
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                />
               </div>
               <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
                 {member.name}
