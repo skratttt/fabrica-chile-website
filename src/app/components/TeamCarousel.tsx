@@ -32,7 +32,7 @@ const team: TeamMember[] = [
     id: 4,
     name: "Tomás Domínguez",
     role: "Periodista",
-    image: "/assets/Tomás Domínguez.jpg",
+    image: "/assets/Tomas Dominguez.jpg",
   },
   {
     id: 5,
