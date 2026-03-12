@@ -3,6 +3,8 @@ import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import AutoReplyEmail from "@/emails/AutoReplyEmail";
 
+export const runtime = "edge";
+
 export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     try {
