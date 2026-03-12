@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Fabrica Chile — Political Think Tank",
+  title: "Fabrica Chile — Centro de pensamiento y análisis de coyuntura",
   description:
     "Research, columns, and analysis on the political forces shaping our society.",
 };
