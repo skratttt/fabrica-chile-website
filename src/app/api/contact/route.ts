@@ -5,7 +5,17 @@ import AutoReplyEmail from "@/emails/AutoReplyEmail";
 
 export const runtime = "edge";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_LENGTHS = { nombre: 100, organizacion: 200, email: 254, servicio: 200, mensaje: 5000 };
+const ALLOWED_ORIGINS = ["https://fabricachile.cl", "https://www.fabricachile.cl"];
+
 export async function POST(request: Request) {
+    // CSRF: verificar origin
+    const origin = request.headers.get("origin");
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+        return NextResponse.json({ error: "Origen no permitido" }, { status: 403 });
+    }
+
     const resend = new Resend(process.env.RESEND_API_KEY);
     try {
         const body = await request.json();
@@ -16,6 +26,26 @@ export async function POST(request: Request) {
                 { error: "Faltan campos obligatorios" },
                 { status: 400 }
             );
+        }
+
+        if (!EMAIL_REGEX.test(email)) {
+            return NextResponse.json({ error: "Formato de email inválido" }, { status: 400 });
+        }
+
+        if (nombre.length > MAX_LENGTHS.nombre) {
+            return NextResponse.json({ error: "Nombre demasiado largo" }, { status: 400 });
+        }
+        if (email.length > MAX_LENGTHS.email) {
+            return NextResponse.json({ error: "Email demasiado largo" }, { status: 400 });
+        }
+        if (mensaje.length > MAX_LENGTHS.mensaje) {
+            return NextResponse.json({ error: "Mensaje demasiado largo" }, { status: 400 });
+        }
+        if (organizacion && organizacion.length > MAX_LENGTHS.organizacion) {
+            return NextResponse.json({ error: "Organización demasiado larga" }, { status: 400 });
+        }
+        if (servicio && servicio.length > MAX_LENGTHS.servicio) {
+            return NextResponse.json({ error: "Servicio demasiado largo" }, { status: 400 });
         }
 
         // Nota: Para que los correos lleguen con el dominio @fabricachile.cl

@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       // Instagram CDN (real post images)
       {
         protocol: "https",
-        hostname: "**.cdninstagram.com",
+        hostname: "*.cdninstagram.com",
       },
       // Sanity image CDN (columna mainImage)
       {

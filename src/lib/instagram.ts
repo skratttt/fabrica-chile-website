@@ -35,10 +35,11 @@ export async function getInstagramPosts(limit = 6): Promise<IgPost[]> {
     "id,caption,media_url,thumbnail_url,permalink,like_count,comments_count,timestamp,media_type";
 
   // Try Instagram Graph API endpoint first (works with IGAAT tokens)
-  const url = `https://graph.instagram.com/v21.0/me/media?fields=${fields}&limit=${limit}&access_token=${token}`;
+  const url = `https://graph.instagram.com/v21.0/me/media?fields=${fields}&limit=${limit}`;
 
   try {
     const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 3600 }, // cache for 1 hour (matches short-lived token lifespan)
     });
 
