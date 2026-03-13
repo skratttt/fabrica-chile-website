@@ -18,39 +18,39 @@ const team: TeamMember[] = [
   },
   {
     id: 2,
-    name: "José Francisco Aravena",
-    role: "Coordinador de Equipo",
-    image: "/assets/Jose Francisco Aravena .jpg",
-  },
-  {
-    id: 3,
     name: "Bartolomé Reus",
     role: "Jefe de Comunicaciones",
     image: "/assets/bartolome reus.jpeg",
   },
   {
+    id: 3,
+    name: "José Francisco Aravena",
+    role: "Coordinador de Equipo",
+    image: "/assets/Jose Francisco Aravena .jpg",
+  },
+  {
     id: 4,
-    name: "Tomás Domínguez",
-    role: "Periodista",
-    image: "/assets/Tomas Dominguez.jpg",
-  },
-  {
-    id: 5,
-    name: "Nicolás Germain",
-    role: "Analista de Datos",
-    image: "/assets/Nicolas Germain.jpeg",
-  },
-  {
-    id: 6,
     name: "Arantzasu Foppiano",
-    role: "Analista Jurídica",
+    role: "Investigador",
     image: "/assets/Arantzasu Foppiano.jpg",
   },
   {
-    id: 7,
+    id: 5,
     name: "Francisco Oyarce",
-    role: "Analista - Cientista Político",
+    role: "Investigador",
     image: "/assets/Fransisco oyarce.jpg",
+  },
+  {
+    id: 6,
+    name: "Nicolás Germain",
+    role: "Investigador",
+    image: "/assets/Nicolas Germain.jpeg",
+  },
+  {
+    id: 7,
+    name: "Tomás Domínguez",
+    role: "Investigador",
+    image: "/assets/Tomas Dominguez.jpg",
   },
 ];
 
