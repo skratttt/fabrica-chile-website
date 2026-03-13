@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Fabrica Chile — Centro de pensamiento y análisis de coyuntura",
   description:
     "Research, columns, and analysis on the political forces shaping our society.",
+  icons: {
+    icon: "/assets/logofabrica favicon.png",
+  },
 };
 
 export default function RootLayout({
