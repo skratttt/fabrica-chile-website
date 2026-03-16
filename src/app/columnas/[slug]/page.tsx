@@ -72,7 +72,7 @@ export default async function ColumnaPage({ params }: { params: Promise<{ slug: 
                     </div>
                 )}
 
-                <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-[#424242] prose-p:text-[#424242]/80 prose-a:text-[#D81B60] prose-a:no-underline hover:prose-a:underline prose-li:text-[#424242]/80 prose-strong:text-[#424242] prose-blockquote:border-l-[#D81B60] prose-blockquote:text-[#424242]/70 prose-blockquote:pl-6 prose-blockquote:font-serif prose-blockquote:italic">
+                <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-[#424242] prose-p:text-[#424242]/80 prose-p:text-justify prose-p:my-6 prose-p:leading-relaxed prose-a:text-[#D81B60] prose-a:no-underline hover:prose-a:underline prose-li:text-[#424242]/80 prose-strong:text-[#424242] prose-blockquote:border-l-[#D81B60] prose-blockquote:text-[#424242]/70 prose-blockquote:pl-6 prose-blockquote:font-serif prose-blockquote:italic">
                     {columna.body ? (
                         <PortableText value={columna.body} />
                     ) : (
