@@ -13,6 +13,7 @@ export interface Columna {
   readTime: number;
   featured: boolean;
   mainImage?: { asset: { url: string } };
+  body?: any;
 }
 
 export interface Estudio {
@@ -35,6 +36,18 @@ export async function getColumnas(): Promise<Columna[]> {
       mainImage { asset->{ url } }
     }`,
     {},
+    { next: { revalidate: 60 } }
+  );
+}
+
+export async function getColumnaBySlug(slug: string): Promise<Columna | null> {
+  return sanityClient.fetch(
+    `*[_type == "columna" && slug.current == $slug][0] {
+      _id, title, slug, category, excerpt, author, publishedAt, readTime, featured,
+      mainImage { asset->{ url } },
+      body
+    }`,
+    { slug },
     { next: { revalidate: 60 } }
   );
 }

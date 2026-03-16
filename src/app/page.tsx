@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import TeamCarousel from "@/app/components/TeamCarousel";
@@ -183,98 +184,103 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
               Columnas &amp; Opiniones
             </h2>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/columnas"
             className="hidden md:block text-xs tracking-[0.2em] uppercase text-[#424242]/40 hover:text-[#D81B60] transition-colors"
           >
             Todas las columnas →
-          </a>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-5 gap-8 lg:gap-12">
           {/* Featured */}
-          <article className="md:col-span-3 group cursor-pointer">
-            <div
-              className="aspect-[4/3] mb-6 overflow-hidden relative"
-              style={
-                featured.mainImage?.asset.url
-                  ? {
-                    backgroundImage: `url(${featured.mainImage.asset.url})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }
-                  : {
-                    background:
-                      "linear-gradient(135deg, #880E4F 0%, #6a0837 55%, #D81B60 100%)",
-                  }
-              }
-            >
-              <span
-                className="absolute bottom-6 right-6 serif font-bold text-[#F5F5F5]/10 leading-none select-none"
-                style={{ fontSize: "clamp(5rem, 12vw, 9rem)" }}
-              >
-                01
-              </span>
+          <Link href={`/columnas/${featured.slug.current}`} className="md:col-span-3 block group">
+            <article className="cursor-pointer">
               <div
-                className="absolute top-0 left-0 w-2/3 h-2/3 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle at top left, rgba(244,143,177,0.2) 0%, transparent 70%)",
-                }}
-              />
-              <div className="absolute top-6 left-6">
-                <span className="bg-[#D81B60] text-white text-xs px-3 py-1.5 tracking-[0.2em] uppercase">
-                  {featured.category}
+                className="aspect-[4/3] mb-6 overflow-hidden relative"
+                style={
+                  featured.mainImage?.asset.url
+                    ? {
+                      backgroundImage: `url(${featured.mainImage.asset.url})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }
+                    : {
+                      background:
+                        "linear-gradient(135deg, #880E4F 0%, #6a0837 55%, #D81B60 100%)",
+                    }
+                }
+              >
+                <span
+                  className="absolute bottom-6 right-6 serif font-bold text-[#F5F5F5]/10 leading-none select-none"
+                  style={{ fontSize: "clamp(5rem, 12vw, 9rem)" }}
+                >
+                  01
                 </span>
+                <div
+                  className="absolute top-0 left-0 w-2/3 h-2/3 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle at top left, rgba(244,143,177,0.2) 0%, transparent 70%)",
+                  }}
+                />
+                <div className="absolute top-6 left-6">
+                  <span className="bg-[#D81B60] text-white text-xs px-3 py-1.5 tracking-[0.2em] uppercase">
+                    {featured.category}
+                  </span>
+                </div>
               </div>
-            </div>
-            <h3 className="serif text-2xl lg:text-3xl font-bold text-[#424242] mb-3 group-hover:text-[#D81B60] transition-colors leading-tight">
-              {featured.title}
-            </h3>
-            <p className="text-[#424242]/55 leading-relaxed mb-5 text-[0.95rem]">
-              {featured.excerpt}
-            </p>
-            <div className="flex items-center gap-3 text-xs text-[#424242]/35 tracking-wide">
-              <span className="font-medium">{featured.author}</span>
-              <span>·</span>
-              <span>{formatDate(featured.publishedAt)}</span>
-              {featured.readTime && (
-                <>
-                  <span>·</span>
-                  <span>{featured.readTime} min lectura</span>
-                </>
-              )}
-            </div>
-          </article>
+              <h3 className="serif text-2xl lg:text-3xl font-bold text-[#424242] mb-3 group-hover:text-[#D81B60] transition-colors leading-tight">
+                {featured.title}
+              </h3>
+              <p className="text-[#424242]/55 leading-relaxed mb-5 text-[0.95rem]">
+                {featured.excerpt}
+              </p>
+              <div className="flex items-center gap-3 text-xs text-[#424242]/35 tracking-wide">
+                <span className="font-medium">{featured.author}</span>
+                <span>·</span>
+                <span>{formatDate(featured.publishedAt)}</span>
+                {featured.readTime && (
+                  <>
+                    <span>·</span>
+                    <span>{featured.readTime} min lectura</span>
+                  </>
+                )}
+              </div>
+            </article>
+          </Link>
 
           {/* Rest */}
           <div className="md:col-span-2 flex flex-col divide-y divide-[#424242]/10">
             {rest.map((col) => (
-              <article
+              <Link
                 key={col._id}
-                className="group cursor-pointer py-8 first:pt-0 last:pb-0"
+                href={`/columnas/${col.slug.current}`}
+                className="group cursor-pointer py-8 first:pt-0 last:pb-0 block"
               >
-                <span className="text-[#D81B60] text-xs tracking-[0.25em] uppercase font-medium">
-                  {col.category}
-                </span>
-                <h3 className="serif text-xl font-bold text-[#424242] mt-2 mb-3 group-hover:text-[#D81B60] transition-colors leading-tight">
-                  {col.title}
-                </h3>
-                <p className="text-[#424242]/55 text-sm leading-relaxed mb-4">
-                  {col.excerpt}
-                </p>
-                <div className="flex items-center gap-3 text-xs text-[#424242]/35">
-                  <span className="font-medium">{col.author}</span>
-                  <span>·</span>
-                  <span>{formatDate(col.publishedAt)}</span>
-                  {col.readTime && (
-                    <>
-                      <span>·</span>
-                      <span>{col.readTime} min</span>
-                    </>
-                  )}
-                </div>
-              </article>
+                <article>
+                  <span className="text-[#D81B60] text-xs tracking-[0.25em] uppercase font-medium">
+                    {col.category}
+                  </span>
+                  <h3 className="serif text-xl font-bold text-[#424242] mt-2 mb-3 group-hover:text-[#D81B60] transition-colors leading-tight">
+                    {col.title}
+                  </h3>
+                  <p className="text-[#424242]/55 text-sm leading-relaxed mb-4">
+                    {col.excerpt}
+                  </p>
+                  <div className="flex items-center gap-3 text-xs text-[#424242]/35">
+                    <span className="font-medium">{col.author}</span>
+                    <span>·</span>
+                    <span>{formatDate(col.publishedAt)}</span>
+                    {col.readTime && (
+                      <>
+                        <span>·</span>
+                        <span>{col.readTime} min</span>
+                      </>
+                    )}
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         </div>
