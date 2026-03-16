@@ -15,9 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Fabrica Chile — Centro de pensamiento y análisis de coyuntura",
+  title: "Fabrica Chile | Centro de Pensamiento",
   description:
-    "Research, columns, and analysis on the political forces shaping our society.",
+    "Análisis de coyuntura y desafíos de las democracias liberales. Investigación, columnas y opinión sobre las fuerzas políticas que moldean nuestra sociedad.",
 };
 
 export default function RootLayout({

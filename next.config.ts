@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/el-equipo",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
   compiler: {
     styledComponents: true,
   },
