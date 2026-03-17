@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
-import { getColumnaBySlug } from "@/lib/queries";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
+import { FadeInScroll } from "@/app/components/FadeInScroll";
+import { getColumnaBySlug } from "@/lib/queries";
 
 function formatDate(iso: string) {
     try {
@@ -40,28 +42,39 @@ export default async function ColumnaPage({ params }: { params: Promise<{ slug: 
                             {columna.category}
                         </span>
                     </div>
-                    <h1 className="serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#424242] mb-6 leading-[1.1]">
-                        {columna.title}
-                    </h1>
-                    <p className="text-xl text-[#424242]/70 leading-relaxed max-w-2xl mx-auto mb-8">
-                        {columna.excerpt}
-                    </p>
+                    <AnimatedPageTitle
+                        className="serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#424242] mb-6 leading-[1.1]"
+                        scrollFade={true}
+                    >
+                        <div className="overflow-hidden flex flex-wrap justify-center gap-[0.2em]">
+                            {columna.title.split(" ").map((word: string, i: number) => (
+                                <AnimatedWord key={i}>{word}</AnimatedWord>
+                            ))}
+                        </div>
+                    </AnimatedPageTitle>
+                    <FadeInScroll delay={0.6}>
+                        <p className="text-xl text-[#424242]/70 leading-relaxed max-w-2xl mx-auto mb-8">
+                            {columna.excerpt}
+                        </p>
+                    </FadeInScroll>
 
-                    <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-[#424242]/50 tracking-wide uppercase">
-                        <div className="font-semibold text-[#424242]">{columna.author}</div>
-                        <span>•</span>
-                        <time dateTime={columna.publishedAt}>{formatDate(columna.publishedAt)}</time>
-                        {columna.readTime && (
-                            <>
-                                <span>•</span>
-                                <span>{columna.readTime} min lectura</span>
-                            </>
-                        )}
-                    </div>
+                    <FadeInScroll delay={0.8}>
+                        <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-[#424242]/50 tracking-wide uppercase">
+                            <div className="font-semibold text-[#424242]">{columna.author}</div>
+                            <span>•</span>
+                            <time dateTime={columna.publishedAt}>{formatDate(columna.publishedAt)}</time>
+                            {columna.readTime && (
+                                <>
+                                    <span>•</span>
+                                    <span>{columna.readTime} min lectura</span>
+                                </>
+                            )}
+                        </div>
+                    </FadeInScroll>
                 </div>
 
                 {columna.mainImage?.asset?.url && (
-                    <div className="relative aspect-[21/9] w-full mb-12 overflow-hidden bg-[#424242]/5">
+                    <FadeInScroll delay={0.2} className="relative aspect-[21/9] w-full mb-12 overflow-hidden bg-[#424242]/5">
                         <Image
                             src={columna.mainImage.asset.url}
                             alt={columna.title}
@@ -69,27 +82,29 @@ export default async function ColumnaPage({ params }: { params: Promise<{ slug: 
                             className="object-cover"
                             priority
                         />
-                    </div>
+                    </FadeInScroll>
                 )}
 
-                <div className="
-                    text-lg text-[#424242]/80 leading-relaxed
-                    [&>p]:text-justify [&>p]:mb-8 
-                    [&>h2]:serif [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:text-[#424242] [&>h2]:mb-6 [&>h2]:mt-12 
-                    [&>h3]:serif [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-[#424242] [&>h3]:mb-4 [&>h3]:mt-10
-                    [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-8
-                    [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-8
-                    [&>li]:mb-3
-                    [&>blockquote]:border-l-4 [&>blockquote]:border-[#D81B60] [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:text-[#424242]/70 [&>blockquote]:my-10 [&>blockquote]:font-serif [&>blockquote]:text-xl
-                    [&_a]:text-[#D81B60] [&_a]:underline hover:[&_a]:text-[#880E4F] [&_a]:transition-colors
-                    [&>strong]:font-bold [&>strong]:text-[#424242]
-                ">
-                    {columna.body ? (
-                        <PortableText value={columna.body} />
-                    ) : (
-                        <p className="italic text-center py-10 opacity-70">El contenido de esta columna no está disponible.</p>
-                    )}
-                </div>
+                <FadeInScroll delay={0.3}>
+                    <div className="
+                        text-lg text-[#424242]/80 leading-relaxed
+                        [&>p]:text-justify [&>p]:mb-8 
+                        [&>h2]:serif [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:text-[#424242] [&>h2]:mb-6 [&>h2]:mt-12 
+                        [&>h3]:serif [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-[#424242] [&>h3]:mb-4 [&>h3]:mt-10
+                        [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-8
+                        [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-8
+                        [&>li]:mb-3
+                        [&>blockquote]:border-l-4 [&>blockquote]:border-[#D81B60] [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:text-[#424242]/70 [&>blockquote]:my-10 [&>blockquote]:font-serif [&>blockquote]:text-xl
+                        [&_a]:text-[#D81B60] [&_a]:underline hover:[&_a]:text-[#880E4F] [&_a]:transition-colors
+                        [&>strong]:font-bold [&>strong]:text-[#424242]
+                    ">
+                        {columna.body ? (
+                            <PortableText value={columna.body} />
+                        ) : (
+                            <p className="italic text-center py-10 opacity-70">El contenido de esta columna no está disponible.</p>
+                        )}
+                    </div>
+                </FadeInScroll>
             </article>
 
             <Footer />

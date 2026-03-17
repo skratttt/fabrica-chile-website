@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
+import { FadeInScroll } from "@/app/components/FadeInScroll";
 
 const serviciosOptions = [
   "Charlas Estratégicas",
@@ -69,40 +71,48 @@ export default function Contacto() {
       <Navbar />
 
       {/* ── Hero ── */}
-      <section className="min-h-[50vh] bg-[#880E4F] flex flex-col justify-end pt-32 pb-20 px-6 relative overflow-hidden">
-        <div className="absolute left-0 top-0 w-1 h-full bg-[#D81B60]" />
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-        <div
-          className="absolute top-0 right-0 w-[35vw] h-[35vw] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(244,143,177,0.15) 0%, transparent 70%)",
-          }}
-        />
+      <section className="min-h-[50vh] bg-[#880E4F] flex flex-col justify-end pt-32 pb-20 px-6 relative">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute left-0 top-0 w-1 h-full bg-[#D81B60]" />
+          <div
+            className="absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage:
+                "linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+            }}
+          />
+          <div
+            className="absolute top-0 right-0 w-[35vw] h-[35vw] rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(244,143,177,0.15) 0%, transparent 70%)",
+            }}
+          />
+        </div>
         <div className="max-w-7xl mx-auto w-full relative z-10 pl-4">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-px bg-[#F48FB1]" />
-            <span className="text-[#F48FB1] text-xs tracking-[0.35em] uppercase font-medium">
-              Hablemos
-            </span>
-          </div>
-          <h1
+          <FadeInScroll direction="right" delay={0.1}>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-px bg-[#F48FB1]" />
+              <span className="text-[#F48FB1] text-xs tracking-[0.35em] uppercase font-medium">
+                Hablemos
+              </span>
+            </div>
+          </FadeInScroll>
+          <AnimatedPageTitle
             className="serif font-bold text-[#F5F5F5] leading-[1.08] mb-6"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
+            scrollFade={true}
           >
-            Contacto
-          </h1>
-          <p className="text-[#F5F5F5]/60 text-lg max-w-md leading-relaxed">
-            ¿Tienes un proyecto, consulta o quieres contratar alguno de nuestros
-            servicios? Completa el formulario y te responderemos a la brevedad.
-          </p>
+            <div className="overflow-hidden" style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}>
+              <AnimatedWord>Contacto</AnimatedWord>
+            </div>
+          </AnimatedPageTitle>
+          <FadeInScroll delay={0.6}>
+            <p className="text-[#F5F5F5]/60 text-lg max-w-md leading-relaxed">
+              ¿Tienes un proyecto, consulta o quieres contratar alguno de nuestros
+              servicios? Completa el formulario y te responderemos a la brevedad.
+            </p>
+          </FadeInScroll>
         </div>
       </section>
 
@@ -110,7 +120,7 @@ export default function Contacto() {
       <section className="bg-[#F5F5F5] py-24 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-16">
           {/* Form */}
-          <div className="lg:col-span-2">
+          <FadeInScroll className="lg:col-span-2">
             {submitted ? (
               <div className="border border-[#4DB6AC]/30 bg-[#4DB6AC]/5 p-12 text-center">
                 <div className="text-[#4DB6AC] text-4xl mb-4">✓</div>
@@ -222,10 +232,10 @@ export default function Contacto() {
                 </button>
               </form>
             )}
-          </div>
+          </FadeInScroll>
 
           {/* Info sidebar */}
-          <div className="flex flex-col gap-8">
+          <FadeInScroll delay={0.2} className="flex flex-col gap-8">
             <div>
               <p className="text-[#D81B60] text-xs tracking-[0.3em] uppercase font-medium mb-4">
                 Información
@@ -277,7 +287,7 @@ export default function Contacto() {
                 ))}
               </ul>
             </div>
-          </div>
+          </FadeInScroll>
         </div>
       </section>
 

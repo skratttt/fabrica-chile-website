@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { FadeInScroll } from "./FadeInScroll";
 
 interface TeamMember {
   id: number;
@@ -68,39 +69,44 @@ export default function TeamCarousel() {
     <section id="team" className="bg-[#880E4F] py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12">
-          <div>
-            <p className="text-[#F48FB1] text-xs tracking-[0.3em] uppercase font-medium mb-2">
-              Equipo
-            </p>
-            <h2 className="serif text-4xl font-bold text-[#F5F5F5]">
-              Nuestro Equipo
-            </h2>
-          </div>
-          <div className="flex gap-3">
-            <button
-              onClick={() => scroll("left")}
-              aria-label="Anterior"
-              className="w-11 h-11 border border-[#F5F5F5]/20 text-[#F5F5F5]/60 flex items-center justify-center hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-200"
-            >
-              ←
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              aria-label="Siguiente"
-              className="w-11 h-11 border border-[#F5F5F5]/20 text-[#F5F5F5]/60 flex items-center justify-center hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-200"
-            >
-              →
-            </button>
-          </div>
+          <FadeInScroll>
+            <div>
+              <p className="text-[#F48FB1] text-xs tracking-[0.3em] uppercase font-medium mb-2">
+                Equipo
+              </p>
+              <h2 className="serif text-4xl font-bold text-[#F5F5F5]">
+                Nuestro Equipo
+              </h2>
+            </div>
+          </FadeInScroll>
+          <FadeInScroll delay={0.2} direction="left">
+            <div className="flex gap-3">
+              <button
+                onClick={() => scroll("left")}
+                aria-label="Anterior"
+                className="w-11 h-11 border border-[#F5F5F5]/20 text-[#F5F5F5]/60 flex items-center justify-center hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-200"
+              >
+                ←
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                aria-label="Siguiente"
+                className="w-11 h-11 border border-[#F5F5F5]/20 text-[#F5F5F5]/60 flex items-center justify-center hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-200"
+              >
+                →
+              </button>
+            </div>
+          </FadeInScroll>
         </div>
 
         <div
           ref={scrollRef}
-          className="flex gap-5 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-2"
+          className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide snap-x snap-mandatory pb-2"
         >
-          {team.map((member) => (
-            <div
+          {team.map((member, i) => (
+            <FadeInScroll
               key={member.id}
+              delay={i * 0.1}
               className="snap-start shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
             >
               <div
@@ -118,7 +124,7 @@ export default function TeamCarousel() {
               <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
                 {member.role}
               </p>
-            </div>
+            </FadeInScroll>
           ))}
         </div>
 
