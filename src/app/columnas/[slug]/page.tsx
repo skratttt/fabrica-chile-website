@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
@@ -19,6 +19,19 @@ function formatDate(iso: string) {
         return iso;
     }
 }
+
+const ptComponents: PortableTextComponents = {
+    block: {
+        normal: ({ children }) => <FadeInScroll><p>{children}</p></FadeInScroll>,
+        h2: ({ children }) => <FadeInScroll><h2>{children}</h2></FadeInScroll>,
+        h3: ({ children }) => <FadeInScroll><h3>{children}</h3></FadeInScroll>,
+        blockquote: ({ children }) => <FadeInScroll><blockquote>{children}</blockquote></FadeInScroll>,
+    },
+    list: {
+        bullet: ({ children }) => <FadeInScroll><ul>{children}</ul></FadeInScroll>,
+        number: ({ children }) => <FadeInScroll><ol>{children}</ol></FadeInScroll>,
+    },
+};
 
 export default async function ColumnaPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -85,26 +98,24 @@ export default async function ColumnaPage({ params }: { params: Promise<{ slug: 
                     </FadeInScroll>
                 )}
 
-                <FadeInScroll delay={0.3}>
-                    <div className="
+                <div className="
                         text-lg text-[#424242]/80 leading-relaxed
-                        [&>p]:text-justify [&>p]:mb-8 
-                        [&>h2]:serif [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:text-[#424242] [&>h2]:mb-6 [&>h2]:mt-12 
-                        [&>h3]:serif [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-[#424242] [&>h3]:mb-4 [&>h3]:mt-10
-                        [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-8
-                        [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-8
-                        [&>li]:mb-3
-                        [&>blockquote]:border-l-4 [&>blockquote]:border-[#D81B60] [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:text-[#424242]/70 [&>blockquote]:my-10 [&>blockquote]:font-serif [&>blockquote]:text-xl
+                        [&_p]:text-justify [&_p]:mb-8 
+                        [&_h2]:serif [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-[#424242] [&_h2]:mb-6 [&_h2]:mt-12 
+                        [&_h3]:serif [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-[#424242] [&_h3]:mb-4 [&_h3]:mt-10
+                        [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-8
+                        [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-8
+                        [&_li]:mb-3
+                        [&_blockquote]:border-l-4 [&_blockquote]:border-[#D81B60] [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-[#424242]/70 [&_blockquote]:my-10 [&_blockquote]:font-serif [&_blockquote]:text-xl
                         [&_a]:text-[#D81B60] [&_a]:underline hover:[&_a]:text-[#880E4F] [&_a]:transition-colors
-                        [&>strong]:font-bold [&>strong]:text-[#424242]
+                        [&_strong]:font-bold [&_strong]:text-[#424242]
                     ">
-                        {columna.body ? (
-                            <PortableText value={columna.body} />
-                        ) : (
-                            <p className="italic text-center py-10 opacity-70">El contenido de esta columna no está disponible.</p>
-                        )}
-                    </div>
-                </FadeInScroll>
+                    {columna.body ? (
+                        <PortableText value={columna.body} components={ptComponents} />
+                    ) : (
+                        <p className="italic text-center py-10 opacity-70">El contenido de esta columna no está disponible.</p>
+                    )}
+                </div>
             </article>
 
             <Footer />

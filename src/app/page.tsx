@@ -310,11 +310,11 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
 function InstagramSection({ posts }: { posts: DisplayPost[] }) {
   if (!posts || posts.length === 0) {
     return (
-      <section id="instagram" className="bg-[#424242] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
-        <h2 className="serif text-3xl font-bold text-[#F5F5F5] mb-4">
+      <section id="instagram" className="bg-[#FCE4EC] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <h2 className="serif text-3xl font-bold text-[#880E4F] mb-4">
           Destacados de Instagram
         </h2>
-        <p className="text-[#F5F5F5]/60 tracking-wide">
+        <p className="text-[#880E4F]/60 tracking-wide">
           Estamos trabajando en esta sección.
         </p>
       </section>
@@ -322,15 +322,15 @@ function InstagramSection({ posts }: { posts: DisplayPost[] }) {
   }
 
   return (
-    <section id="instagram" className="bg-[#424242] py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-12">
+    <section id="instagram" className="bg-[#FCE4EC] py-24 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-end justify-between mb-16">
           <FadeInScroll>
             <div>
-              <p className="text-[#F48FB1] text-xs tracking-[0.3em] uppercase font-medium mb-2">
+              <p className="text-[#D81B60] text-xs tracking-[0.3em] uppercase font-medium mb-2">
                 Social
               </p>
-              <h2 className="serif text-4xl font-bold text-[#F5F5F5]">
+              <h2 className="serif text-4xl font-bold text-[#880E4F]">
                 Destacados de Instagram
               </h2>
             </div>
@@ -340,21 +340,21 @@ function InstagramSection({ posts }: { posts: DisplayPost[] }) {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:block text-xs tracking-[0.2em] uppercase text-[#F5F5F5]/35 hover:text-[#F48FB1] transition-colors"
+              className="hidden md:block text-xs tracking-[0.2em] uppercase text-[#880E4F]/50 hover:text-[#D81B60] transition-colors"
             >
               {INSTAGRAM_HANDLE} →
             </a>
           </FadeInScroll>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
           {posts.map((post, i) => (
-            <FadeInScroll key={post.id} delay={i * 0.1}>
+            <FadeInScroll key={post.id} delay={i * 0.1} offset={["start 0%", "start -20%"]}>
               <a
                 href={post.permalink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative aspect-square overflow-hidden block"
+                className="group relative aspect-square overflow-hidden block rounded-3xl"
               >
                 {post.media_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -391,13 +391,13 @@ function InstagramSection({ posts }: { posts: DisplayPost[] }) {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-14 text-center">
           <FadeInScroll delay={0.2}>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 border border-[#F5F5F5]/15 text-[#F5F5F5]/65 px-8 py-4 text-xs tracking-[0.25em] uppercase hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300"
+              className="inline-flex items-center gap-3 border border-[#880E4F]/20 text-[#880E4F]/80 px-8 py-4 text-xs tracking-[0.25em] uppercase hover:border-[#D81B60] hover:text-[#D81B60] transition-all duration-300 rounded-full"
             >
               Seguir {INSTAGRAM_HANDLE} en Instagram
             </a>

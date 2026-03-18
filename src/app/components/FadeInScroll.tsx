@@ -9,6 +9,7 @@ interface FadeInScrollProps {
     delay?: number;
     direction?: "up" | "down" | "left" | "right" | "none";
     distance?: number;
+    offset?: any; // e.g. ["start 25%", "start -25%"]
 }
 
 /**
@@ -20,7 +21,8 @@ export function FadeInScroll({
     className = "",
     delay = 0,
     direction = "up",
-    distance = 30
+    distance = 30,
+    offset = ["start 25%", "start -25%"]
 }: FadeInScrollProps) {
 
     // Calculate initial offset based on direction
@@ -38,11 +40,11 @@ export function FadeInScroll({
     const ref = useRef<HTMLDivElement>(null);
 
     // Fade out as the element scrolls up and out of the viewport.
-    // Starts fading when the element's top is 25% from the top of the viewport,
+    // By default starts fading when the element's top is 25% from the top of the viewport,
     // and finishes fading when its top is 25% above the top of the viewport.
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: ["start 25%", "start -25%"]
+        offset: offset
     });
 
     // We apply a slight upward drift and fade out as it leaves.
