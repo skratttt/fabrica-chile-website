@@ -10,7 +10,7 @@ const SITE_NAME = "Fabrica Chile";
 const navLinks = [
   { label: "Sobre Nosotros", href: "/sobre-nosotros" },
   { label: "Servicios", href: "/servicios" },
-  { label: "Columnas", href: "/#columns" },
+  { label: "Opinión", href: "/#columns" },
 ];
 
 export default function Navbar() {

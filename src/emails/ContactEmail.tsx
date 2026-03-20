@@ -32,7 +32,7 @@ export const ContactEmail = ({
             <Body style={main}>
                 <Container style={container}>
                     <Section style={header}>
-                        <Text style={headerText}>Fábrica Chile - Nuevo Contacto</Text>
+                        <Text style={headerText}>Fabrica Chile - Nuevo Contacto</Text>
                     </Section>
                     <Section style={content}>
                         <Text style={paragraph}>

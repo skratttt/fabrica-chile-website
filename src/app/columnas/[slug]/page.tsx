@@ -48,7 +48,7 @@ export default async function ColumnaPage({ params }: { params: Promise<{ slug: 
             <article className="max-w-3xl mx-auto px-6 py-12 lg:py-20">
                 <div className="mb-10 text-center">
                     <Link href="/columnas" className="text-[#D81B60] text-xs tracking-[0.2em] uppercase font-medium hover:underline mb-6 inline-block">
-                        ← Volver a Columnas
+                        ← Volver a Opinión
                     </Link>
                     <div className="flex justify-center items-center gap-2 mb-6">
                         <span className="bg-[#D81B60] text-white text-xs px-3 py-1.5 tracking-[0.2em] uppercase">

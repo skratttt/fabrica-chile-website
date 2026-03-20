@@ -3,6 +3,8 @@ import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import TeamCarousel from "@/app/components/TeamCarousel";
+import FocusCarousel from "@/app/components/FocusCarousel";
+import PodcastSection from "@/app/components/PodcastSection";
 import NewsletterForm from "@/app/components/NewsletterForm";
 import { getColumnas, getEstudios, type Columna, type Estudio } from "@/lib/queries";
 import { getInstagramPosts, type IgPost } from "@/lib/instagram";
@@ -98,7 +100,7 @@ function Hero() {
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-px bg-[#F48FB1]" />
             <span className="text-[#F48FB1] text-xs tracking-[0.35em] uppercase font-medium">
-              Centro de Pensamiento Político
+              Centro de Pensamiento
             </span>
           </div>
         </FadeInScroll>
@@ -127,17 +129,33 @@ function Hero() {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#columns"
-              className="bg-[#D81B60] text-white px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:bg-white hover:text-[#880E4F] transition-all duration-300"
+              className="bg-[#D81B60] text-white px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:bg-white hover:text-[#880E4F] transition-all duration-300 whitespace-nowrap"
             >
-              Leer Última Columna
+              Leer Última Opinión
             </a>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300"
+              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
             >
               Seguir en Instagram
+            </a>
+            <a
+              href="https://x.com/Fabrica_Chile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
+            >
+              Seguir en X
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UCtzT5ASvbHBTJwLw8EpcRpA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
+            >
+              Podcast en YT
             </a>
           </div>
         </FadeInScroll>
@@ -170,7 +188,7 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
     return (
       <section id="columns" className="bg-[#F5F5F5] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
         <h2 className="serif text-3xl font-bold text-[#424242] mb-4">
-          Columnas &amp; Opiniones
+          Opinión
         </h2>
         <p className="text-[#424242]/55 tracking-wide">
           Estamos trabajando en esta sección.
@@ -192,7 +210,7 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
                 Destacado
               </p>
               <h2 className="serif text-4xl font-bold text-[#424242]">
-                Columnas &amp; Opiniones
+                Opinión
               </h2>
             </div>
           </FadeInScroll>
@@ -201,7 +219,7 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
               href="/columnas"
               className="hidden md:block text-xs tracking-[0.2em] uppercase text-[#424242]/40 hover:text-[#D81B60] transition-colors"
             >
-              Todas las columnas →
+              Todas las opiniones →
             </Link>
           </FadeInScroll>
         </div>
@@ -328,7 +346,7 @@ function InstagramSection({ posts }: { posts: DisplayPost[] }) {
           <FadeInScroll>
             <div>
               <p className="text-[#D81B60] text-xs tracking-[0.3em] uppercase font-medium mb-2">
-                Social
+                Redes
               </p>
               <h2 className="serif text-4xl font-bold text-[#880E4F]">
                 Destacados de Instagram
@@ -399,7 +417,7 @@ function InstagramSection({ posts }: { posts: DisplayPost[] }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 border border-[#880E4F]/20 text-[#880E4F]/80 px-8 py-4 text-xs tracking-[0.25em] uppercase hover:border-[#D81B60] hover:text-[#D81B60] transition-all duration-300 rounded-full"
             >
-              Seguir {INSTAGRAM_HANDLE} en Instagram
+              Sigue a Fabrica
             </a>
           </FadeInScroll>
         </div>
@@ -413,7 +431,7 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
     return (
       <section id="studies" className="bg-[#F5F5F5] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
         <h2 className="serif text-3xl font-bold text-[#424242] mb-4">
-          Estudios &amp; Informes
+          Productos
         </h2>
         <p className="text-[#424242]/55 tracking-wide">
           Estamos trabajando en esta sección.
@@ -432,7 +450,7 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
                 Investigación
               </p>
               <h2 className="serif text-4xl font-bold text-[#424242]">
-                Estudios &amp; Informes
+                Productos
               </h2>
             </div>
           </FadeInScroll>
@@ -545,6 +563,8 @@ export default async function Home() {
       <ColumnsSection columnas={columnas} />
       <InstagramSection posts={displayPosts} />
       <StudiesSection estudios={estudios} />
+      <PodcastSection />
+      <FocusCarousel />
       <TeamCarousel />
       <NewsletterForm />
       <Footer />

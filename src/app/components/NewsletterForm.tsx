@@ -15,7 +15,7 @@ export default function NewsletterForm() {
     <section id="newsletter" className="bg-[#D81B60] py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <p className="text-white/45 text-xs tracking-[0.4em] uppercase font-medium mb-4">
-          Newsletter
+          Boletín
         </p>
         <h2
           className="serif font-bold text-white mb-5 leading-[1.1]"
@@ -26,8 +26,7 @@ export default function NewsletterForm() {
           Informado.
         </h2>
         <p className="text-white/65 text-lg max-w-sm mx-auto mb-10 leading-relaxed">
-          Nuestras últimas columnas, estudios y destacados de Instagram directo
-          a tu correo.
+          Claves de la agenda mediática: noticias más mencionadas por los medios de prensa nacionales.
         </p>
 
         {submitted ? (
@@ -51,7 +50,7 @@ export default function NewsletterForm() {
               type="submit"
               className="bg-white text-[#D81B60] px-8 py-4 text-xs tracking-[0.25em] uppercase font-bold hover:bg-[#880E4F] hover:text-white transition-all duration-300 shrink-0"
             >
-              Suscribirse
+              Descargar Último Boletín
             </button>
           </form>
         )}

@@ -5,8 +5,7 @@ const SITE_NAME = "Fabrica Chile";
 const TAGLINE = "Ideas. Analysis. Perspective.";
 
 const contentLinks = [
-  { label: "Columnas", href: "/#columns" },
-  { label: "Opiniones", href: "/#columns" },
+  { label: "Opinión", href: "/#columns" },
   { label: "Estudios", href: "/#studies" },
   { label: "Instagram", href: "/#instagram" },
 ];

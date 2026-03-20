@@ -22,7 +22,7 @@ export const AutoReplyEmail = ({ nombre, servicio }: AutoReplyEmailProps) => {
             <Body style={main}>
                 <Container style={container}>
                     <Section style={header}>
-                        <Text style={headerText}>Fábrica Chile</Text>
+                        <Text style={headerText}>Fabrica Chile</Text>
                     </Section>
                     <Section style={content}>
                         <Text style={title}>¡Hola {nombre}!</Text>

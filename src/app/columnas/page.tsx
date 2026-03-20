@@ -36,18 +36,14 @@ export default async function ColumnasIndexPage() {
                         scrollFade={true}
                     >
                         <div className="overflow-hidden">
-                            <AnimatedWord>Todas</AnimatedWord>{" "}
-                            <AnimatedWord>las</AnimatedWord>{" "}
-                            <AnimatedWord>Columnas</AnimatedWord>{" "}
-                            <AnimatedWord>&amp;</AnimatedWord>{" "}
-                            <AnimatedWord>Opiniones</AnimatedWord>
+                            <AnimatedWord>Opinión</AnimatedWord>
                         </div>
                     </AnimatedPageTitle>
                 </div>
 
                 {columnas.length === 0 ? (
                     <p className="text-center text-[#424242]/50 py-20 bg-white/50 border border-[#424242]/5">
-                        No hay columnas publicadas todavía.
+                        No hay opiniones publicadas todavía.
                     </p>
                 ) : (
                     <div className="grid gap-12">
