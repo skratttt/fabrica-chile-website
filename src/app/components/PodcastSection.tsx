@@ -65,14 +65,7 @@ export default function PodcastSection() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
-                            <div className="absolute bottom-0 left-0 p-8 md:p-10 w-full z-10 transform transition-transform duration-500 group-hover:-translate-y-2">
-                                <span className="text-white/70 text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
-                                    Nuevo Episodio
-                                </span>
-                                <h3 className="serif text-2xl md:text-3xl font-bold text-white leading-tight mb-2 group-hover:text-[#F48FB1] transition-colors duration-300">
-                                    La Transformación de la Industria 4.0 en el Cono Sur
-                                </h3>
-                            </div>
+                            {/* Podcast texts will populate here when ready */}
 
                             <div className="absolute top-8 right-8 w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-[#F48FB1] group-hover:border-[#F48FB1] transition-all duration-500 shadow-lg">
                                 <span className="text-white ml-1 text-lg">▶</span>
