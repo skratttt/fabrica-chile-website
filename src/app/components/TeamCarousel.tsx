@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { FadeInScroll } from "./FadeInScroll";
 
 interface TeamMember {
@@ -57,6 +57,30 @@ const team: TeamMember[] = [
 
 export default function TeamCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isHovered = useRef(false);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const scrollStep = () => {
+      if (!isHovered.current) {
+        // Adding 0.5px or 1px per frame. We use a float for smoother visual if needed, but scrollTop requires integers usually.
+        // Actually .scrollLeft accepts integers. 
+        if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
+          scrollContainer.scrollLeft = 0;
+        } else {
+          scrollContainer.scrollLeft += 1;
+        }
+      }
+      animationFrameId = window.requestAnimationFrame(scrollStep);
+    };
+
+    animationFrameId = window.requestAnimationFrame(scrollStep);
+
+    return () => window.cancelAnimationFrame(animationFrameId);
+  }, []);
 
   const scroll = (dir: "left" | "right") => {
     scrollRef.current?.scrollBy({
@@ -101,13 +125,15 @@ export default function TeamCarousel() {
 
         <div
           ref={scrollRef}
-          className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide snap-x snap-mandatory pb-2"
+          onMouseEnter={() => (isHovered.current = true)}
+          onMouseLeave={() => (isHovered.current = false)}
+          className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
         >
           {team.map((member, i) => (
             <FadeInScroll
               key={member.id}
               delay={i * 0.1}
-              className="snap-start shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
+              className="shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
             >
               <div
                 className="w-full aspect-square mb-5 relative overflow-hidden bg-black/20"

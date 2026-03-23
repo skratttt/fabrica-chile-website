@@ -103,7 +103,6 @@ export default function SobreNosotros() {
             scrollFade={true}
           >
             <div className="overflow-hidden" style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}>
-              <AnimatedWord>Sobre</AnimatedWord>{" "}
               <AnimatedWord className="text-[#F48FB1]">Nosotros</AnimatedWord>
             </div>
           </AnimatedPageTitle>

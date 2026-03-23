@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 const SITE_NAME = "Fabrica Chile";
 
 const navLinks = [
-  { label: "Sobre Nosotros", href: "/sobre-nosotros" },
+  { label: "Nosotros", href: "/sobre-nosotros" },
   { label: "Servicios", href: "/servicios" },
   { label: "Opinión", href: "/#columns" },
 ];

@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import { FadeInScroll } from "./FadeInScroll";
 
-interface FocusArea {
+interface BoardMember {
     id: number;
     name: string;
     role: string;
@@ -11,7 +11,7 @@ interface FocusArea {
 }
 
 // Empty placeholders to be filled later
-const focusAreas: FocusArea[] = [
+const boardMembers: BoardMember[] = [
     {
         id: 1,
         name: "Próximamente",
@@ -38,7 +38,7 @@ const focusAreas: FocusArea[] = [
     },
 ];
 
-export default function FocusCarousel() {
+export default function BoardCarousel() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const isHovered = useRef(false);
 
@@ -71,16 +71,16 @@ export default function FocusCarousel() {
     };
 
     return (
-        <section id="focus-areas" className="bg-[#424242] py-24 px-6 overflow-hidden">
+        <section id="board" className="bg-[#F5F5F5] py-24 px-6 overflow-hidden border-t border-[#424242]/10">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-end justify-between mb-12">
                     <FadeInScroll>
                         <div>
-                            <p className="text-[#F48FB1] text-xs tracking-[0.3em] uppercase font-medium mb-2">
-                                Áreas
+                            <p className="text-[#D81B60] text-xs tracking-[0.3em] uppercase font-medium mb-2">
+                                Directorio
                             </p>
-                            <h2 className="serif text-4xl font-bold text-[#F5F5F5]">
-                                Áreas de enfoque y vocerías
+                            <h2 className="serif text-4xl font-bold text-[#424242]">
+                                Equipo Directivo
                             </h2>
                         </div>
                     </FadeInScroll>
@@ -89,14 +89,14 @@ export default function FocusCarousel() {
                             <button
                                 onClick={() => scroll("left")}
                                 aria-label="Anterior"
-                                className="w-11 h-11 border border-[#F5F5F5]/20 text-[#F5F5F5]/60 flex items-center justify-center hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-200"
+                                className="w-11 h-11 border border-[#424242]/20 text-[#424242]/60 flex items-center justify-center hover:border-[#D81B60] hover:text-[#D81B60] transition-all duration-200"
                             >
                                 ←
                             </button>
                             <button
                                 onClick={() => scroll("right")}
                                 aria-label="Siguiente"
-                                className="w-11 h-11 border border-[#F5F5F5]/20 text-[#F5F5F5]/60 flex items-center justify-center hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-200"
+                                className="w-11 h-11 border border-[#424242]/20 text-[#424242]/60 flex items-center justify-center hover:border-[#D81B60] hover:text-[#D81B60] transition-all duration-200"
                             >
                                 →
                             </button>
@@ -110,38 +110,38 @@ export default function FocusCarousel() {
                     onMouseLeave={() => (isHovered.current = false)}
                     className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
                 >
-                    {focusAreas.map((area, i) => (
+                    {boardMembers.map((member, i) => (
                         <FadeInScroll
-                            key={area.id}
+                            key={member.id}
                             delay={i * 0.1}
                             className="shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
                         >
                             <div
-                                className="w-full aspect-square mb-5 relative overflow-hidden bg-black/20"
+                                className="w-full aspect-square mb-5 relative overflow-hidden bg-[#424242]/5 border border-[#424242]/10"
                             >
-                                {area.image ? (
+                                {member.image ? (
                                     <img
-                                        src={area.image}
-                                        alt={area.name}
+                                        src={member.image}
+                                        alt={member.name}
                                         className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                                     />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-[#F5F5F5]/30 text-xs tracking-[0.2em] uppercase">
+                                    <div className="w-full h-full flex items-center justify-center text-[#424242]/30 text-xs tracking-[0.2em] uppercase">
                                         Próximamente
                                     </div>
                                 )}
                             </div>
-                            <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
-                                {area.name}
+                            <h3 className="serif text-lg font-bold text-[#424242] leading-tight">
+                                {member.name}
                             </h3>
-                            <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
-                                {area.role}
+                            <p className="text-[#D81B60] text-xs tracking-[0.2em] uppercase mt-1">
+                                {member.role}
                             </p>
                         </FadeInScroll>
                     ))}
                 </div>
 
-                <p className="text-[#F5F5F5]/25 text-xs tracking-widest uppercase text-center mt-6 md:hidden">
+                <p className="text-[#424242]/25 text-xs tracking-widest uppercase text-center mt-6 md:hidden">
                     Desliza para ver más →
                 </p>
             </div>

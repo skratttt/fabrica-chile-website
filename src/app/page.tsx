@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import TeamCarousel from "@/app/components/TeamCarousel";
+import BoardCarousel from "@/app/components/BoardCarousel";
 import FocusCarousel from "@/app/components/FocusCarousel";
 import PodcastSection from "@/app/components/PodcastSection";
 import NewsletterForm from "@/app/components/NewsletterForm";
@@ -22,7 +23,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/fabrica_chile/?hl=es";
    Shown when Sanity/IG have no content yet.
 ───────────────────────────────────────────── */
 const tickerItems = [
-  "Síguenos en nuestras redes para estar al tanto"
+  '"El desarrollo consiste en la expansión de las libertades reales que disfrutan las personas" (Amartya Sen, 1999: 3)'
 ];
 
 /* ─────────────────────────────────────────
@@ -121,7 +122,7 @@ function Hero() {
         <FadeInScroll delay={0.6}>
           <p className="text-[#F5F5F5]/60 text-lg max-w-md mb-12 leading-relaxed">
             Investigación, columnas y análisis sobre las fuerzas políticas que
-            moldean nuestra sociedad. Sigue el debate en Instagram.
+            moldean nuestra sociedad. Sigue el debate en Redes.
           </p>
         </FadeInScroll>
 
@@ -156,6 +157,12 @@ function Hero() {
               className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
             >
               Podcast en YT
+            </a>
+            <a
+              href="#"
+              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
+            >
+              Podcast en Spotify
             </a>
           </div>
         </FadeInScroll>
@@ -197,8 +204,7 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
     );
   }
 
-  const featured = columnas.find((c) => c.featured) ?? columnas[0];
-  const rest = columnas.filter((c) => c._id !== featured._id).slice(0, 2);
+  const displayCols = columnas.slice(0, 3);
 
   return (
     <section id="columns" className="bg-[#F5F5F5] py-24 px-6">
@@ -224,101 +230,68 @@ function ColumnsSection({ columnas }: { columnas: Columna[] }) {
           </FadeInScroll>
         </div>
 
-        <div className="grid md:grid-cols-5 gap-8 lg:gap-12">
-          {/* Featured */}
-          <Link href={`/columnas/${featured.slug.current}`} className="md:col-span-3 block group">
-            <FadeInScroll delay={0.1}>
-              <article className="cursor-pointer">
-                <div
-                  className="aspect-[4/3] mb-6 overflow-hidden relative"
-                  style={
-                    featured.mainImage?.asset.url
-                      ? {
-                        backgroundImage: `url(${featured.mainImage.asset.url})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }
-                      : {
+        <div className="grid gap-12">
+          {displayCols.map((columna, i) => (
+            <FadeInScroll key={columna._id} delay={i * 0.1}>
+              <Link
+                href={`/columnas/${columna.slug.current}`}
+                className="group block"
+              >
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                  {columna.mainImage?.asset?.url ? (
+                    <div
+                      className="w-full md:w-64 lg:w-72 aspect-[4/3] relative rounded overflow-hidden bg-[#424242]/5 shrink-0"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={columna.mainImage.asset.url}
+                        alt={columna.title}
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full md:w-64 lg:w-72 aspect-[4/3] relative rounded overflow-hidden shrink-0"
+                      style={{
                         background:
                           "linear-gradient(135deg, #880E4F 0%, #6a0837 55%, #D81B60 100%)",
-                      }
-                  }
-                >
-                  <span
-                    className="absolute bottom-6 right-6 serif font-bold text-[#F5F5F5]/10 leading-none select-none"
-                    style={{ fontSize: "clamp(5rem, 12vw, 9rem)" }}
-                  >
-                    01
-                  </span>
-                  <div
-                    className="absolute top-0 left-0 w-2/3 h-2/3 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(circle at top left, rgba(244,143,177,0.2) 0%, transparent 70%)",
-                    }}
-                  />
-                  <div className="absolute top-6 left-6">
-                    <span className="bg-[#D81B60] text-white text-xs px-3 py-1.5 tracking-[0.2em] uppercase">
-                      {featured.category}
-                    </span>
-                  </div>
-                </div>
-                <h3 className="serif text-2xl lg:text-3xl font-bold text-[#424242] mb-3 group-hover:text-[#D81B60] transition-colors leading-tight">
-                  {featured.title}
-                </h3>
-                <p className="text-[#424242]/55 leading-relaxed mb-5 text-[0.95rem]">
-                  {featured.excerpt}
-                </p>
-                <div className="flex items-center gap-3 text-xs text-[#424242]/35 tracking-wide">
-                  <span className="font-medium">{featured.author}</span>
-                  <span>·</span>
-                  <span>{formatDate(featured.publishedAt)}</span>
-                  {featured.readTime && (
-                    <>
-                      <span>·</span>
-                      <span>{featured.readTime} min lectura</span>
-                    </>
+                      }}
+                    >
+                      <div
+                        className="absolute top-0 left-0 w-2/3 h-2/3 pointer-events-none"
+                        style={{
+                          background:
+                            "radial-gradient(circle at top left, rgba(244,143,177,0.2) 0%, transparent 70%)",
+                        }}
+                      />
+                    </div>
                   )}
-                </div>
-              </article>
-            </FadeInScroll>
-          </Link>
 
-          {/* Rest */}
-          <div className="md:col-span-2 flex flex-col divide-y divide-[#424242]/10">
-            {rest.map((col, i) => (
-              <Link
-                key={col._id}
-                href={`/columnas/${col.slug.current}`}
-                className="group cursor-pointer py-8 first:pt-0 last:pb-0 block"
-              >
-                <FadeInScroll delay={0.2 + (i * 0.1)}>
-                  <article>
-                    <span className="text-[#D81B60] text-xs tracking-[0.25em] uppercase font-medium">
-                      {col.category}
+                  <div className="flex-1 py-2">
+                    <span className="text-[#D81B60] text-xs tracking-[0.25em] uppercase font-medium mb-3 block">
+                      {columna.category}
                     </span>
-                    <h3 className="serif text-xl font-bold text-[#424242] mt-2 mb-3 group-hover:text-[#D81B60] transition-colors leading-tight">
-                      {col.title}
-                    </h3>
-                    <p className="text-[#424242]/55 text-sm leading-relaxed mb-4">
-                      {col.excerpt}
+                    <h2 className="serif text-2xl md:text-3xl font-bold text-[#424242] mb-4 group-hover:text-[#D81B60] transition-colors leading-tight">
+                      {columna.title}
+                    </h2>
+                    <p className="text-[#424242]/60 text-base leading-relaxed mb-6 line-clamp-3">
+                      {columna.excerpt}
                     </p>
-                    <div className="flex items-center gap-3 text-xs text-[#424242]/35">
-                      <span className="font-medium">{col.author}</span>
-                      <span>·</span>
-                      <span>{formatDate(col.publishedAt)}</span>
-                      {col.readTime && (
+                    <div className="flex items-center gap-3 text-xs text-[#424242]/40 tracking-[0.1em] uppercase">
+                      <span className="font-semibold text-[#424242]/70">{columna.author}</span>
+                      <span className="opacity-50">·</span>
+                      <span>{formatDate(columna.publishedAt)}</span>
+                      {columna.readTime && (
                         <>
-                          <span>·</span>
-                          <span>{col.readTime} min</span>
+                          <span className="opacity-50">·</span>
+                          <span>{columna.readTime} min</span>
                         </>
                       )}
                     </div>
-                  </article>
-                </FadeInScroll>
+                  </div>
+                </div>
               </Link>
-            ))}
-          </div>
+            </FadeInScroll>
+          ))}
         </div>
       </div>
     </section>
@@ -562,9 +535,10 @@ export default async function Home() {
       <Ticker />
       <ColumnsSection columnas={columnas} />
       <InstagramSection posts={displayPosts} />
-      <StudiesSection estudios={estudios} />
       <PodcastSection />
+      <StudiesSection estudios={estudios} />
       <FocusCarousel />
+      <BoardCarousel />
       <TeamCarousel />
       <NewsletterForm />
       <Footer />

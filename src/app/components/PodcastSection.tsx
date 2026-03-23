@@ -10,11 +10,10 @@ export default function PodcastSection() {
                 {/* Left Column: Text & CTA */}
                 <div className="flex flex-col justify-center">
                     <FadeInScroll>
-                        <h2 className="serif text-5xl md:text-6xl lg:text-[5rem] font-bold text-[#880E4F] leading-[1.05] mb-8">
-                            Escucha <br />
-                            nuestro <br />
-                            Podcast: <br />
-                            Materia Prima
+                        <h2 className="serif text-5xl md:text-6xl lg:text-7xl font-bold text-[#880E4F] leading-[1.05] mb-8">
+                            Materia Prima: <br />
+                            un podcast de <br />
+                            Fabrica Chile
                         </h2>
                     </FadeInScroll>
 

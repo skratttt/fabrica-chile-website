@@ -6,15 +6,16 @@ const TAGLINE = "Ideas. Analysis. Perspective.";
 
 const contentLinks = [
   { label: "Opinión", href: "/#columns" },
-  { label: "Estudios", href: "/#studies" },
   { label: "Instagram", href: "/#instagram" },
+  { label: "Podcast", href: "/#podcast" },
+  { label: "Productos", href: "/#studies" },
 ];
 
 const aboutLinks = [
-  { label: "Sobre Nosotros", href: "/sobre-nosotros" },
+  { label: "Nosotros", href: "/sobre-nosotros" },
   { label: "Servicios", href: "/servicios" },
   { label: "Contacto", href: "/contacto" },
-  { label: "Suscribirse", href: "/#newsletter" },
+  { label: "Boletín", href: "/#newsletter" },
 ];
 
 export default function Footer() {
@@ -37,11 +38,8 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[#F5F5F5]/35 text-sm leading-relaxed max-w-[220px] mt-4">
-              Un centro de pensamiento político comprometido con el análisis, la
+              Un centro de pensamiento comprometido con el análisis, la
               investigación independiente y el debate público abierto.
-            </p>
-            <p className="text-[#F48FB1]/30 text-xs mt-5 tracking-wide">
-              {TAGLINE}
             </p>
           </div>
 
@@ -86,8 +84,9 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#F5F5F5]/20 text-xs">
-            © 2026 {SITE_NAME}. Todos los derechos reservados.
+          <p className="text-[#F5F5F5]/20 text-xs leading-relaxed text-center md:text-left">
+            © 2026 {SITE_NAME}. Todos los derechos reservados. <span className="hidden md:inline mx-1">|</span><br className="md:hidden" />
+            Desarrollado por <strong className="font-bold text-[#F5F5F5]/40">MugiwaraDev</strong>®
           </p>
           <div className="flex items-center gap-6">
             <a
