@@ -23,7 +23,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/fabrica_chile/?hl=es";
    Shown when Sanity/IG have no content yet.
 ───────────────────────────────────────────── */
 const tickerItems = [
-  '"El desarrollo consiste en la expansión de las libertades reales que disfrutan las personas" (Amartya Sen, 1999: 3)'
+  '"El desarrollo consiste en la expansión de las libertades reales que disfrutan las personas" (Amartya Sen)'
 ];
 
 /* ─────────────────────────────────────────
