@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import TeamCarousel from "@/app/components/TeamCarousel";
-import BoardCarousel from "@/app/components/BoardCarousel";
 import FocusCarousel from "@/app/components/FocusCarousel";
 import PodcastSection from "@/app/components/PodcastSection";
 import NewsletterForm from "@/app/components/NewsletterForm";
@@ -538,8 +536,6 @@ export default async function Home() {
       <PodcastSection />
       <StudiesSection estudios={estudios} />
       <FocusCarousel />
-      <BoardCarousel />
-      <TeamCarousel />
       <NewsletterForm />
       <Footer />
     </main>

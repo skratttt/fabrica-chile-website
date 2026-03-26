@@ -2,6 +2,8 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
 import { FadeInScroll } from "@/app/components/FadeInScroll";
+import BoardCarousel from "@/app/components/BoardCarousel";
+import TeamCarousel from "@/app/components/TeamCarousel";
 
 const valores = [
   {
@@ -113,6 +115,9 @@ export default function SobreNosotros() {
           </FadeInScroll>
         </div>
       </section>
+
+      <BoardCarousel />
+      <TeamCarousel />
 
       {/* ── Misión ── */}
       <section className="bg-[#F5F5F5] py-24 px-6">
