@@ -14,27 +14,51 @@ interface FocusArea {
 const focusAreas: FocusArea[] = [
     {
         id: 1,
-        name: "Próximamente",
-        role: "Próximamente",
-        image: "",
+        name: "Francisco Meneses",
+        role: "Economía, innovación e inversiones",
+        image: "/assets/francisco meneses.jpeg",
     },
     {
         id: 2,
-        name: "Próximamente",
-        role: "Próximamente",
-        image: "",
+        name: "Verónica Pardo",
+        role: "Turismo",
+        image: "/assets/veronica pardo.jpeg",
     },
     {
         id: 3,
-        name: "Próximamente",
-        role: "Próximamente",
-        image: "",
+        name: "Luis Felipe Ramos",
+        role: "Energía",
+        image: "/assets/luis felipe ramos.jpeg",
     },
     {
         id: 4,
-        name: "Próximamente",
-        role: "Próximamente",
-        image: "",
+        name: "Ernesto Muñoz",
+        role: "Seguridad y justicia",
+        image: "/assets/ernesto muñoz.jpeg",
+    },
+    {
+        id: 5,
+        name: "Rodrigo Rettig",
+        role: "Delitos tributarios y filosofía liberal",
+        image: "/assets/rodrigo rettig.jpeg",
+    },
+    {
+        id: 6,
+        name: "Francisco Muñoz",
+        role: "Transparencia y probidad",
+        image: "/assets/francisco muñoz.jpeg",
+    },
+    {
+        id: 7,
+        name: "Arantzasu Foppiano",
+        role: "Género y agenda mujer",
+        image: "/assets/Arantzasu Foppiano.jpg",
+    },
+    {
+        id: 8,
+        name: "Nicolás Freire",
+        role: "Política y coyuntura",
+        image: "/assets/nicolas freire.jpeg",
     },
 ];
 
@@ -49,11 +73,11 @@ export default function FocusCarousel() {
 
         const scrollStep = () => {
             if (!isHovered.current) {
-                if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
-                    scrollContainer.scrollLeft = 0;
-                } else {
-                    scrollContainer.scrollLeft += 1;
+                // If we've scrolled past the first full set of items, jump back seamlessly
+                if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+                    scrollContainer.scrollLeft -= scrollContainer.scrollWidth / 2;
                 }
+                scrollContainer.scrollLeft += 1;
             }
             animationFrameId = window.requestAnimationFrame(scrollStep);
         };
@@ -110,10 +134,10 @@ export default function FocusCarousel() {
                     onMouseLeave={() => (isHovered.current = false)}
                     className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
                 >
-                    {focusAreas.map((area, i) => (
+                    {[...focusAreas, ...focusAreas].map((area, i) => (
                         <FadeInScroll
-                            key={area.id}
-                            delay={i * 0.1}
+                            key={`${area.id}-${i}`}
+                            delay={(i % focusAreas.length) * 0.1}
                             className="shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
                         >
                             <div
