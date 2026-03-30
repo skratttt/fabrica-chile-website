@@ -13,42 +13,36 @@ interface TeamMember {
 const team: TeamMember[] = [
   {
     id: 1,
-    name: "Nicolás Freire",
-    role: "Director Ejecutivo",
-    image: "/assets/nicolas freire.jpeg",
-  },
-  {
-    id: 2,
-    name: "Bartolomé Reus",
-    role: "Jefe de Comunicaciones",
-    image: "/assets/bartolome reus.jpeg",
-  },
-  {
-    id: 3,
     name: "José Francisco Aravena",
     role: "Coordinador de Equipo",
     image: "/assets/Jose Francisco Aravena .jpg",
   },
   {
-    id: 4,
+    id: 2,
     name: "Arantzasu Foppiano",
     role: "Investigador",
     image: "/assets/Arantzasu Foppiano.jpg",
   },
   {
-    id: 5,
+    id: 3,
+    name: "Bartolomé Reus",
+    role: "Comunicaciones",
+    image: "/assets/bartolome reus.jpeg",
+  },
+  {
+    id: 4,
     name: "Francisco Oyarce",
     role: "Investigador",
     image: "/assets/Fransisco oyarce.jpg",
   },
   {
-    id: 6,
+    id: 5,
     name: "Nicolás Germain",
     role: "Investigador",
     image: "/assets/Nicolas Germain.jpeg",
   },
   {
-    id: 7,
+    id: 6,
     name: "Tomás Domínguez",
     role: "Investigador",
     image: "/assets/Tomas Dominguez.jpg",
@@ -66,13 +60,10 @@ export default function TeamCarousel() {
 
     const scrollStep = () => {
       if (!isHovered.current) {
-        // Adding 0.5px or 1px per frame. We use a float for smoother visual if needed, but scrollTop requires integers usually.
-        // Actually .scrollLeft accepts integers. 
-        if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
-          scrollContainer.scrollLeft = 0;
-        } else {
-          scrollContainer.scrollLeft += 1;
+        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+          scrollContainer.scrollLeft -= scrollContainer.scrollWidth / 2;
         }
+        scrollContainer.scrollLeft += 1;
       }
       animationFrameId = window.requestAnimationFrame(scrollStep);
     };
@@ -129,10 +120,10 @@ export default function TeamCarousel() {
           onMouseLeave={() => (isHovered.current = false)}
           className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
         >
-          {team.map((member, i) => (
+          {[...team, ...team].map((member, i) => (
             <FadeInScroll
-              key={member.id}
-              delay={i * 0.1}
+              key={`${member.id}-${i}`}
+              delay={(i % team.length) * 0.1}
               className="shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
             >
               <div
