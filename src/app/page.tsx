@@ -402,7 +402,7 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
     return (
       <section id="studies" className="bg-[#FAF9F6] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
         <h2 className="serif text-3xl font-bold text-[#880E4F] mb-4">
-          Expositor de Estudios e Informes
+          Expositor de Productos
         </h2>
         <p className="text-[#424242]/55 tracking-wide">
           Estamos trabajando en esta sección.
@@ -431,12 +431,12 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
           <div>
             <FadeInScroll>
               <div className="inline-block bg-[#FCE4EC] text-[#880E4F] text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 rounded-full mb-6">
-                REPOSITORIO DE CONOCIMIENTO
+                DESTACADO
               </div>
             </FadeInScroll>
             <FadeInScroll delay={0.1}>
               <h2 className="serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#880E4F] mb-6 leading-tight">
-                Expositor de Estudios e Informes
+                Expositor de Productos
               </h2>
             </FadeInScroll>
             <FadeInScroll delay={0.2}>
