@@ -34,7 +34,7 @@ const focusAreas: FocusArea[] = [
         id: 4,
         name: "Ernesto Muñoz",
         role: "Seguridad y justicia",
-        image: "/assets/ernesto muñoz.jpeg",
+        image: "/assets/ernesto munoz.jpeg",
     },
     {
         id: 5,
@@ -46,7 +46,7 @@ const focusAreas: FocusArea[] = [
         id: 6,
         name: "Francisco Muñoz",
         role: "Transparencia y probidad",
-        image: "/assets/francisco muñoz.jpeg",
+        image: "/assets/francisco munoz.jpeg",
     },
     {
         id: 7,
