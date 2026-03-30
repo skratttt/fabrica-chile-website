@@ -20,8 +20,11 @@ export interface Estudio {
   _id: string;
   number: string;
   title: string;
+  slug: { current: string };
   abstract: string;
-  tags: string[];
+  category: string;
+  coverImage?: { asset: { url: string } };
+  tags?: string[];
   year: string;
   pages: string;
   pdfUrl?: string;
@@ -55,10 +58,21 @@ export async function getColumnaBySlug(slug: string): Promise<Columna | null> {
 export async function getEstudios(): Promise<Estudio[]> {
   return sanityClient.fetch(
     `*[_type == "estudio"] | order(publishedAt desc) {
-      _id, number, title, abstract, tags, year, pages,
+      _id, number, title, slug, abstract, category, coverImage { asset->{ url } }, tags, year, pages,
       "pdfUrl": pdfFile.asset->url
     }`,
     {},
+    { next: { revalidate: 60 } }
+  );
+}
+
+export async function getEstudioBySlug(slug: string): Promise<Estudio | null> {
+  return sanityClient.fetch(
+    `*[_type == "estudio" && slug.current == $slug][0] {
+      _id, number, title, slug, abstract, category, coverImage { asset->{ url } }, tags, year, pages,
+      "pdfUrl": pdfFile.asset->url
+    }`,
+    { slug },
     { next: { revalidate: 60 } }
   );
 }

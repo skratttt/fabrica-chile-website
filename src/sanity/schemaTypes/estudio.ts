@@ -31,11 +31,24 @@ export const estudio = defineType({
       rows: 4,
     }),
     defineField({
-      name: "tags",
-      title: "Etiquetas",
-      type: "array",
-      of: [{ type: "string" }],
-      options: { layout: "tags" },
+      name: "category",
+      title: "Categoría",
+      type: "string",
+      options: {
+        list: [
+          { title: "Informe Técnico", value: "Informe Técnico" },
+          { title: "Estudio", value: "Estudio" },
+          { title: "Doc. de Trabajo", value: "Doc. de Trabajo" },
+        ],
+        layout: "radio",
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "coverImage",
+      title: "Imagen de Portada",
+      type: "image",
+      options: { hotspot: true },
     }),
     defineField({
       name: "year",

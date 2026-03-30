@@ -400,9 +400,9 @@ function InstagramSection({ posts }: { posts: DisplayPost[] }) {
 function StudiesSection({ estudios }: { estudios: Estudio[] }) {
   if (!estudios || estudios.length === 0) {
     return (
-      <section id="studies" className="bg-[#F5F5F5] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
-        <h2 className="serif text-3xl font-bold text-[#424242] mb-4">
-          Productos
+      <section id="studies" className="bg-[#FAF9F6] py-24 px-6 min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <h2 className="serif text-3xl font-bold text-[#880E4F] mb-4">
+          Expositor de Estudios e Informes
         </h2>
         <p className="text-[#424242]/55 tracking-wide">
           Estamos trabajando en esta sección.
@@ -411,88 +411,89 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
     );
   }
 
+  const getCategoryBgColor = (cat?: string) => {
+    switch (cat) {
+      case "Informe Técnico":
+        return "bg-[#880E4F]"; // Dark red
+      case "Estudio":
+        return "bg-[#1A2639]"; // Dark navy blue
+      case "Doc. de Trabajo":
+        return "bg-[#1C3A27]"; // Dark forest green
+      default:
+        return "bg-[#424242]"; // Gray fallback
+    }
+  };
+
   return (
-    <section id="studies" className="bg-[#F5F5F5] py-24 px-6">
+    <section id="studies" className="bg-[#FAF9F6] py-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-12 pb-6 border-b border-[#424242]/10">
+        <div className="mb-16">
           <FadeInScroll>
-            <div>
-              <p className="text-[#D81B60] text-xs tracking-[0.3em] uppercase font-medium mb-2">
-                Investigación
-              </p>
-              <h2 className="serif text-4xl font-bold text-[#424242]">
-                Productos
-              </h2>
+            <div className="inline-block bg-[#FCE4EC] text-[#880E4F] text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 rounded-full mb-6">
+              REPOSITORIO DE CONOCIMIENTO
             </div>
           </FadeInScroll>
-          <FadeInScroll delay={0.2} direction="left">
-            <a
-              href="#"
-              className="hidden md:block text-xs tracking-[0.2em] uppercase text-[#424242]/40 hover:text-[#D81B60] transition-colors"
-            >
-              Todos los estudios →
-            </a>
+          <FadeInScroll delay={0.1}>
+            <h2 className="serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#880E4F] mb-6 leading-tight">
+              Expositor de Estudios e Informes
+            </h2>
+          </FadeInScroll>
+          <FadeInScroll delay={0.2}>
+            <p className="text-[#424242]/70 text-lg md:text-xl max-w-3xl leading-relaxed">
+              Acceda a nuestra biblioteca técnica donde la investigación rigurosa se
+              encuentra con el análisis estratégico para el desarrollo nacional.
+            </p>
           </FadeInScroll>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {estudios.map((study, i) => (
             <FadeInScroll key={study._id} delay={i * 0.1}>
-              <div
-                className="group border border-[#424242]/10 p-8 hover:border-[#D81B60] transition-all duration-300 cursor-pointer relative overflow-hidden"
-              >
-                <span
-                  className="absolute right-6 top-1/2 -translate-y-1/2 serif font-bold text-[#D81B60]/[0.05] leading-none select-none pointer-events-none"
-                  style={{ fontSize: "clamp(5rem, 10vw, 8rem)" }}
-                >
-                  {study.number}
-                </span>
-
-                <div className="relative z-10 grid md:grid-cols-4 gap-6 items-center">
-                  <div className="md:col-span-3">
-                    <div className="flex flex-wrap items-center gap-4 mb-3">
-                      <span className="text-[#D81B60] text-xs tracking-[0.3em] uppercase font-medium">
-                        Estudio #{study.number}
-                      </span>
-                      <span className="text-[#424242]/30 text-xs">
-                        {study.year}
-                        {study.pages && ` · ${study.pages}`}
-                      </span>
-                    </div>
-                    <h3 className="serif text-xl lg:text-2xl font-bold text-[#424242] mb-3 group-hover:text-[#D81B60] transition-colors leading-tight">
-                      {study.title}
-                    </h3>
-                    <p className="text-[#424242]/55 text-sm leading-relaxed">
-                      {study.abstract}
-                    </p>
-                    {study.tags?.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {study.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-xs px-3 py-1 bg-[#4DB6AC]/10 text-[#4DB6AC] border border-[#4DB6AC]/20 tracking-[0.15em] uppercase"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+              <div className="group flex flex-col h-full rounded-md mt-2 overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-500">
+                {/* Top Half: Graphic / Image */}
+                <div className="relative aspect-[4/3] w-full bg-[#424242]/5 overflow-hidden">
+                  {study.coverImage?.asset?.url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={study.coverImage.asset.url}
+                      alt={study.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                      style={{
+                        background: "linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%)",
+                      }}
+                    >
+                      <div className="w-full h-full flex items-center justify-center pointer-events-none opacity-20">
+                         {/* Fallback abstract icon */}
+                         <span className="text-8xl">📄</span>
                       </div>
-                    )}
-                  </div>
-                  <div className="flex md:justify-end">
-                    {study.pdfUrl ? (
-                      <a
-                        href={study.pdfUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="border border-[#424242]/40 text-[#424242]/65 px-6 py-3 text-xs tracking-[0.2em] uppercase hover:bg-[#D81B60] hover:border-[#D81B60] hover:text-white transition-all duration-300"
-                      >
-                        Descargar PDF
-                      </a>
-                    ) : (
-                      <button className="border border-[#424242]/20 text-[#424242]/30 px-6 py-3 text-xs tracking-[0.2em] uppercase cursor-not-allowed">
-                        PDF no disponible
-                      </button>
-                    )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom Half: Content */}
+                <div className={`flex-1 flex flex-col p-8 md:p-10 ${getCategoryBgColor(study.category)}`}>
+                  <span className="text-white/80 text-[10px] tracking-[0.2em] uppercase font-bold mb-4 block">
+                    {study.category || "Fábrica"}
+                  </span>
+                  <h3 className="serif text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight">
+                    {study.title}
+                  </h3>
+                  <p className="text-white/70 text-sm leading-relaxed mb-10 line-clamp-4">
+                    {study.abstract}
+                  </p>
+
+                  <div className="mt-auto">
+                    <Link
+                      href={`/estudios/${study.slug?.current || ""}`}
+                      className="inline-flex items-center justify-between w-full border border-white/20 text-white/90 px-6 py-4 text-xs tracking-[0.1em] font-medium hover:bg-white/10 transition-colors rounded-sm"
+                    >
+                      <span>Ver Producto</span>
+                      <span>→</span>
+                    </Link>
                   </div>
                 </div>
               </div>
