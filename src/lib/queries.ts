@@ -27,6 +27,7 @@ export interface Estudio {
   tags?: string[];
   year: string;
   pages: string;
+  featured?: boolean;
   pdfUrl?: string;
 }
 
@@ -55,10 +56,21 @@ export async function getColumnaBySlug(slug: string): Promise<Columna | null> {
   );
 }
 
-export async function getEstudios(): Promise<Estudio[]> {
+export async function getAllEstudios(): Promise<Estudio[]> {
   return sanityClient.fetch(
     `*[_type == "estudio"] | order(publishedAt desc) {
-      _id, number, title, slug, abstract, category, coverImage { asset->{ url } }, tags, year, pages,
+      _id, number, title, slug, abstract, category, coverImage { asset->{ url } }, tags, year, pages, featured,
+      "pdfUrl": pdfFile.asset->url
+    }`,
+    {},
+    { next: { revalidate: 60 } }
+  );
+}
+
+export async function getFeaturedEstudios(): Promise<Estudio[]> {
+  return sanityClient.fetch(
+    `*[_type == "estudio" && featured == true] | order(publishedAt desc) {
+      _id, number, title, slug, abstract, category, coverImage { asset->{ url } }, tags, year, pages, featured,
       "pdfUrl": pdfFile.asset->url
     }`,
     {},
@@ -69,7 +81,7 @@ export async function getEstudios(): Promise<Estudio[]> {
 export async function getEstudioBySlug(slug: string): Promise<Estudio | null> {
   return sanityClient.fetch(
     `*[_type == "estudio" && slug.current == $slug][0] {
-      _id, number, title, slug, abstract, category, coverImage { asset->{ url } }, tags, year, pages,
+      _id, number, title, slug, abstract, category, coverImage { asset->{ url } }, tags, year, pages, featured,
       "pdfUrl": pdfFile.asset->url
     }`,
     { slug },

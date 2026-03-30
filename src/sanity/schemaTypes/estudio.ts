@@ -68,6 +68,13 @@ export const estudio = defineType({
       type: "datetime",
     }),
     defineField({
+      name: "featured",
+      title: "Destacado",
+      type: "boolean",
+      description: "Si se activa, este producto aparecerá en la página principal.",
+      initialValue: false,
+    }),
+    defineField({
       name: "pdfFile",
       title: "Archivo PDF",
       type: "file",

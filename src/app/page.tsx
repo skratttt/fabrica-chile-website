@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import FocusCarousel from "@/app/components/FocusCarousel";
 import PodcastSection from "@/app/components/PodcastSection";
 import NewsletterForm from "@/app/components/NewsletterForm";
-import { getColumnas, getEstudios, type Columna, type Estudio } from "@/lib/queries";
+import { getColumnas, getFeaturedEstudios, type Columna, type Estudio } from "@/lib/queries";
 import { getInstagramPosts, type IgPost } from "@/lib/instagram";
 import { FadeInScroll } from "@/app/components/FadeInScroll";
 import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
@@ -427,22 +427,33 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
   return (
     <section id="studies" className="bg-[#FAF9F6] py-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <FadeInScroll>
-            <div className="inline-block bg-[#FCE4EC] text-[#880E4F] text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 rounded-full mb-6">
-              REPOSITORIO DE CONOCIMIENTO
-            </div>
-          </FadeInScroll>
-          <FadeInScroll delay={0.1}>
-            <h2 className="serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#880E4F] mb-6 leading-tight">
-              Expositor de Estudios e Informes
-            </h2>
-          </FadeInScroll>
-          <FadeInScroll delay={0.2}>
-            <p className="text-[#424242]/70 text-lg md:text-xl max-w-3xl leading-relaxed">
-              Acceda a nuestra biblioteca técnica donde la investigación rigurosa se
-              encuentra con el análisis estratégico para el desarrollo nacional.
-            </p>
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <FadeInScroll>
+              <div className="inline-block bg-[#FCE4EC] text-[#880E4F] text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 rounded-full mb-6">
+                REPOSITORIO DE CONOCIMIENTO
+              </div>
+            </FadeInScroll>
+            <FadeInScroll delay={0.1}>
+              <h2 className="serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#880E4F] mb-6 leading-tight">
+                Expositor de Estudios e Informes
+              </h2>
+            </FadeInScroll>
+            <FadeInScroll delay={0.2}>
+              <p className="text-[#424242]/70 text-lg md:text-xl max-w-3xl leading-relaxed">
+                Acceda a nuestra biblioteca técnica donde la investigación rigurosa se
+                encuentra con el análisis estratégico para el desarrollo nacional.
+              </p>
+            </FadeInScroll>
+          </div>
+          
+          <FadeInScroll delay={0.3} direction="left" className="shrink-0">
+            <Link
+              href="/estudios"
+              className="text-xs tracking-[0.2em] uppercase font-bold text-[#880E4F] hover:text-[#D81B60] transition-colors flex items-center gap-2"
+            >
+              Todos los productos <span>→</span>
+            </Link>
           </FadeInScroll>
         </div>
 
@@ -511,7 +522,7 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
 export default async function Home() {
   const [columnas, estudios, igPosts] = await Promise.all([
     getColumnas().catch(() => [] as Columna[]),
-    getEstudios().catch(() => [] as Estudio[]),
+    getFeaturedEstudios().catch(() => [] as Estudio[]),
     getInstagramPosts(6).catch(() => [] as IgPost[]),
   ]);
 
