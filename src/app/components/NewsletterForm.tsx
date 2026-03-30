@@ -18,10 +18,12 @@ export default function NewsletterForm() {
         </p>
 
         <a
-          href="#"
+          href="https://script.google.com/macros/s/AKfycbxSv5QiukNC8G9v4LskyHCnBztl8zmyiDk7_Sksfxo30mPPivQ0nv3_vm6JfUv5Pog/exec"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block bg-white text-[#D81B60] px-10 py-5 text-xs tracking-[0.25em] uppercase font-bold hover:bg-[#880E4F] hover:text-white transition-all duration-300 shadow-xl"
         >
-          Descargar Último Boletín
+          Suscríbete
         </a>
       </div>
     </section>
