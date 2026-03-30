@@ -87,14 +87,15 @@ export default async function ColumnaPage({ params }: { params: Promise<{ slug: 
                 </div>
 
                 {columna.mainImage?.asset?.url && (
-                    <FadeInScroll delay={0.2} className="relative aspect-[21/9] w-full mb-12 overflow-hidden bg-[#424242]/5">
-                        <Image
-                            src={columna.mainImage.asset.url}
-                            alt={columna.title}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
+                    <FadeInScroll delay={0.2}>
+                        <div className="relative aspect-[21/9] w-full mb-12 overflow-hidden bg-[#424242]/5">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={columna.mainImage.asset.url}
+                                alt={columna.title}
+                                className="object-cover w-full h-full"
+                            />
+                        </div>
                     </FadeInScroll>
                 )}
 

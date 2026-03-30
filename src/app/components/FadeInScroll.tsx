@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ReactNode, useRef } from "react";
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 interface FadeInScrollProps {
     children: ReactNode;
@@ -9,12 +9,12 @@ interface FadeInScrollProps {
     delay?: number;
     direction?: "up" | "down" | "left" | "right" | "none";
     distance?: number;
-    offset?: any; // e.g. ["start 25%", "start -25%"]
+    offset?: any; // kept for compatibility but unused
 }
 
 /**
- * A reusable wrapper that animates its children in when scrolled into view
- * and animates them out when scrolled out of view.
+ * A reusable wrapper that animates its children in when scrolled into view.
+ * Removed heavy useScroll bindings for better performance.
  */
 export function FadeInScroll({
     children,
@@ -22,7 +22,6 @@ export function FadeInScroll({
     delay = 0,
     direction = "up",
     distance = 30,
-    offset = ["start 25%", "start -25%"]
 }: FadeInScrollProps) {
 
     // Calculate initial offset based on direction
@@ -37,28 +36,10 @@ export function FadeInScroll({
         }
     };
 
-    const ref = useRef<HTMLDivElement>(null);
-
-    // Fade out as the element scrolls up and out of the viewport.
-    // By default starts fading when the element's top is 25% from the top of the viewport,
-    // and finishes fading when its top is 25% above the top of the viewport.
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: offset
-    });
-
-    // We apply a slight upward drift and fade out as it leaves.
-    const fadeOutOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-    const fadeOutY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-
     const initialOffset = getInitialOffset();
 
     return (
-        <motion.div
-            ref={ref}
-            style={{ opacity: fadeOutOpacity, y: fadeOutY }}
-            className={className}
-        >
+        <div className={className}>
             <motion.div
                 initial={{
                     opacity: 0,
@@ -72,17 +53,17 @@ export function FadeInScroll({
                     y: 0
                 }}
                 viewport={{
-                    once: false, // Animates out when leaving screen
-                    amount: 0.15 // Triggers when 15% of the element is in view
+                    once: false,
+                    amount: 0.15
                 }}
                 transition={{
                     duration: 0.8,
                     delay: delay,
-                    ease: [0.25, 0.4, 0.1, 1] // Anthropic-style smooth curve
+                    ease: [0.25, 0.4, 0.1, 1] 
                 }}
             >
                 {children}
             </motion.div>
-        </motion.div>
+        </div>
     );
 }
