@@ -3,7 +3,6 @@ import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import AutoReplyEmail from "@/emails/AutoReplyEmail";
 
-export const runtime = "edge";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_LENGTHS = { nombre: 100, organizacion: 200, email: 254, servicio: 200, mensaje: 5000 };
