@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { FadeInScroll } from "./FadeInScroll";
 
 interface TeamMember {
@@ -8,6 +8,7 @@ interface TeamMember {
   name: string;
   role: string;
   image: string;
+  bio: string;
 }
 
 const team: TeamMember[] = [
@@ -16,38 +17,100 @@ const team: TeamMember[] = [
     name: "José Francisco Aravena",
     role: "Coordinador de Equipo",
     image: "/assets/Jose Francisco Aravena .jpg",
+    bio: "Texto sobre José Francisco aquí.",
   },
   {
     id: 2,
     name: "Arantzasu Foppiano",
     role: "Investigador",
     image: "/assets/Arantzasu Foppiano.jpg",
+    bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como investigadora, aportando desde el análisis y la generación de contenido.",
   },
   {
     id: 3,
     name: "Bartolomé Reus",
     role: "Comunicaciones",
     image: "/assets/bartolome reus.jpeg",
+    bio: "Texto sobre Bartolomé aquí.",
   },
   {
     id: 4,
     name: "Francisco Oyarce",
     role: "Investigador",
     image: "/assets/Fransisco oyarce.jpg",
+    bio: "Texto sobre Francisco aquí.",
   },
   {
     id: 5,
     name: "Nicolás Germain",
     role: "Investigador",
     image: "/assets/Nicolas Germain.jpeg",
+    bio: "Texto sobre Nicolás aquí.",
   },
   {
     id: 6,
     name: "Tomás Domínguez",
     role: "Investigador",
     image: "/assets/Tomas Dominguez.jpg",
+    bio: "Texto sobre Tomás aquí.",
   },
 ];
+
+function FlipCard({ member }: { member: TeamMember }) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div className="shrink-0 w-[260px] md:w-[290px] cursor-pointer">
+      <div
+        className="w-full aspect-square mb-5 relative"
+        style={{ perspective: "1000px" }}
+        onMouseEnter={() => setFlipped(true)}
+        onMouseLeave={() => setFlipped(false)}
+      >
+        <div
+          style={{
+            transformStyle: "preserve-3d",
+            transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+            width: "100%",
+            height: "100%",
+            position: "relative",
+          }}
+        >
+          {/* Front */}
+          <div
+            style={{ backfaceVisibility: "hidden" }}
+            className="absolute inset-0 overflow-hidden bg-black/20"
+          >
+            <img
+              src={member.image}
+              alt={member.name}
+              className="w-full h-full object-cover object-center grayscale"
+            />
+          </div>
+          {/* Back */}
+          <div
+            style={{
+              backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+            }}
+            className="absolute inset-0 bg-[#6D0B3E] flex flex-col justify-center p-6"
+          >
+            <p className="text-[#F5F5F5]/90 text-sm leading-relaxed">
+              {member.bio}
+            </p>
+          </div>
+        </div>
+      </div>
+      <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
+        {member.name}
+      </h3>
+      <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
+        {member.role}
+      </p>
+    </div>
+  );
+}
 
 export default function TeamCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -124,23 +187,8 @@ export default function TeamCarousel() {
             <FadeInScroll
               key={`${member.id}-${i}`}
               delay={(i % team.length) * 0.1}
-              className="shrink-0 w-[260px] md:w-[290px] group cursor-pointer"
             >
-              <div
-                className="w-full aspect-square mb-5 relative overflow-hidden bg-black/20"
-              >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
-                {member.name}
-              </h3>
-              <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
-                {member.role}
-              </p>
+              <FlipCard member={member} />
             </FadeInScroll>
           ))}
         </div>
