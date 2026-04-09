@@ -165,7 +165,7 @@ export default function FocusCarousel() {
     useEffect(() => {
         let animationFrameId: number;
         let lastTime = 0;
-        const SPEED = 40; // px per second — consistent across all refresh rates
+        const SPEED = Math.max(35, window.innerWidth * 0.04); // ~35px/s mobile, ~77px/s 1920p, scales with viewport
         const scrollContainer = scrollRef.current;
         if (!scrollContainer) return;
 
