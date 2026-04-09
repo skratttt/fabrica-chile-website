@@ -16,7 +16,7 @@ const team: TeamMember[] = [
     id: 1,
     name: "José Francisco Aravena",
     role: "Coordinador de Equipo",
-    image: "/assets/Jose Francisco Aravena .jpg",
+    image: "/assets/Jose Francisco Aravena.JPG",
     bio: "Texto sobre José Francisco aquí.",
   },
   {
