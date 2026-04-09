@@ -58,7 +58,7 @@ const focusAreas: FocusArea[] = [
         id: 7,
         name: "Arantzasu Foppiano",
         role: "Género y agenda mujer",
-        image: "/assets/Arantzasu foppiano copy.JPG",
+        image: "/assets/arantzasu-foppiano.jpg",
         bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como investigadora, aportando desde el análisis y la generación de contenido.",
     },
     {
@@ -164,16 +164,20 @@ export default function FocusCarousel() {
 
     useEffect(() => {
         let animationFrameId: number;
+        let lastTime = 0;
+        const SPEED = 40; // px per second — consistent across all refresh rates
         const scrollContainer = scrollRef.current;
         if (!scrollContainer) return;
 
-        const scrollStep = () => {
+        const scrollStep = (timestamp: number) => {
             if (!isHovered.current) {
+                const delta = lastTime ? (timestamp - lastTime) / 1000 : 0;
                 if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
                     scrollContainer.scrollLeft -= scrollContainer.scrollWidth / 2;
                 }
-                scrollContainer.scrollLeft += 1;
+                scrollContainer.scrollLeft += SPEED * delta;
             }
+            lastTime = timestamp;
             animationFrameId = window.requestAnimationFrame(scrollStep);
         };
 

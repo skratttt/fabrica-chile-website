@@ -47,13 +47,18 @@ export default function BoardCarousel() {
         const scrollContainer = scrollRef.current;
         if (!scrollContainer) return;
 
-    const scrollStep = () => {
+    let lastTime = 0;
+    const SPEED = 40; // px per second — consistent across all refresh rates
+
+    const scrollStep = (timestamp: number) => {
       if (!isHovered.current) {
+        const delta = lastTime ? (timestamp - lastTime) / 1000 : 0;
         if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
           scrollContainer.scrollLeft -= scrollContainer.scrollWidth / 2;
         }
-        scrollContainer.scrollLeft += 1;
+        scrollContainer.scrollLeft += SPEED * delta;
       }
+      lastTime = timestamp;
       animationFrameId = window.requestAnimationFrame(scrollStep);
     };
 
