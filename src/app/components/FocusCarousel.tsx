@@ -233,19 +233,15 @@ export default function FocusCarousel() {
                     ref={scrollRef}
                     onMouseEnter={() => (isHovered.current = true)}
                     onMouseLeave={() => (isHovered.current = false)}
-                    className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
+                    className="flex flex-nowrap gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
                 >
                     {[...focusAreas, ...focusAreas].map((area, i) => (
-                        <FadeInScroll
+                        <FlipCard
                             key={`${area.id}-${i}`}
-                            delay={(i % focusAreas.length) * 0.1}
-                        >
-                            <FlipCard
-                                area={area}
-                                onHover={() => { cancelClose(); setHoveredArea(area); }}
-                                onLeave={scheduleClose}
-                            />
-                        </FadeInScroll>
+                            area={area}
+                            onHover={() => { cancelClose(); setHoveredArea(area); }}
+                            onLeave={scheduleClose}
+                        />
                     ))}
                 </div>
 

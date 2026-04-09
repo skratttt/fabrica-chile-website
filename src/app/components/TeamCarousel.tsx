@@ -213,19 +213,15 @@ export default function TeamCarousel() {
           ref={scrollRef}
           onMouseEnter={() => (isHovered.current = true)}
           onMouseLeave={() => (isHovered.current = false)}
-          className="flex gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
+          className="flex flex-nowrap gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
         >
           {[...team, ...team].map((member, i) => (
-            <FadeInScroll
+            <FlipCard
               key={`${member.id}-${i}`}
-              delay={(i % team.length) * 0.1}
-            >
-              <FlipCard
-                member={member}
-                onHover={() => { cancelClose(); setHoveredMember(member); }}
-                onLeave={scheduleClose}
-              />
-            </FadeInScroll>
+              member={member}
+              onHover={() => { cancelClose(); setHoveredMember(member); }}
+              onLeave={scheduleClose}
+            />
           ))}
         </div>
 
