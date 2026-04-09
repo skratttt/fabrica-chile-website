@@ -136,6 +136,7 @@ export default function TeamCarousel() {
   const isHovered = useRef(false);
   const [hoveredMember, setHoveredMember] = useState<TeamMember | null>(null);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const offsetRef = useRef(0);
 
   const scheduleClose = () => {
     closeTimeout.current = setTimeout(() => setHoveredMember(null), 200);
@@ -155,10 +156,12 @@ export default function TeamCarousel() {
     const scrollStep = (timestamp: number) => {
       if (!isHovered.current) {
         const delta = lastTime ? (timestamp - lastTime) / 1000 : 0;
-        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
-          scrollContainer.scrollLeft -= scrollContainer.scrollWidth / 2;
+        const halfWidth = scrollContainer.scrollWidth / 2;
+        if (halfWidth > 0) {
+          offsetRef.current += SPEED * delta;
+          if (offsetRef.current >= halfWidth) offsetRef.current -= halfWidth;
+          scrollContainer.style.transform = `translateX(-${offsetRef.current}px)`;
         }
-        scrollContainer.scrollLeft += SPEED * delta;
       }
       lastTime = timestamp;
       animationFrameId = window.requestAnimationFrame(scrollStep);
@@ -169,10 +172,7 @@ export default function TeamCarousel() {
   }, []);
 
   const scroll = (dir: "left" | "right") => {
-    scrollRef.current?.scrollBy({
-      left: dir === "right" ? 320 : -320,
-      behavior: "smooth",
-    });
+    offsetRef.current += dir === "right" ? 320 : -320;
   };
 
   return (
@@ -209,20 +209,23 @@ export default function TeamCarousel() {
           </FadeInScroll>
         </div>
 
-        <div
-          ref={scrollRef}
-          onMouseEnter={() => (isHovered.current = true)}
-          onMouseLeave={() => (isHovered.current = false)}
-          className="flex flex-nowrap gap-5 overflow-x-auto overflow-y-hidden scrollbar-hide pb-2"
-        >
-          {[...team, ...team].map((member, i) => (
-            <FlipCard
-              key={`${member.id}-${i}`}
-              member={member}
-              onHover={() => { cancelClose(); setHoveredMember(member); }}
-              onLeave={scheduleClose}
-            />
-          ))}
+        <div className="overflow-hidden">
+          <div
+            ref={scrollRef}
+            onMouseEnter={() => (isHovered.current = true)}
+            onMouseLeave={() => (isHovered.current = false)}
+            className="flex flex-nowrap gap-5 pb-2"
+            style={{ willChange: "transform" }}
+          >
+            {[...team, ...team].map((member, i) => (
+              <FlipCard
+                key={`${member.id}-${i}`}
+                member={member}
+                onHover={() => { cancelClose(); setHoveredMember(member); }}
+                onLeave={scheduleClose}
+              />
+            ))}
+          </div>
         </div>
 
         <p className="text-[#F5F5F5]/25 text-xs tracking-widest uppercase text-center mt-6 md:hidden">
