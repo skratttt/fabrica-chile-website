@@ -89,12 +89,15 @@ function FlipCard({
             onClick={onHover}
         >
             {/* Flip square */}
-            <div className="w-full aspect-square mb-5 relative" style={{ perspective: "1000px" }}>
+            <div className="w-full aspect-square mb-5 relative" style={{ perspective: "1000px", WebkitPerspective: "1000px" }}>
                 <div
                     style={{
                         transformStyle: "preserve-3d",
+                        WebkitTransformStyle: "preserve-3d",
                         transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+                        WebkitTransition: "-webkit-transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
                         transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                        WebkitTransform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
                         width: "100%",
                         height: "100%",
                         position: "relative",
@@ -102,7 +105,7 @@ function FlipCard({
                 >
                     {/* Front: photo */}
                     <div
-                        style={{ backfaceVisibility: "hidden" }}
+                        style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                         className="absolute inset-0 overflow-hidden bg-black/20"
                     >
                         {area.image ? (
@@ -119,7 +122,7 @@ function FlipCard({
                     </div>
                     {/* Back: name + role */}
                     <div
-                        style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                        style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "rotateY(180deg)", WebkitTransform: "rotateY(180deg)" }}
                         className="absolute inset-0 bg-[#2a2a2a] flex flex-col items-center justify-center p-6 gap-3"
                     >
                         <div className="w-8 h-px bg-[#F48FB1]" />
