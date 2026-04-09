@@ -37,7 +37,7 @@ const team: TeamMember[] = [
     id: 4,
     name: "Francisco Oyarce",
     role: "Investigador",
-    image: "/assets/Fransisco oyarce.jpg",
+    image: "/assets/Fransisco oyarce.JPG",
     bio: "Texto sobre Francisco aquí.",
   },
   {
@@ -51,7 +51,7 @@ const team: TeamMember[] = [
     id: 6,
     name: "Tomás Domínguez",
     role: "Investigador",
-    image: "/assets/Tomas Dominguez.jpg",
+    image: "/assets/Tomas Dominguez.JPG",
     bio: "Texto sobre Tomás aquí.",
   },
 ];
