@@ -197,20 +197,18 @@ export default function FocusCarousel() {
             {/* Centered overlay */}
             {hoveredArea && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center p-6"
+                    className="fixed inset-0 z-50 flex items-center justify-center p-6 pointer-events-none"
                     style={{
                         backgroundColor: "rgba(0,0,0,0.65)",
                         backdropFilter: "blur(4px)",
                         animation: "fadeIn 0.2s ease",
                     }}
-                    onMouseEnter={cancelClose}
-                    onMouseLeave={scheduleClose}
-                    onClick={() => setHoveredArea(null)}
                 >
                     <div
-                        className="flex max-w-2xl w-full bg-[#424242] overflow-hidden shadow-2xl"
+                        className="flex max-w-2xl w-full bg-[#424242] overflow-hidden shadow-2xl pointer-events-auto"
                         style={{ animation: "scaleIn 0.25s cubic-bezier(0.4,0,0.2,1)" }}
-                        onClick={(e) => e.stopPropagation()}
+                        onMouseEnter={cancelClose}
+                        onMouseLeave={() => setHoveredArea(null)}
                     >
                         {/* Photo */}
                         <div className="w-56 md:w-72 shrink-0 aspect-square relative">
