@@ -23,7 +23,7 @@ const team: TeamMember[] = [
     id: 2,
     name: "Arantzasu Foppiano",
     role: "Investigador",
-    image: "/assets/Arantzasu Foppiano.jpg",
+    image: "/assets/Arantzasu foppiano copy.JPG",
     bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como investigadora, aportando desde el análisis y la generación de contenido.",
   },
   {
