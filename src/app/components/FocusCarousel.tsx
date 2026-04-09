@@ -86,6 +86,7 @@ function FlipCard({
             className="shrink-0 w-[260px] md:w-[290px] cursor-pointer"
             onMouseEnter={() => { setFlipped(true); onHover(); }}
             onMouseLeave={() => { setFlipped(false); onLeave(); }}
+            onClick={onHover}
         >
             {/* Flip square */}
             <div className="w-full aspect-square mb-5 relative" style={{ perspective: "1000px" }}>
@@ -249,21 +250,33 @@ export default function FocusCarousel() {
             {/* Centered overlay */}
             {hoveredArea && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center p-6 pointer-events-none"
+                    className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-6 pointer-events-auto md:pointer-events-none"
                     style={{
                         backgroundColor: "rgba(0,0,0,0.65)",
                         backdropFilter: "blur(4px)",
                         animation: "fadeIn 0.2s ease",
                     }}
+                    onClick={() => setHoveredArea(null)}
                 >
                     <div
-                        className="flex max-w-2xl w-full bg-[#2a2a2a] overflow-hidden shadow-2xl pointer-events-auto"
-                        style={{ animation: "scaleIn 0.25s cubic-bezier(0.4,0,0.2,1)" }}
+                        className="flex flex-col md:flex-row w-full md:max-w-2xl bg-[#2a2a2a] overflow-hidden shadow-2xl pointer-events-auto relative"
+                        style={{
+                            animation: "scaleIn 0.25s cubic-bezier(0.4,0,0.2,1)",
+                            maxHeight: "90vh",
+                        }}
+                        onClick={(e) => e.stopPropagation()}
                         onMouseEnter={cancelClose}
                         onMouseLeave={() => setHoveredArea(null)}
                     >
+                        {/* Close button — mobile only */}
+                        <button
+                            className="md:hidden absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white bg-black/30 rounded-full text-lg leading-none"
+                            onClick={() => setHoveredArea(null)}
+                        >
+                            ×
+                        </button>
                         {/* Photo */}
-                        <div className="w-56 md:w-72 shrink-0 aspect-square relative">
+                        <div className="w-full h-52 md:h-auto md:w-56 lg:w-72 shrink-0 relative">
                             <img
                                 src={hoveredArea.image}
                                 alt={hoveredArea.name}
@@ -271,12 +284,12 @@ export default function FocusCarousel() {
                             />
                         </div>
                         {/* Text */}
-                        <div className="flex flex-col justify-center p-8 md:p-10">
+                        <div className="flex flex-col justify-center p-6 md:p-8 lg:p-10 overflow-y-auto">
                             <div className="w-8 h-px bg-[#F48FB1] mb-4" />
                             <p className="text-[#F48FB1] text-[10px] tracking-[0.25em] uppercase font-medium mb-2">
                                 {hoveredArea.role}
                             </p>
-                            <h3 className="serif text-2xl md:text-3xl font-bold text-[#F5F5F5] leading-tight mb-5">
+                            <h3 className="serif text-xl md:text-2xl lg:text-3xl font-bold text-[#F5F5F5] leading-tight mb-4">
                                 {hoveredArea.name}
                             </h3>
                             <p className="text-[#F5F5F5]/75 text-sm leading-relaxed">
