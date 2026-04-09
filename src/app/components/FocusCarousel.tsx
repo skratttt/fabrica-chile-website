@@ -268,9 +268,9 @@ export default function FocusCarousel() {
                         onMouseEnter={cancelClose}
                         onMouseLeave={() => setHoveredArea(null)}
                     >
-                        {/* Close button — mobile only */}
+                        {/* Close button */}
                         <button
-                            className="md:hidden absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white bg-black/30 rounded-full text-lg leading-none"
+                            className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white bg-black/30 rounded-full text-lg leading-none"
                             onClick={() => setHoveredArea(null)}
                         >
                             ×
