@@ -56,65 +56,19 @@ const team: TeamMember[] = [
   },
 ];
 
-function FlipCard({ member }: { member: TeamMember }) {
-  const [flipped, setFlipped] = useState(false);
-
-  return (
-    <div className="shrink-0 w-[260px] md:w-[290px] cursor-pointer">
-      <div
-        className="w-full aspect-square mb-5 relative"
-        style={{ perspective: "1000px" }}
-        onMouseEnter={() => setFlipped(true)}
-        onMouseLeave={() => setFlipped(false)}
-      >
-        <div
-          style={{
-            transformStyle: "preserve-3d",
-            transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
-            transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-          }}
-        >
-          {/* Front */}
-          <div
-            style={{ backfaceVisibility: "hidden" }}
-            className="absolute inset-0 overflow-hidden bg-black/20"
-          >
-            <img
-              src={member.image}
-              alt={member.name}
-              className="w-full h-full object-cover object-center grayscale"
-            />
-          </div>
-          {/* Back */}
-          <div
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateY(180deg)",
-            }}
-            className="absolute inset-0 bg-[#6D0B3E] flex flex-col justify-center p-6"
-          >
-            <p className="text-[#F5F5F5]/90 text-sm leading-relaxed">
-              {member.bio}
-            </p>
-          </div>
-        </div>
-      </div>
-      <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
-        {member.name}
-      </h3>
-      <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
-        {member.role}
-      </p>
-    </div>
-  );
-}
-
 export default function TeamCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isHovered = useRef(false);
+  const [hoveredMember, setHoveredMember] = useState<TeamMember | null>(null);
+  const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const scheduleClose = () => {
+    closeTimeout.current = setTimeout(() => setHoveredMember(null), 200);
+  };
+
+  const cancelClose = () => {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+  };
 
   useEffect(() => {
     let animationFrameId: number;
@@ -132,7 +86,6 @@ export default function TeamCarousel() {
     };
 
     animationFrameId = window.requestAnimationFrame(scrollStep);
-
     return () => window.cancelAnimationFrame(animationFrameId);
   }, []);
 
@@ -144,7 +97,7 @@ export default function TeamCarousel() {
   };
 
   return (
-    <section id="team" className="bg-[#880E4F] py-24 px-6 overflow-hidden">
+    <section id="team" className="bg-[#424242] py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12">
           <FadeInScroll>
@@ -188,7 +141,28 @@ export default function TeamCarousel() {
               key={`${member.id}-${i}`}
               delay={(i % team.length) * 0.1}
             >
-              <FlipCard member={member} />
+              <div
+                className="shrink-0 w-[260px] md:w-[290px] cursor-pointer group"
+                onMouseEnter={() => { cancelClose(); setHoveredMember(member); }}
+                onMouseLeave={scheduleClose}
+              >
+                <div className="w-full aspect-square mb-5 relative overflow-hidden bg-black/20">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover object-center grayscale group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-[#880E4F]/0 group-hover:bg-[#880E4F]/20 transition-colors duration-300 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100">
+                    <span className="text-white text-[10px] tracking-[0.2em] uppercase font-medium">Ver más</span>
+                  </div>
+                </div>
+                <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
+                  {member.name}
+                </h3>
+                <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
+                  {member.role}
+                </p>
+              </div>
             </FadeInScroll>
           ))}
         </div>
@@ -197,6 +171,53 @@ export default function TeamCarousel() {
           Desliza para ver más →
         </p>
       </div>
+
+      {/* Centered overlay */}
+      {hoveredMember && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-6"
+          style={{
+            backgroundColor: "rgba(0,0,0,0.65)",
+            backdropFilter: "blur(4px)",
+            animation: "fadeIn 0.2s ease",
+          }}
+          onMouseEnter={cancelClose}
+          onMouseLeave={scheduleClose}
+          onClick={() => setHoveredMember(null)}
+        >
+          <div
+            className="flex max-w-2xl w-full bg-[#424242] overflow-hidden shadow-2xl"
+            style={{ animation: "scaleIn 0.25s cubic-bezier(0.4,0,0.2,1)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Photo */}
+            <div className="w-56 md:w-72 shrink-0 aspect-square relative">
+              <img
+                src={hoveredMember.image}
+                alt={hoveredMember.name}
+                className="w-full h-full object-cover object-center grayscale"
+              />
+            </div>
+            {/* Text */}
+            <div className="flex flex-col justify-center p-8 md:p-10">
+              <p className="text-[#F48FB1] text-[10px] tracking-[0.25em] uppercase font-medium mb-2">
+                {hoveredMember.role}
+              </p>
+              <h3 className="serif text-2xl md:text-3xl font-bold text-[#F5F5F5] leading-tight mb-5">
+                {hoveredMember.name}
+              </h3>
+              <p className="text-[#F5F5F5]/75 text-sm leading-relaxed">
+                {hoveredMember.bio}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+      `}</style>
     </section>
   );
 }
