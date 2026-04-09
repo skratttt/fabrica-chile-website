@@ -44,7 +44,7 @@ const team: TeamMember[] = [
     id: 5,
     name: "Nicolás Germain",
     role: "Investigador",
-    image: "/assets/Nicolas Germain.jpeg",
+    image: "/assets/Nicolas Germain.jpg",
     bio: "Texto sobre Nicolás aquí.",
   },
   {
