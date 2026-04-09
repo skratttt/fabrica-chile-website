@@ -56,6 +56,77 @@ const team: TeamMember[] = [
   },
 ];
 
+function FlipCard({
+  member,
+  onHover,
+  onLeave,
+}: {
+  member: TeamMember;
+  onHover: () => void;
+  onLeave: () => void;
+}) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div
+      className="shrink-0 w-[260px] md:w-[290px] cursor-pointer"
+      onMouseEnter={() => { setFlipped(true); onHover(); }}
+      onMouseLeave={() => { setFlipped(false); onLeave(); }}
+    >
+      {/* Flip square */}
+      <div className="w-full aspect-square mb-5 relative" style={{ perspective: "1000px" }}>
+        <div
+          style={{
+            transformStyle: "preserve-3d",
+            transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+            width: "100%",
+            height: "100%",
+            position: "relative",
+          }}
+        >
+          {/* Front: photo */}
+          <div
+            style={{ backfaceVisibility: "hidden" }}
+            className="absolute inset-0 overflow-hidden bg-black/20"
+          >
+            <img
+              src={member.image}
+              alt={member.name}
+              className="w-full h-full object-cover object-center grayscale"
+            />
+          </div>
+          {/* Back: name + role */}
+          <div
+            style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+            className="absolute inset-0 bg-[#2a2a2a] flex flex-col items-center justify-center p-6 gap-3"
+          >
+            <div className="w-8 h-px bg-[#F48FB1]" />
+            <h3 className="serif text-lg font-bold text-[#F5F5F5] text-center leading-snug">
+              {member.name}
+            </h3>
+            <p className="text-[#F48FB1] text-[10px] tracking-[0.25em] uppercase font-medium text-center">
+              {member.role}
+            </p>
+            <div className="w-8 h-px bg-[#F48FB1]" />
+            <span className="text-[#F5F5F5]/40 text-[10px] tracking-widest uppercase mt-1">
+              Ver perfil →
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Name / role below */}
+      <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
+        {member.name}
+      </h3>
+      <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
+        {member.role}
+      </p>
+    </div>
+  );
+}
+
 export default function TeamCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isHovered = useRef(false);
@@ -141,28 +212,11 @@ export default function TeamCarousel() {
               key={`${member.id}-${i}`}
               delay={(i % team.length) * 0.1}
             >
-              <div
-                className="shrink-0 w-[260px] md:w-[290px] cursor-pointer group"
-                onMouseEnter={() => { cancelClose(); setHoveredMember(member); }}
-                onMouseLeave={scheduleClose}
-              >
-                <div className="w-full aspect-square mb-5 relative overflow-hidden bg-black/20">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover object-center grayscale group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-[#880E4F]/0 group-hover:bg-[#880E4F]/20 transition-colors duration-300 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100">
-                    <span className="text-white text-[10px] tracking-[0.2em] uppercase font-medium">Ver más</span>
-                  </div>
-                </div>
-                <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
-                  {member.name}
-                </h3>
-                <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
-                  {member.role}
-                </p>
-              </div>
+              <FlipCard
+                member={member}
+                onHover={() => { cancelClose(); setHoveredMember(member); }}
+                onLeave={scheduleClose}
+              />
             </FadeInScroll>
           ))}
         </div>
@@ -183,7 +237,7 @@ export default function TeamCarousel() {
           }}
         >
           <div
-            className="flex max-w-2xl w-full bg-[#424242] overflow-hidden shadow-2xl pointer-events-auto"
+            className="flex max-w-2xl w-full bg-[#2a2a2a] overflow-hidden shadow-2xl pointer-events-auto"
             style={{ animation: "scaleIn 0.25s cubic-bezier(0.4,0,0.2,1)" }}
             onMouseEnter={cancelClose}
             onMouseLeave={() => setHoveredMember(null)}
@@ -198,6 +252,7 @@ export default function TeamCarousel() {
             </div>
             {/* Text */}
             <div className="flex flex-col justify-center p-8 md:p-10">
+              <div className="w-8 h-px bg-[#F48FB1] mb-4" />
               <p className="text-[#F48FB1] text-[10px] tracking-[0.25em] uppercase font-medium mb-2">
                 {hoveredMember.role}
               </p>

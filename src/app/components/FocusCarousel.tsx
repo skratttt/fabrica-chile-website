@@ -70,6 +70,83 @@ const focusAreas: FocusArea[] = [
     },
 ];
 
+function FlipCard({
+    area,
+    onHover,
+    onLeave,
+}: {
+    area: FocusArea;
+    onHover: () => void;
+    onLeave: () => void;
+}) {
+    const [flipped, setFlipped] = useState(false);
+
+    return (
+        <div
+            className="shrink-0 w-[260px] md:w-[290px] cursor-pointer"
+            onMouseEnter={() => { setFlipped(true); onHover(); }}
+            onMouseLeave={() => { setFlipped(false); onLeave(); }}
+        >
+            {/* Flip square */}
+            <div className="w-full aspect-square mb-5 relative" style={{ perspective: "1000px" }}>
+                <div
+                    style={{
+                        transformStyle: "preserve-3d",
+                        transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+                        transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                        width: "100%",
+                        height: "100%",
+                        position: "relative",
+                    }}
+                >
+                    {/* Front: photo */}
+                    <div
+                        style={{ backfaceVisibility: "hidden" }}
+                        className="absolute inset-0 overflow-hidden bg-black/20"
+                    >
+                        {area.image ? (
+                            <img
+                                src={area.image}
+                                alt={area.name}
+                                className="w-full h-full object-cover object-center grayscale"
+                            />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center text-[#F5F5F5]/30 text-xs tracking-[0.2em] uppercase">
+                                Próximamente
+                            </div>
+                        )}
+                    </div>
+                    {/* Back: name + role */}
+                    <div
+                        style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                        className="absolute inset-0 bg-[#2a2a2a] flex flex-col items-center justify-center p-6 gap-3"
+                    >
+                        <div className="w-8 h-px bg-[#F48FB1]" />
+                        <h3 className="serif text-lg font-bold text-[#F5F5F5] text-center leading-snug">
+                            {area.name}
+                        </h3>
+                        <p className="text-[#F48FB1] text-[10px] tracking-[0.25em] uppercase font-medium text-center">
+                            {area.role}
+                        </p>
+                        <div className="w-8 h-px bg-[#F48FB1]" />
+                        <span className="text-[#F5F5F5]/40 text-[10px] tracking-widest uppercase mt-1">
+                            Ver perfil →
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Name / role below */}
+            <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
+                {area.name}
+            </h3>
+            <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
+                {area.role}
+            </p>
+        </div>
+    );
+}
+
 export default function FocusCarousel() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const isHovered = useRef(false);
@@ -100,7 +177,6 @@ export default function FocusCarousel() {
         };
 
         animationFrameId = window.requestAnimationFrame(scrollStep);
-
         return () => window.cancelAnimationFrame(animationFrameId);
     }, []);
 
@@ -156,35 +232,11 @@ export default function FocusCarousel() {
                             key={`${area.id}-${i}`}
                             delay={(i % focusAreas.length) * 0.1}
                         >
-                            <div
-                                className="shrink-0 w-[260px] md:w-[290px] cursor-pointer group"
-                                onMouseEnter={() => { cancelClose(); setHoveredArea(area); }}
-                                onMouseLeave={scheduleClose}
-                            >
-                                <div className="w-full aspect-square mb-5 relative overflow-hidden bg-black/20">
-                                    {area.image ? (
-                                        <img
-                                            src={area.image}
-                                            alt={area.name}
-                                            className="w-full h-full object-cover object-center grayscale group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-[#F5F5F5]/30 text-xs tracking-[0.2em] uppercase">
-                                            Próximamente
-                                        </div>
-                                    )}
-                                    {/* Hover hint */}
-                                    <div className="absolute inset-0 bg-[#880E4F]/0 group-hover:bg-[#880E4F]/20 transition-colors duration-300 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100">
-                                        <span className="text-white text-[10px] tracking-[0.2em] uppercase font-medium">Ver más</span>
-                                    </div>
-                                </div>
-                                <h3 className="serif text-lg font-bold text-[#F5F5F5] leading-tight">
-                                    {area.name}
-                                </h3>
-                                <p className="text-[#F48FB1] text-xs tracking-[0.2em] uppercase mt-1">
-                                    {area.role}
-                                </p>
-                            </div>
+                            <FlipCard
+                                area={area}
+                                onHover={() => { cancelClose(); setHoveredArea(area); }}
+                                onLeave={scheduleClose}
+                            />
                         </FadeInScroll>
                     ))}
                 </div>
@@ -205,7 +257,7 @@ export default function FocusCarousel() {
                     }}
                 >
                     <div
-                        className="flex max-w-2xl w-full bg-[#424242] overflow-hidden shadow-2xl pointer-events-auto"
+                        className="flex max-w-2xl w-full bg-[#2a2a2a] overflow-hidden shadow-2xl pointer-events-auto"
                         style={{ animation: "scaleIn 0.25s cubic-bezier(0.4,0,0.2,1)" }}
                         onMouseEnter={cancelClose}
                         onMouseLeave={() => setHoveredArea(null)}
@@ -220,6 +272,7 @@ export default function FocusCarousel() {
                         </div>
                         {/* Text */}
                         <div className="flex flex-col justify-center p-8 md:p-10">
+                            <div className="w-8 h-px bg-[#F48FB1] mb-4" />
                             <p className="text-[#F48FB1] text-[10px] tracking-[0.25em] uppercase font-medium mb-2">
                                 {hoveredArea.role}
                             </p>
