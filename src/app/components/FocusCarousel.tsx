@@ -40,13 +40,13 @@ const focusAreas: FocusArea[] = [
         image: "/assets/ernesto munoz.jpeg",
         bio: "Abogado de la Universidad de Chile, MBA de la Universidad Alberto Hurtado y máster en Políticas Públicas y Ciencia Política de UC Berkeley. Fue Subsecretario de Justicia (2024-2026), director nacional del Sernac (2014-2018) y director en la Defensoría de la Niñez. Doctorando en Derecho, con trayectoria en protección al consumidor, derechos humanos y modernización de la justicia.",
     },
-    {
-        id: 5,
-        name: "Rodrigo Rettig",
-        role: "Delitos tributarios y filosofía liberal",
-        image: "/assets/rodrigo rettig.jpeg",
-        bio: "Abogado litigante con sólida formación en derecho penal, compliance y ciencia política. Con más de 15 años de trayectoria profesional, ha conjugado la resolución de conflictos en criminalidad económica y tributaria con la gestión pública y el análisis estratégico. Su mirada cruza el rigor técnico-jurídico con la construcción institucional, aportando una visión cimentada en la filosofía liberal y la responsabilidad civil.",
-    },
+    // {
+    //     id: 5,
+    //     name: "Rodrigo Rettig",
+    //     role: "Delitos tributarios y filosofía liberal",
+    //     image: "/assets/rodrigo rettig.jpeg",
+    //     bio: "Abogado litigante con sólida formación en derecho penal, compliance y ciencia política. Con más de 15 años de trayectoria profesional, ha conjugado la resolución de conflictos en criminalidad económica y tributaria con la gestión pública y el análisis estratégico. Su mirada cruza el rigor técnico-jurídico con la construcción institucional, aportando una visión cimentada en la filosofía liberal y la responsabilidad civil.",
+    // },
     {
         id: 6,
         name: "Francisco Muñoz",
