@@ -4,8 +4,7 @@ import Image from "next/image";
 import { motion, Variants, useScroll, useTransform } from "framer-motion";
 import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
 
-const X_URL = "https://x.com/fabrica_chile";
-const STREAMING_URL = "#streaming";
+const INSTAGRAM_URL = "https://www.instagram.com/fabrica_chile/?hl=es";
 
 export default function Hero() {
     // Animation Variants
@@ -119,18 +118,12 @@ export default function Hero() {
                         Leer Última Columna
                     </a>
                     <a
-                        href={X_URL}
+                        href={INSTAGRAM_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 hover:-translate-y-0.5"
                     >
-                        Seguir en X
-                    </a>
-                    <a
-                        href={STREAMING_URL}
-                        className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 hover:-translate-y-0.5"
-                    >
-                        Streaming
+                        Seguir en Instagram
                     </a>
                 </motion.div>
             </motion.div>
