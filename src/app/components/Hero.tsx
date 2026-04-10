@@ -4,7 +4,8 @@ import Image from "next/image";
 import { motion, Variants, useScroll, useTransform } from "framer-motion";
 import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
 
-const INSTAGRAM_URL = "https://www.instagram.com/fabrica_chile/?hl=es";
+const X_URL = "https://x.com/fabrica_chile";
+const STREAMING_URL = "#streaming";
 
 export default function Hero() {
     // Animation Variants
@@ -99,8 +100,8 @@ export default function Hero() {
                     transition={{ delay: 1.0 }}
                     className="text-[#F5F5F5]/60 text-lg max-w-md mb-12 leading-relaxed"
                 >
-                    Investigación, columnas y análisis sobre las fuerzas políticas que
-                    moldean nuestra sociedad. Sigue el debate en Instagram.
+                    Investigación, análisis y opinión sobre las dinámicas políticas que
+                    moldean nuestra sociedad. Sigue el debate en nuestras redes.
                 </motion.p>
 
                 {/* Animated CTA Buttons */}
@@ -118,12 +119,18 @@ export default function Hero() {
                         Leer Última Columna
                     </a>
                     <a
-                        href={INSTAGRAM_URL}
+                        href={X_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 hover:-translate-y-0.5"
                     >
-                        Seguir en Instagram
+                        Seguir en X
+                    </a>
+                    <a
+                        href={STREAMING_URL}
+                        className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 hover:-translate-y-0.5"
+                    >
+                        Streaming
                     </a>
                 </motion.div>
             </motion.div>
