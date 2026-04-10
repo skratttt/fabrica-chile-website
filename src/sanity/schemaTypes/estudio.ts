@@ -45,12 +45,6 @@ export const estudio = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "coverImage",
-      title: "Imagen de Portada",
-      type: "image",
-      options: { hotspot: true },
-    }),
-    defineField({
       name: "year",
       title: "Año",
       type: "string",
