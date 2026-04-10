@@ -61,7 +61,7 @@ export default async function EstudiosPage() {
               <FadeInScroll key={study._id} delay={i * 0.05}>
                 <div className="group flex flex-col h-full rounded-md mt-2 overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-500">
                   {/* Top Half: Graphic / Image */}
-                  <div className="relative aspect-[4/3] w-full bg-[#424242]/5 overflow-hidden">
+                  <div className="relative h-16 w-full bg-[#424242]/5 overflow-hidden">
                     {study.coverImage?.asset?.url ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img

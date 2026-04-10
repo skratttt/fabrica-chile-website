@@ -119,7 +119,7 @@ function Hero() {
 
         <FadeInScroll delay={0.6}>
           <p className="text-[#F5F5F5]/60 text-lg max-w-md mb-12 leading-relaxed">
-            Investigación, columnas y análisis sobre las fuerzas políticas que
+            Investigación, análisis, opinión sobre las dinámicas que
             moldean nuestra sociedad. Sigue el debate en Redes.
           </p>
         </FadeInScroll>
@@ -446,7 +446,7 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
               </p>
             </FadeInScroll>
           </div>
-          
+
           <FadeInScroll delay={0.3} direction="left" className="shrink-0">
             <Link
               href="/estudios"
@@ -478,8 +478,8 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
                       }}
                     >
                       <div className="w-full h-full flex items-center justify-center pointer-events-none opacity-20">
-                         {/* Fallback abstract icon */}
-                         <span className="text-8xl">📄</span>
+                        {/* Fallback abstract icon */}
+                        <span className="text-8xl">📄</span>
                       </div>
                     </div>
                   )}
