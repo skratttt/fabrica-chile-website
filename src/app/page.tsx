@@ -119,8 +119,8 @@ function Hero() {
 
         <FadeInScroll delay={0.6}>
           <p className="text-[#F5F5F5]/60 text-lg max-w-md mb-12 leading-relaxed">
-            Investigación, análisis, opinión sobre las dinámicas que
-            moldean nuestra sociedad. Sigue el debate en Redes.
+            Investigación, análisis y opinión sobre las dinámicas políticas que
+            moldean nuestra sociedad. Sigue el debate en nuestras redes.
           </p>
         </FadeInScroll>
 
