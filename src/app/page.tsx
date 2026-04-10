@@ -461,31 +461,6 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
           {estudios.map((study, i) => (
             <FadeInScroll key={study._id} delay={i * 0.1}>
               <div className="group flex flex-col h-full rounded-md mt-2 overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-500">
-                {/* Top Half: Graphic / Image */}
-                <div className="relative aspect-[4/3] w-full bg-[#424242]/5 overflow-hidden">
-                  {study.coverImage?.asset?.url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={study.coverImage.asset.url}
-                      alt={study.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div
-                      className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                      style={{
-                        background: "linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%)",
-                      }}
-                    >
-                      <div className="w-full h-full flex items-center justify-center pointer-events-none opacity-20">
-                        {/* Fallback abstract icon */}
-                        <span className="text-8xl">📄</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Bottom Half: Content */}
                 <div className={`flex-1 flex flex-col p-8 md:p-10 ${getCategoryBgColor(study.category)}`}>
                   <span className="text-white/80 text-[10px] tracking-[0.2em] uppercase font-bold mb-4 block">
                     {study.category || "Fábrica"}
