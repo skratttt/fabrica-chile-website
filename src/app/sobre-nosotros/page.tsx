@@ -195,11 +195,12 @@ export default function SobreNosotros() {
               </h2>
             </div>
           </FadeInScroll>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {valores.map((v, i) => (
-              <FadeInScroll key={v.n} delay={i * 0.1} className="h-full">
+              <FadeInScroll key={v.n} delay={i * 0.1}>
                 <div
-                  className="border border-[#424242]/10 p-8 hover:border-[#D81B60] transition-all duration-300 group relative overflow-hidden h-full"
+                  className="border border-[#424242]/10 p-8 hover:border-[#D81B60] transition-all duration-300 group relative overflow-hidden"
+                  style={{ height: "220px" }}
                 >
                   <span className="absolute top-4 right-5 serif font-bold text-[#D81B60]/[0.07] text-5xl leading-none select-none">
                     {v.n}
@@ -208,7 +209,7 @@ export default function SobreNosotros() {
                   <h3 className="serif text-xl font-bold text-[#424242] mb-3 group-hover:text-[#D81B60] transition-colors">
                     {v.title}
                   </h3>
-                  <p className="text-[#424242]/55 text-sm leading-relaxed">
+                  <p className="text-[#424242]/55 text-sm leading-relaxed line-clamp-4">
                     {v.desc}
                   </p>
                 </div>
