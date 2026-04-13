@@ -31,6 +31,11 @@ const valores = [
     title: "Excelencia",
     desc: "Buscamos altos estándares de investigación, análisis y producción de conocimiento.",
   },
+  {
+    n: "06",
+    title: "Incidencia",
+    desc: "Transformamos el análisis riguroso en acciones estratégicas que impactan el debate público, impulsando cambios tangibles para fortalecer el desarrollo del país y de las democracias liberales contemporáneas.",
+  },
 ];
 
 const areasFoco = [
@@ -190,9 +195,9 @@ export default function SobreNosotros() {
               </h2>
             </div>
           </FadeInScroll>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {valores.map((v, i) => (
-              <FadeInScroll key={v.n} delay={i * 0.1}>
+              <FadeInScroll key={v.n} delay={i * 0.1} className="h-full">
                 <div
                   className="border border-[#424242]/10 p-8 hover:border-[#D81B60] transition-all duration-300 group relative overflow-hidden h-full"
                 >
