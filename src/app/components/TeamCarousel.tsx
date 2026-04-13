@@ -58,7 +58,7 @@ const team: TeamMember[] = [
     id: 7,
     name: "Máximo Alonso",
     role: "Investigador",
-    image: "/assets/maximo-alonso.jpg",
+    image: "/assets/maximo-alonso.JPG",
     bio: "Estudiante de Ciencia Política de la Universidad de Chile. Sus áreas de interés son las relaciones internacionales y el diseño de proyectos.",
   },
 ];
