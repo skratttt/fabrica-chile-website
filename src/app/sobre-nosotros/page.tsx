@@ -236,7 +236,8 @@ export default function SobreNosotros() {
             {areasFoco.map((area, i) => (
               <FadeInScroll key={area.title} delay={i * 0.1}>
                 <div
-                  className="group p-8 border border-[#424242]/10 hover:border-[#4DB6AC] transition-all duration-300 h-full"
+                  className="group p-8 border border-[#424242]/10 hover:border-[#4DB6AC] transition-all duration-300"
+                  style={{ height: "220px" }}
                 >
                   <span className="text-[#4DB6AC] text-2xl mb-4 block">
                     {area.icon}
