@@ -457,22 +457,22 @@ function StudiesSection({ estudios }: { estudios: Estudio[] }) {
           </FadeInScroll>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
           {estudios.map((study, i) => (
-            <FadeInScroll key={study._id} delay={i * 0.1}>
-              <div className="group flex flex-col h-full rounded-md mt-2 overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-500">
-                <div className={`flex-1 flex flex-col p-8 md:p-10 ${getCategoryBgColor(study.category)}`}>
+            <FadeInScroll key={study._id} delay={i * 0.1} className="h-full">
+              <div className="group flex flex-col rounded-md mt-2 overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-500" style={{ height: "380px" }}>
+                <div className={`flex flex-col h-full p-8 md:p-10 ${getCategoryBgColor(study.category)}`}>
                   <span className="text-white/80 text-[10px] tracking-[0.2em] uppercase font-bold mb-4 block">
                     {study.category || "Fábrica"}
                   </span>
-                  <h3 className="serif text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight">
+                  <h3 className="serif text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight line-clamp-3">
                     {study.title}
                   </h3>
-                  <p className="text-white/70 text-sm leading-relaxed mb-10 line-clamp-4">
+                  <p className="text-white/70 text-sm leading-relaxed line-clamp-3 flex-1">
                     {study.abstract}
                   </p>
 
-                  <div className="mt-auto">
+                  <div className="mt-4 shrink-0">
                     <Link
                       href={`/estudios/${study.slug?.current || ""}`}
                       className="inline-flex items-center justify-between w-full border border-white/20 text-white/90 px-6 py-4 text-xs tracking-[0.1em] font-medium hover:bg-white/10 transition-colors rounded-sm"
