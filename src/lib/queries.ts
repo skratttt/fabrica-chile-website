@@ -35,7 +35,7 @@ export interface Estudio {
 
 export async function getColumnas(): Promise<Columna[]> {
   return sanityClient.fetch(
-    `*[_type == "columna"] | order(publishedAt desc)[0...5] {
+    `*[_type == "columna"] | order(publishedAt desc) {
       _id, title, slug, category, excerpt, author, publishedAt, readTime, featured,
       mainImage { asset->{ url } }
     }`,
