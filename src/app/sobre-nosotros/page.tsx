@@ -200,7 +200,7 @@ export default function SobreNosotros() {
               <FadeInScroll key={v.n} delay={i * 0.1}>
                 <div
                   className="border border-[#424242]/10 p-8 hover:border-[#D81B60] transition-all duration-300 group relative overflow-hidden"
-                  style={{ height: "220px" }}
+                  style={{ height: "280px" }}
                 >
                   <span className="absolute top-4 right-5 serif font-bold text-[#D81B60]/[0.07] text-5xl leading-none select-none">
                     {v.n}
@@ -209,7 +209,7 @@ export default function SobreNosotros() {
                   <h3 className="serif text-xl font-bold text-[#424242] mb-3 group-hover:text-[#D81B60] transition-colors">
                     {v.title}
                   </h3>
-                  <p className="text-[#424242]/55 text-sm leading-relaxed line-clamp-4">
+                  <p className="text-[#424242]/55 text-sm leading-relaxed">
                     {v.desc}
                   </p>
                 </div>
