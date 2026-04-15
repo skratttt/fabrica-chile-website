@@ -205,7 +205,7 @@ export default function FocusCarousel() {
                                 Áreas
                             </p>
                             <h2 className="serif text-4xl font-bold text-[#F5F5F5]">
-                                Nuestros expertos y vocerias
+                                Voceros y columnistas
                             </h2>
                         </div>
                     </FadeInScroll>
