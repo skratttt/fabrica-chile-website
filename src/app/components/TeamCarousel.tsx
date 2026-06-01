@@ -14,10 +14,10 @@ interface TeamMember {
 const team: TeamMember[] = [
   {
     id: 1,
-    name: "José Francisco Aravena",
+    name: "Hans Fuhrop",
     role: "Coordinador de Equipo",
-    image: "/assets/Jose Francisco Aravena.JPG",
-    bio: "Cientista político y magíster en Comunicación Política. Cuenta con 6 años de experiencia profesional, donde conjuga un perfil de investigación y academia. En Fábrica Chile se desempeña como Coordinador de Equipo.",
+    image: "",
+    bio: "Cientista político y candidato a magíster en Gerencia Pública. Con 7 años de experiencia profesional, se ha desarrollado en áreas de gestión pública, trabajo legislativo e investigación. En Fábrica Chile se desempeña como Coordinador del Equipo.",
   },
   {
     id: 2,
@@ -101,11 +101,31 @@ function FlipCard({
             style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
             className="absolute inset-0 overflow-hidden bg-black/20"
           >
-            <img
-              src={member.image}
-              alt={member.name}
-              className="w-full h-full object-cover object-center grayscale"
-            />
+            {member.image ? (
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover object-center grayscale"
+              />
+            ) : (
+              <div className="w-full h-full bg-[#3a3a3a] flex flex-col items-center justify-center relative">
+                {/* Abstract grid for premium look */}
+                <div
+                  className="absolute inset-0 opacity-[0.05]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)",
+                    backgroundSize: "20px 20px",
+                  }}
+                />
+                <span className="serif text-5xl font-bold text-[#F48FB1] opacity-70">
+                  {member.name.split(" ").map((n) => n[0]).join("")}
+                </span>
+                <span className="text-[10px] tracking-widest text-[#F5F5F5]/30 uppercase mt-2">
+                  Próximamente
+                </span>
+              </div>
+            )}
           </div>
           {/* Back: name + role */}
           <div
@@ -269,12 +289,23 @@ export default function TeamCarousel() {
               ×
             </button>
             {/* Photo */}
-            <div className="w-full h-52 md:h-auto md:w-56 lg:w-72 shrink-0 relative">
-              <img
-                src={hoveredMember.image}
-                alt={hoveredMember.name}
-                className="w-full h-full object-cover object-center grayscale"
-              />
+            <div className="w-full h-52 md:h-auto md:w-56 lg:w-72 shrink-0 relative bg-[#3a3a3a] flex items-center justify-center">
+              {hoveredMember.image ? (
+                <img
+                  src={hoveredMember.image}
+                  alt={hoveredMember.name}
+                  className="w-full h-full object-cover object-center grayscale"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center py-10 min-h-[200px] w-full">
+                  <span className="serif text-6xl font-bold text-[#F48FB1] opacity-70">
+                    {hoveredMember.name.split(" ").map((n) => n[0]).join("")}
+                  </span>
+                  <span className="text-[10px] tracking-widest text-[#F5F5F5]/30 uppercase mt-2">
+                    Próximamente
+                  </span>
+                </div>
+              )}
             </div>
             {/* Text */}
             <div className="flex flex-col justify-center p-6 md:p-8 lg:p-10 overflow-y-auto">
