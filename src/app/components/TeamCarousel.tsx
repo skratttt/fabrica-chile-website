@@ -16,7 +16,7 @@ const team: TeamMember[] = [
     id: 1,
     name: "Hans Fuhrop",
     role: "Coordinador de Equipo",
-    image: "",
+    image: "/assets/Hans Fuhrop.png",
     bio: "Cientista político y candidato a magíster en Gerencia Pública. Con 7 años de experiencia profesional, se ha desarrollado en áreas de gestión pública, trabajo legislativo e investigación. En Fábrica Chile se desempeña como Coordinador del Equipo.",
   },
   {
