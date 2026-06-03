@@ -9,6 +9,7 @@ interface TeamMember {
   role: string;
   image: string;
   bio: string;
+  objectPosition?: string;
 }
 
 const team: TeamMember[] = [
@@ -18,6 +19,7 @@ const team: TeamMember[] = [
     role: "Coordinador de Equipo",
     image: "/assets/HANS FUHROP copy.png",
     bio: "Cientista político y candidato a magíster en Gerencia Pública. Con 7 años de experiencia profesional, se ha desarrollado en áreas de gestión pública, trabajo legislativo e investigación. En Fábrica Chile se desempeña como Coordinador del Equipo.",
+    objectPosition: "20% center",
   },
   {
     id: 2,
@@ -105,7 +107,8 @@ function FlipCard({
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover object-center grayscale"
+                className="w-full h-full object-cover grayscale"
+                style={{ objectPosition: member.objectPosition || "center" }}
               />
             ) : (
               <div className="w-full h-full bg-[#3a3a3a] flex flex-col items-center justify-center relative">
@@ -294,7 +297,8 @@ export default function TeamCarousel() {
                 <img
                   src={hoveredMember.image}
                   alt={hoveredMember.name}
-                  className="w-full h-full object-cover object-center grayscale"
+                  className="w-full h-full object-cover grayscale"
+                  style={{ objectPosition: hoveredMember.objectPosition || "center" }}
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center py-10 min-h-[200px] w-full">
