@@ -9,6 +9,7 @@ import { getColumnas, getFeaturedEstudios, type Columna, type Estudio } from "@/
 import { getInstagramPosts, type IgPost } from "@/lib/instagram";
 import { FadeInScroll } from "@/app/components/FadeInScroll";
 import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
+import HeroPixelTrail from "@/app/components/HeroPixelTrail";
 
 /* ─────────────────────────────────────────
    CONFIG
@@ -66,14 +67,6 @@ function Hero() {
   return (
     <section className="min-h-screen bg-[#880E4F] flex flex-col justify-end pt-28 pb-20 px-6 relative overflow-hidden">
       <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-      />
-      <div
         className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-[0.05]"
         style={{ width: "clamp(20rem, 50vw, 55rem)", height: "clamp(20rem, 50vw, 55rem)" }}
       >
@@ -86,15 +79,10 @@ function Hero() {
         />
       </div>
       <div className="absolute left-0 top-0 w-1 h-full bg-[#D81B60]" />
-      <div
-        className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(244,143,177,0.15) 0%, transparent 70%)",
-        }}
-      />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10 pl-4">
+      <HeroPixelTrail />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10 pl-4 pointer-events-none">
         <FadeInScroll direction="right" delay={0.1}>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-px bg-[#F48FB1]" />
@@ -128,7 +116,7 @@ function Hero() {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#columns"
-              className="bg-[#D81B60] text-white px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:bg-white hover:text-[#880E4F] transition-all duration-300 whitespace-nowrap"
+              className="pointer-events-auto bg-[#D81B60] text-white px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:bg-white hover:text-[#880E4F] transition-all duration-300 whitespace-nowrap"
             >
               Leer Última Opinión
             </a>
@@ -136,7 +124,7 @@ function Hero() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
+              className="pointer-events-auto border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
             >
               Seguir en Instagram
             </a>
@@ -144,7 +132,7 @@ function Hero() {
               href="https://x.com/Fabrica_Chile"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
+              className="pointer-events-auto border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
             >
               Seguir en X
             </a>
@@ -152,13 +140,13 @@ function Hero() {
               href="https://www.youtube.com/channel/UCtzT5ASvbHBTJwLw8EpcRpA"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
+              className="pointer-events-auto border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
             >
               Podcast en YT
             </a>
             <a
               href="#"
-              className="border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
+              className="pointer-events-auto border border-[#F5F5F5]/30 text-[#F5F5F5] px-8 py-4 text-xs tracking-[0.25em] uppercase font-semibold hover:border-[#F48FB1] hover:text-[#F48FB1] transition-all duration-300 whitespace-nowrap"
             >
               Podcast en Spotify
             </a>

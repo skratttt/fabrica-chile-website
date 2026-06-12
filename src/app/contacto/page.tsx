@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { AnimatedPageTitle, AnimatedWord } from "@/app/components/AnimatedTitle";
 import { FadeInScroll } from "@/app/components/FadeInScroll";
+import HeroPixelTrail from "@/app/components/HeroPixelTrail";
 
 const serviciosOptions = [
   "Charlas Estratégicas",
@@ -75,22 +77,23 @@ export default function Contacto() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute left-0 top-0 w-1 h-full bg-[#D81B60]" />
           <div
-            className="absolute inset-0 opacity-[0.06]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.05]"
             style={{
-              backgroundImage:
-                "linear-gradient(#F5F5F5 1px, transparent 1px), linear-gradient(90deg, #F5F5F5 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
+              width: "clamp(16rem, 38vw, 38rem)",
+              height: "clamp(16rem, 38vw, 38rem)",
             }}
-          />
-          <div
-            className="absolute top-0 right-0 w-[35vw] h-[35vw] rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(244,143,177,0.15) 0%, transparent 70%)",
-            }}
-          />
+          >
+            <Image
+              src="/assets/gear.png"
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 38vw"
+              className="object-contain object-left -scale-x-100"
+            />
+          </div>
         </div>
-        <div className="max-w-7xl mx-auto w-full relative z-10 pl-4">
+        <HeroPixelTrail />
+        <div className="max-w-7xl mx-auto w-full relative z-10 pl-4 pointer-events-none">
           <FadeInScroll direction="right" delay={0.1}>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-px bg-[#F48FB1]" />
