@@ -47,35 +47,43 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Servicio demasiado largo" }, { status: 400 });
         }
 
-        // Nota: Para que los correos lleguen con el dominio @fabricachile.cl
-        // este debe estar verificado en Resend. Si no lo está, los mensajes 
-        // solo se pueden enviar desde 'onboarding@resend.dev' a tu correo registrado.
-        const senderEmail = "onboarding@resend.dev";
-        // const senderEmail = "contacto@fabricachile.cl"; // Usar esto cuando el dominio esté verificado
+        // El remitente se configura por variable de entorno para no tocar código.
+        // - Dominio NO verificado: usar "onboarding@resend.dev" (solo envía a tu correo de Resend).
+        // - Dominio verificado en Resend: cambiar RESEND_FROM_EMAIL a "contacto@fabricachile.cl".
+        const senderEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+        // Destinatario interno de los avisos (configurable por env).
+        const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || "contacto@fabricachile.cl";
 
         // 1. Enviar el correo al equipo (interno)
         const { data: internalEmail, error: internalError } = await resend.emails.send({
             from: `Fabrica Chile Contacto <${senderEmail}>`,
-            to: ["contacto@fabricachile.cl"], // Modificar con el correo que debe recibir los avisos
+            to: [recipientEmail],
+            replyTo: email,
             subject: `Nuevo mensaje de web: ${nombre}`,
             react: ContactEmail({ nombre, organizacion, email, servicio, mensaje }),
         });
 
         if (internalError) {
+            console.error("Error enviando correo interno:", internalError);
             return NextResponse.json({ error: internalError }, { status: 400 });
         }
 
-        // 2. Enviar la autorespuesta al cliente (externo)
-        const { data: replyEmail, error: replyError } = await resend.emails.send({
-            from: `Fabrica Chile <${senderEmail}>`,
-            to: [email],
-            subject: "Hemos recibido tu mensaje",
-            react: AutoReplyEmail({ nombre, servicio }),
-        });
-
-        // Aunque la autorespuesta falle, si el correo interno se envió es un éxito parcial
-        if (replyError) {
-            console.error("Error enviando auto-respuesta:", replyError);
+        // 2. Enviar la autorespuesta al cliente (externo).
+        // Nota: solo funcionará con el dominio verificado; con onboarding@resend.dev
+        // Resend únicamente permite enviar a tu propio correo de registro.
+        let replyEmail = null;
+        if (senderEmail !== "onboarding@resend.dev") {
+            const { data, error: replyError } = await resend.emails.send({
+                from: `Fabrica Chile <${senderEmail}>`,
+                to: [email],
+                subject: "Hemos recibido tu mensaje",
+                react: AutoReplyEmail({ nombre, servicio }),
+            });
+            replyEmail = data;
+            // Aunque la autorespuesta falle, si el correo interno se envió es un éxito parcial
+            if (replyError) {
+                console.error("Error enviando auto-respuesta:", replyError);
+            }
         }
 
         return NextResponse.json({
