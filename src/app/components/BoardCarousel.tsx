@@ -13,7 +13,7 @@ interface BoardMember {
 const boardMembers: BoardMember[] = [
   {
     id: 1,
-    name: "Betancor",
+    name: "Andrea Betancor",
     role: "Próximamente",
     image: "/assets/andrea betancor.jpeg",
   },
