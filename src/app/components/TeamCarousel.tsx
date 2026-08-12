@@ -19,13 +19,6 @@ const team: Person[] = [
     bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como investigadora, aportando desde el análisis y la generación de contenido.",
   },
   {
-    id: 3,
-    name: "Bartolomé Reus",
-    role: "Comunicaciones",
-    image: "/assets/bartolome reus.jpeg",
-    bio: "Publicista y magíster (c) en Comunicación Estratégica. Posee más de 8 años de experiencia en gestión de medios, comunicaciones y redes sociales.",
-  },
-  {
     id: 4,
     name: "Francisco Oyarce",
     role: "Investigador",
@@ -52,6 +45,24 @@ const team: Person[] = [
     role: "Investigador",
     image: "/assets/maximo-alonso.JPG",
     bio: "Estudiante de Ciencia Política de la Universidad de Chile. Sus áreas de interés son las relaciones internacionales y el diseño de proyectos.",
+  },
+  {
+    id: 8,
+    name: "Felipe González Vergara",
+    role: "Investigador",
+    image: "/assets/Felipe Gonzalez Vergara.jpeg",
+  },
+  {
+    id: 9,
+    name: "Benjamín Morales Parra",
+    role: "Investigador",
+    image: "/assets/benjamin morales parra.jpeg",
+  },
+  {
+    id: 10,
+    name: "Felipe Valenzuela",
+    role: "Investigador",
+    image: "/assets/felipe valenzuela.jpeg",
   },
 ];
 

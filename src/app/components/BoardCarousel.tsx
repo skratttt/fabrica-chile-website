@@ -13,27 +13,45 @@ interface BoardMember {
 const boardMembers: BoardMember[] = [
   {
     id: 1,
+    name: "Betancor",
+    role: "Próximamente",
+    image: "/assets/andrea betancor.jpeg",
+  },
+  {
+    id: 2,
     name: "Nicolás Freire",
     role: "Director Ejecutivo",
     image: "/assets/nicolas freire.jpeg",
   },
   {
-    id: 2,
+    id: 3,
     name: "Juan Carlos Urzúa",
     role: "Presidente del directorio",
     image: "/assets/juan carlos urzua.jpeg",
-  },
-  {
-    id: 3,
-    name: "Próximamente",
-    role: "Próximamente",
-    image: "",
   },
   {
     id: 4,
     name: "Próximamente",
     role: "Próximamente",
     image: "",
+  },
+  {
+    id: 5,
+    name: "Próximamente",
+    role: "Próximamente",
+    image: "",
+  },
+  {
+    id: 6,
+    name: "Juan Carlos García",
+    role: "Próximamente",
+    image: "/assets/juan carlos garcia.jpeg",
+  },
+  {
+    id: 7,
+    name: "Francisco Meneses",
+    role: "Próximamente",
+    image: "/assets/francisco meneses.jpeg",
   },
 ];
 

@@ -39,13 +39,6 @@ const focusAreas: Person[] = [
     //     bio: "Abogado litigante con sólida formación en derecho penal, compliance y ciencia política. Con más de 15 años de trayectoria profesional, ha conjugado la resolución de conflictos en criminalidad económica y tributaria con la gestión pública y el análisis estratégico. Su mirada cruza el rigor técnico-jurídico con la construcción institucional, aportando una visión cimentada en la filosofía liberal y la responsabilidad civil.",
     // },
     {
-        id: 6,
-        name: "Francisco Muñoz",
-        role: "Transparencia y probidad",
-        image: "/assets/francisco munoz.jpeg",
-        bio: "Abogado y Magíster en Derecho Regulatorio por la PUC. Con sólida trayectoria en el sector público y privado, incluyendo la Jefatura de Gabinete en las Subsecretarías de Justicia y Turismo. Su carrera destaca por su especialización en derecho administrativo, cumplimiento normativo, transparencia y probidad institucional.",
-    },
-    {
         id: 7,
         name: "Arantzasu Foppiano",
         role: "Género y agenda mujer",
@@ -58,6 +51,18 @@ const focusAreas: Person[] = [
         role: "Política y coyuntura",
         image: "/assets/nicolas freire.jpeg",
         bio: "Cientista político, máster en Instituciones Parlamentarias y doctor en Estudios Americanos. Con más de 15 años de ejercicio profesional, ha conjugado academia, consultoría y función pública. Panelista estable y frecuente invitado a diversos medios de comunicación, destacando como analista de coyuntura y fenómenos sociopolíticos.",
+    },
+    {
+        id: 9,
+        name: "Loreto González",
+        role: "Vocería Legislativa",
+        image: "/assets/loreto gonzalez.jpeg",
+    },
+    {
+        id: 10,
+        name: "Bartolomé Reus",
+        role: "Vocería próximamente",
+        image: "/assets/bartolome reus.jpeg",
     },
 ];
 
