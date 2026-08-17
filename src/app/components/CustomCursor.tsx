@@ -3,7 +3,11 @@
 import { useEffect, useRef } from "react";
 
 const GEAR_PATH =
-  "M22.9,10.7 L22.9,13.3 L19.3,13.6 L18.3,16.0 L20.7,18.8 L18.8,20.7 L16.0,18.3 L13.6,19.3 L13.3,22.9 L10.7,22.9 L10.4,19.3 L8.0,18.3 L5.2,20.7 L3.3,18.8 L5.7,16.0 L4.7,13.6 L1.1,13.3 L1.1,10.7 L4.7,10.4 L5.7,8.0 L3.3,5.2 L5.2,3.3 L8.0,5.7 L10.4,4.7 L10.7,1.1 L13.3,1.1 L13.6,4.7 L16.0,5.7 L18.8,3.3 L20.7,5.2 L18.3,8.0 L19.3,10.4 Z";
+  "M22.9,10.5 L22.9,13.5 L18.8,13.5 L17.9,15.8 L20.8,18.6 L18.6,20.8 L15.8,17.9 L13.5,18.8 L13.5,22.9 L10.5,22.9 L10.5,18.8 L8.2,17.9 L5.4,20.8 L3.2,18.6 L6.1,15.8 L5.2,13.5 L1.1,13.5 L1.1,10.5 L5.2,10.5 L6.1,8.2 L3.2,5.4 L5.4,3.2 L8.2,6.1 L10.5,5.2 L10.5,1.1 L13.5,1.1 L13.5,5.2 L15.8,6.1 L18.6,3.2 L20.8,5.4 L17.9,8.2 L18.8,10.5 Z";
+
+const GEAR_MASK = `url("data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='${GEAR_PATH}' fill='black'/></svg>`
+)}")`;
 
 export default function CustomCursor() {
   const ref = useRef<HTMLDivElement>(null);
@@ -53,16 +57,48 @@ export default function CustomCursor() {
         willChange: "left, top",
       }}
     >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        className="gear-spin"
-      >
-        <path d={GEAR_PATH} fill="none" stroke="#1d1d1f" strokeWidth="1.2" strokeLinejoin="round" />
-        <circle cx="12" cy="12" r="3" fill="none" stroke="#1d1d1f" strokeWidth="1.2" />
-      </svg>
+      <div className="gear-spin" style={{ width: 20, height: 20, position: "relative" }}>
+        {/* Glass layer: blurred background clipped to gear shape */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backdropFilter: "blur(8px) saturate(180%) brightness(1.1)",
+            WebkitBackdropFilter: "blur(8px) saturate(180%) brightness(1.1)",
+            background: "rgba(255,255,255,0.25)",
+            maskImage: GEAR_MASK,
+            WebkitMaskImage: GEAR_MASK,
+            maskSize: "contain",
+            WebkitMaskSize: "contain",
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+          }}
+        />
+        {/* Stroke overlay for the glass border highlight */}
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ position: "absolute", inset: 0 }}
+        >
+          <path
+            d={GEAR_PATH}
+            fill="none"
+            stroke="rgba(255,255,255,0.5)"
+            strokeWidth="0.8"
+            strokeLinejoin="round"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="3"
+            fill="none"
+            stroke="rgba(255,255,255,0.4)"
+            strokeWidth="0.8"
+          />
+        </svg>
+      </div>
     </div>
   );
 }
