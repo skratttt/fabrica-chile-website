@@ -63,7 +63,7 @@ const focusAreas: Person[] = [
     {
         id: 9,
         name: "Bartolomé Reus",
-        role: "Política y coyuntura",
+        role: "Política y entornos digitales",
         image: "/assets/bartolome reus.jpeg",
     },
     {
