@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import CustomCursor from "@/app/components/CustomCursor";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -27,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${inter.variable}`}>
-        <CustomCursor />
         {children}
         <Analytics />
       </body>
