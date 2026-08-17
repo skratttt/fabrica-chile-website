@@ -64,6 +64,12 @@ const team: Person[] = [
     role: "Investigador",
     image: "/assets/felipe valenzuela.jpeg",
   },
+  {
+    id: 11,
+    name: "Cristóbal Ramírez",
+    role: "Investigador",
+    image: "/assets/cristobal ramirez.jpeg",
+  },
 ];
 
 export default function TeamCarousel() {
