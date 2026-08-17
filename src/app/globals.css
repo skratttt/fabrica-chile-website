@@ -15,11 +15,32 @@
   animation-play-state: paused;
 }
 
+/* ── Custom cursor ── */
+html, body {
+  cursor: url('/assets/gear-cursor.svg') 14 14, auto;
+}
+
+a, button, [role="button"], input[type="submit"], select, label[for] {
+  cursor: url('/assets/gear-cursor.svg') 14 14, pointer;
+}
+
 /* ── Custom fonts via next/font CSS variables ── */
 body {
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Skeleton loading animation ── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.skeleton {
+  animation: skeleton-pulse 1.8s ease-in-out infinite;
+  background: currentColor;
+  border-radius: 4px;
 }
 
 .serif {
