@@ -1,3 +1,4 @@
+
 "use client";
 
 import PeopleCarousel, { type Person } from "./PeopleCarousel";
@@ -39,6 +40,13 @@ const focusAreas: Person[] = [
     //     bio: "Abogado litigante con sólida formación en derecho penal, compliance y ciencia política. Con más de 15 años de trayectoria profesional, ha conjugado la resolución de conflictos en criminalidad económica y tributaria con la gestión pública y el análisis estratégico. Su mirada cruza el rigor técnico-jurídico con la construcción institucional, aportando una visión cimentada en la filosofía liberal y la responsabilidad civil.",
     // },
     {
+        id: 6,
+        name: "Francisco Muñoz",
+        role: "Transparencia y probidad",
+        image: "/assets/francisco munoz.jpeg",
+        bio: "Abogado y Magíster en Derecho Regulatorio por la PUC. Con sólida trayectoria en el sector público y privado, incluyendo la Jefatura de Gabinete en las Subsecretarías de Justicia y Turismo. Su carrera destaca por su especialización en derecho administrativo, cumplimiento normativo, transparencia y probidad institucional.",
+    },
+    {
         id: 7,
         name: "Arantzasu Foppiano",
         role: "Género y agenda mujer",
@@ -54,15 +62,16 @@ const focusAreas: Person[] = [
     },
     {
         id: 9,
-        name: "Loreto González",
-        role: "Vocería Legislativa",
-        image: "/assets/loreto gonzalez.jpeg",
+        name: "Bartolomé Reus",
+        role: "Política y coyuntura",
+        image: "/assets/bartolome reus.jpeg",
     },
     {
         id: 10,
-        name: "Bartolomé Reus",
-        role: "Vocería próximamente",
-        image: "/assets/bartolome reus.jpeg",
+        name: "Loreto González",
+        role: "Agenda legislativa",
+        image: "/assets/loreto gonzalez.jpeg",
+        objectPosition: "top",
     },
 ];
 
