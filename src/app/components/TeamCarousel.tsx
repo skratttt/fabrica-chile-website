@@ -68,7 +68,7 @@ const team: Person[] = [
     id: 11,
     name: "Cristóbal Ramírez",
     role: "Investigador",
-    image: "/assets/cristobal ramirez.jpeg",
+    image: "/assets/cristobal-ramirez.jpeg",
   },
 ];
 
