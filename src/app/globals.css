@@ -27,7 +27,7 @@ html.custom-cursor-active * {
 }
 
 .gear-spin {
-  animation: gear-spin 3s linear infinite;
+  animation: gear-spin 6s linear infinite;
 }
 
 /* ── Custom fonts via next/font CSS variables ── */

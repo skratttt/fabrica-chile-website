@@ -47,21 +47,21 @@ export default function CustomCursor() {
       className="fixed z-[9999] pointer-events-none"
       style={{
         display: "none",
-        transform: "translate(-14px, -14px)",
+        transform: "translate(-10px, -10px)",
         opacity: 0,
-        transition: "opacity 0.15s",
+        transition: "opacity 0.2s",
         willChange: "left, top",
       }}
     >
       <svg
-        width="28"
-        height="28"
+        width="20"
+        height="20"
         viewBox="0 0 24 24"
         fill="none"
         className="gear-spin"
       >
-        <path d={GEAR_PATH} fill="#333" stroke="#555" strokeWidth="0.4" />
-        <circle cx="12" cy="12" r="3.5" fill="#fff" stroke="#333" strokeWidth="0.5" />
+        <path d={GEAR_PATH} fill="none" stroke="#1d1d1f" strokeWidth="1.2" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="3" fill="none" stroke="#1d1d1f" strokeWidth="1.2" />
       </svg>
     </div>
   );
