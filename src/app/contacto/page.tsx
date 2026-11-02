@@ -1,5 +1,7 @@
 "use client";
 
+import { CONTACT_CONSENT_TEXT, PRIVACY_VERSION } from "@/lib/privacy";
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
@@ -28,6 +30,7 @@ export default function Contacto() {
     servicio: "",
     mensaje: "",
   });
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -42,7 +45,7 @@ export default function Contacto() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.nombre || !form.email || !form.mensaje) return;
+    if (!consent || !form.nombre || !form.email || !form.mensaje) return;
 
     setIsSubmitting(true);
     setErrorMsg("");
@@ -51,7 +54,7 @@ export default function Contacto() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, privacyConsent: consent, privacyVersion: PRIVACY_VERSION }),
       });
 
       const data = await response.json();
@@ -222,6 +225,11 @@ export default function Contacto() {
                   />
                 </div>
 
+                <p className="text-sm text-[#424242]">Responsable: Fábrica Chile. Usamos Resend para entregar tu consulta. No incluyas datos sensibles ni de terceros. <Link href="/privacidad" className="underline">Ver finalidades, destinatarios, conservación y derechos</Link>.</p>
+                <label className="flex items-start gap-3 text-sm leading-relaxed text-[#424242]">
+                  <input type="checkbox" required checked={consent} onChange={e => setConsent(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-[#880E4F]" />
+                  <span>{CONTACT_CONSENT_TEXT}</span>
+                </label>
                 {errorMsg && (
                   <p className="text-red-500 text-sm mt-2">{errorMsg}</p>
                 )}

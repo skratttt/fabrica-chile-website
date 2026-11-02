@@ -4,7 +4,6 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import FocusCarousel from "@/app/components/FocusCarousel";
 import PodcastSection from "@/app/components/PodcastSection";
-import NewsletterForm from "@/app/components/NewsletterForm";
 import { getColumnas, getFeaturedEstudios, type Columna, type Estudio } from "@/lib/queries";
 import { getInstagramPosts, type IgPost } from "@/lib/instagram";
 import { FadeInScroll } from "@/app/components/FadeInScroll";
@@ -511,7 +510,6 @@ export default async function Home() {
       <PodcastSection />
       <StudiesSection estudios={estudios} />
       <FocusCarousel />
-      <NewsletterForm />
       <Footer />
     </main>
   );

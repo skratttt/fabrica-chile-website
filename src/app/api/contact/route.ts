@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
+import { PRIVACY_VERSION, CONTACT_CONSENT_TEXT } from "@/lib/privacy";
 import AutoReplyEmail from "@/emails/AutoReplyEmail";
 
 
@@ -15,12 +16,19 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Origen no permitido" }, { status: 403 });
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
     try {
         const body = await request.json();
-        const { nombre, organizacion, email, servicio, mensaje } = body;
+        if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ error: "Solicitud inválida" }, { status: 400 });
+        if (body.privacyConsent !== true || body.privacyVersion !== PRIVACY_VERSION) return NextResponse.json({ error: "Debes autorizar el tratamiento según la política vigente" }, { status: 400 });
+        for (const [field, max] of Object.entries(MAX_LENGTHS)) {
+            if (body[field] !== undefined && (typeof body[field] !== "string" || body[field].length > max)) return NextResponse.json({ error: "Campos inválidos" }, { status: 400 });
+        }
+        const { nombre, email, mensaje } = body;
+        const organizacion = body.organizacion || "";
+        const servicio = body.servicio || "";
+        const consentRecord = `Retención: consulta sin contratación, eliminar seis meses después del cierre; revisión mensual. No añadir al boletín.\nAutorización: ${new Date().toISOString()} | Política ${PRIVACY_VERSION} | Canal: formulario web | ${CONTACT_CONSENT_TEXT}`;
 
-        if (!nombre || !email || !mensaje) {
+        if (!nombre?.trim() || !email?.trim() || !mensaje?.trim()) {
             return NextResponse.json(
                 { error: "Faltan campos obligatorios" },
                 { status: 400 }
@@ -47,6 +55,8 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Servicio demasiado largo" }, { status: 400 });
         }
 
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
         // El remitente se configura por variable de entorno para no tocar código.
         // - Dominio NO verificado: usar "onboarding@resend.dev" (solo envía a tu correo de Resend).
         // - Dominio verificado en Resend: cambiar RESEND_FROM_EMAIL a "contacto@fabricachile.cl".
@@ -55,40 +65,38 @@ export async function POST(request: Request) {
         const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || "contacto@fabricachile.cl";
 
         // 1. Enviar el correo al equipo (interno)
-        const { data: internalEmail, error: internalError } = await resend.emails.send({
+        const { error: internalError } = await resend.emails.send({
             from: `Fabrica Chile Contacto <${senderEmail}>`,
             to: [recipientEmail],
             replyTo: email,
             subject: `Nuevo mensaje de web: ${nombre}`,
-            react: ContactEmail({ nombre, organizacion, email, servicio, mensaje }),
+            react: ContactEmail({ nombre, organizacion, email, servicio, mensaje: `${mensaje}\n\n${consentRecord}` }),
         });
 
         if (internalError) {
-            console.error("Error enviando correo interno:", internalError);
-            return NextResponse.json({ error: internalError }, { status: 400 });
+            console.error("Fallo de entrega del formulario de contacto");
+            return NextResponse.json({ error: "No fue posible enviar el mensaje. Inténtalo más tarde." }, { status: 400 });
         }
 
         // 2. Enviar la autorespuesta al cliente (externo).
         // Nota: solo funcionará con el dominio verificado; con onboarding@resend.dev
         // Resend únicamente permite enviar a tu propio correo de registro.
-        let replyEmail = null;
         if (senderEmail !== "onboarding@resend.dev") {
-            const { data, error: replyError } = await resend.emails.send({
+            const { error: replyError } = await resend.emails.send({
                 from: `Fabrica Chile <${senderEmail}>`,
                 to: [email],
                 subject: "Hemos recibido tu mensaje",
                 react: AutoReplyEmail({ nombre, servicio }),
             });
-            replyEmail = data;
             // Aunque la autorespuesta falle, si el correo interno se envió es un éxito parcial
             if (replyError) {
-                console.error("Error enviando auto-respuesta:", replyError);
+                console.error("Fallo de confirmación de contacto");
             }
         }
 
         return NextResponse.json({
             success: true,
-            data: { internalEmail, replyEmail },
+
         });
     } catch (error) {
         return NextResponse.json(

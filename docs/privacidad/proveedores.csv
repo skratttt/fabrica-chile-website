@@ -1,0 +1,8 @@
+proveedor,finalidad,datos,estado,region_real,subencargados,contrato_encargo,garantia_transferencia,retencion_configurada,borrado_verificado,responsable_revision
+Resend,Entrega de consultas y confirmaciones,Nombre correo mensaje organización servicio consentimiento,Integración en código; configuración por confirmar,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente
+Sanity,Publicaciones y archivos,Contenido publicado y usuarios administrativos,Integración en código,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente
+Vercel Analytics,Medición opcional,Eventos de navegación autorizados,Condicionado a consentimiento en código,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente
+Google Apps Script,Boletín externo,Datos solicitados en plataforma externa por verificar,Boletín inactivo; alta retirada del sitio; revisar datos históricos,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente
+WhatsApp Meta,Boletín por mensajería,Número y conversaciones por verificar,Boletín inactivo; enlace retirado; revisar datos históricos,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente
+Vercel Hosting,Entrega y seguridad del sitio,IP registros técnicos,Proveedor confirmado por usuario,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente
+Correo técnico por identificar,Recepción y gestión de consultas,Datos de consultas y evidencia de autorización,Administración interna y atención por coordinador confirmadas,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente,Pendiente

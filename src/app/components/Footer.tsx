@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { CookieSettingsButton } from "./PrivacyControls";
 
 const SITE_NAME = "Fabrica Chile";
 const TAGLINE = "Ideas. Analysis. Perspective.";
@@ -15,7 +16,6 @@ const aboutLinks = [
   { label: "Nosotros", href: "/sobre-nosotros" },
   { label: "Servicios", href: "/servicios" },
   { label: "Contacto", href: "/contacto" },
-  { label: "Boletín", href: "/#newsletter" },
 ];
 
 export default function Footer() {
@@ -82,6 +82,13 @@ export default function Footer() {
           </div>
         </div>
 
+        <nav aria-label="Información legal" className="flex flex-wrap gap-5 pt-6 text-sm text-white/80">
+          <Link href="/privacidad" className="underline">Privacidad y derechos</Link>
+          <Link href="/derechos" className="underline">Ejercer mis derechos</Link>
+          <Link href="/cookies" className="underline">Cookies</Link>
+          <Link href="/terminos" className="underline">Términos de uso</Link>
+          <CookieSettingsButton />
+        </nav>
         {/* Bottom row */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[#F5F5F5]/20 text-xs leading-relaxed text-center md:text-left">

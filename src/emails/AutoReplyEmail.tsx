@@ -52,6 +52,13 @@ export const AutoReplyEmail = ({ nombre, servicio }: AutoReplyEmailProps) => {
                             puedes responder directamente a este correo.
                         </Text>
 
+                        <Text style={paragraph}>
+                            Usamos tus datos para atender esta consulta, sin suscribirte al boletín.
+                            Si no hay contratación, conservamos la consulta seis meses desde su cierre.
+                            Puedes ejercer tus derechos o retirar tu autorización escribiendo a
+                            {" "}<a href="mailto:contacto@fabricachile.cl">contacto@fabricachile.cl</a>.
+                            {" "}<a href="https://fabricachile.cl/privacidad">Política de privacidad</a>.
+                        </Text>
                         <Text style={signature}>
                             Saludos cordiales,<br />
                             <strong>El equipo de Fabrica Chile</strong>
