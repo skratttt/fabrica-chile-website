@@ -53,3 +53,5 @@ La selección final de encuestadoras está integrada en la leyenda del gráfico:
 Nombre público final: **Ecosistema**. Ruta `/ecosistema`, navegación y título actualizados. `/observatorio` redirige permanentemente a `/ecosistema` para conservar enlaces anteriores.
 
 El banner de Ecosistema reutiliza AnimatedPageTitle, AnimatedWord, FadeInScroll y HeroPixelTrail del sitio; reproduce la escala tipográfica, pesos, colores, espaciado y tuerca `/assets/gear.png` del banner de Nosotros. Con movimiento reducido se muestra el título estático y no se monta la estela.
+
+Se retiró la barra inmediatamente bajo el banner (fecha de corte, antigüedad y restablecer). La sección utiliza la última fecha registrada del archivo, no la fecha actual. Permanecen los filtros de período, fuentes e indicadores dentro de la exploración del gráfico.
