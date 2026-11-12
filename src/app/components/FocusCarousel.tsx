@@ -44,7 +44,7 @@ const focusAreas: Person[] = [
         name: "Arantzasu Foppiano",
         role: "Género y agenda mujer",
         image: "/assets/arantzasu-foppiano.jpeg",
-        bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como investigadora, aportando desde el análisis y la generación de contenido.",
+        bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como coordinadora del equipo, aportando desde el análisis y la generación de contenido.",
     },
     {
         id: 8,

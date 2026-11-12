@@ -4,26 +4,11 @@ import PeopleCarousel, { type Person } from "./PeopleCarousel";
 
 const team: Person[] = [
   {
-    id: 1,
-    name: "Hans Fuhrop",
-    role: "Coordinador de Equipo",
-    image: "/assets/HANS FUHROP copy.png",
-    bio: "Cientista político y candidato a magíster en Gerencia Pública. Con 7 años de experiencia profesional, se ha desarrollado en áreas de gestión pública, trabajo legislativo e investigación. En Fábrica Chile se desempeña como Coordinador del Equipo.",
-    objectPosition: "20% center",
-  },
-  {
     id: 2,
     name: "Arantzasu Foppiano",
-    role: "Investigadora",
+    role: "Coordinadora de Equipo",
     image: "/assets/arantzasu-foppiano.jpeg",
-    bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como investigadora, aportando desde el análisis y la generación de contenido.",
-  },
-  {
-    id: 4,
-    name: "Francisco Oyarce",
-    role: "Investigador",
-    image: "/assets/Fransisco oyarce.jpg",
-    bio: "Cientista político con experiencia en administración institucional, procesos electorales y campañas políticas. En Fábrica Chile se desempeña en el área de investigación.",
+    bio: "Abogada con experiencia en asesoría legal y comunicación estratégica. En Fábrica Chile se desempeña como coordinadora del equipo, aportando desde el análisis y la generación de contenido.",
   },
   {
     id: 5,
@@ -45,18 +30,6 @@ const team: Person[] = [
     role: "Investigador",
     image: "/assets/maximo-alonso.JPG",
     bio: "Estudiante de Ciencia Política de la Universidad de Chile. Sus áreas de interés son las relaciones internacionales y el diseño de proyectos.",
-  },
-  {
-    id: 8,
-    name: "Felipe González Vergara",
-    role: "Investigador",
-    image: "/assets/Felipe Gonzalez Vergara.jpeg",
-  },
-  {
-    id: 9,
-    name: "Benjamín Morales Parra",
-    role: "Investigador",
-    image: "/assets/benjamin morales parra.jpeg",
   },
   {
     id: 10,

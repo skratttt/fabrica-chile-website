@@ -9,51 +9,13 @@ interface BoardMember {
   image: string;
 }
 
-// Empty placeholders to be filled later
-const boardMembers: BoardMember[] = [
-  {
-    id: 1,
-    name: "Andrea Bentancor",
-    role: "Próximamente",
-    image: "/assets/andrea betancor.jpeg",
-  },
-  {
-    id: 2,
-    name: "Nicolás Freire",
-    role: "Director Ejecutivo",
-    image: "/assets/nicolas freire.jpeg",
-  },
-  {
-    id: 3,
-    name: "Juan Carlos Urzúa",
-    role: "Presidente del directorio",
-    image: "/assets/juan carlos urzua.jpeg",
-  },
-  {
-    id: 4,
-    name: "Próximamente",
-    role: "Próximamente",
-    image: "",
-  },
-  {
-    id: 5,
-    name: "Próximamente",
-    role: "Próximamente",
-    image: "",
-  },
-  {
-    id: 6,
-    name: "Juan Carlos García",
-    role: "Próximamente",
-    image: "/assets/juan carlos garcia.jpeg",
-  },
-  {
-    id: 7,
-    name: "Francisco Meneses",
-    role: "Próximamente",
-    image: "/assets/francisco meneses.jpeg",
-  },
-];
+// The board will be announced later; do not expose names or portraits.
+const boardMembers: BoardMember[] = Array.from({ length: 7 }, (_, index) => ({
+  id: index + 1,
+  name: "Próximamente",
+  role: "",
+  image: "",
+}));
 
 export default function BoardCarousel() {
   return (
@@ -95,9 +57,9 @@ export default function BoardCarousel() {
               <h3 className="serif text-lg font-bold text-[#424242] leading-tight">
                 {member.name}
               </h3>
-              <p className="text-[#D81B60] text-xs tracking-[0.2em] uppercase mt-1">
+              {member.role && <p className="text-[#D81B60] text-xs tracking-[0.2em] uppercase mt-1">
                 {member.role}
-              </p>
+              </p>}
             </FadeInScroll>
           ))}
         </div>
