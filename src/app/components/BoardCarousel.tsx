@@ -9,13 +9,14 @@ interface BoardMember {
   image: string;
 }
 
-// The board will be announced later; do not expose names or portraits.
-const boardMembers: BoardMember[] = Array.from({ length: 7 }, (_, index) => ({
-  id: index + 1,
-  name: "Próximamente",
-  role: "",
-  image: "",
-}));
+const boardMembers: BoardMember[] = [
+  {
+    id: 2,
+    name: "Nicolás Freire",
+    role: "Director Ejecutivo",
+    image: "/assets/nicolas freire.jpeg",
+  },
+];
 
 export default function BoardCarousel() {
   return (
