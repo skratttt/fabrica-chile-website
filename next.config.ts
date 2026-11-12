@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/observatorio", destination: "/ecosistema", permanent: true },
       {
         source: "/el-equipo",
         destination: "/",

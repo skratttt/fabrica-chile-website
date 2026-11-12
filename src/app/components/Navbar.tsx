@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Nosotros", href: "/sobre-nosotros" },
   { label: "Servicios", href: "/servicios" },
   { label: "Opinión", href: "/#columns" },
+  { label: "Ecosistema", href: "/ecosistema" },
 ];
 
 export default function Navbar() {

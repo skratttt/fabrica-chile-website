@@ -45,6 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     ...["privacidad", "cookies", "terminos", "derechos"].map(path => ({ url: `${BASE_URL}/${path}`, changeFrequency: "yearly" as const, priority: 0.3 })),
+    { url: `${BASE_URL}/ecosistema`, changeFrequency: "monthly", priority: 0.8 },
     ...columnaUrls,
   ];
 }
