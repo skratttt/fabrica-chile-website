@@ -264,7 +264,7 @@ export default function Contacto() {
                   <p className="text-[#424242]/40 text-xs tracking-[0.2em] uppercase mb-1">
                     Instagram
                   </p>
-                  <p className="text-[#424242] text-sm">@fabricachile</p>
+                  <p className="text-[#424242] text-sm">@fabrica_chile</p>
                 </div>
                 <div>
                   <p className="text-[#424242]/40 text-xs tracking-[0.2em] uppercase mb-1">
