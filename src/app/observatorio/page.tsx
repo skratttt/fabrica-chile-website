@@ -4,10 +4,11 @@ import Footer from '@/app/components/Footer';
 import Observatory from './Observatory';
 import EcosystemHero from '@/app/ecosistema/EcosystemHero';
 import './observatorio.css';
+import { MATRIX_DATE, dateLabel } from '@/lib/observatorio/model';
 
 export const metadata: Metadata = {
   title: 'Ecosistema | Fábrica Chile',
-  description: 'Mediciones de cinco encuestadoras, promedios con vigencia de 30 días y variaciones. Matriz de origen del 02-11-2026.',
+  description: `Mediciones de cinco encuestadoras, promedios con vigencia de 30 días y variaciones. Matriz de origen del ${dateLabel(MATRIX_DATE)}.`,
 };
 export default function Page() {
   return <><Navbar /><main className="observatory"><EcosystemHero /><Observatory /></main><Footer /></>;

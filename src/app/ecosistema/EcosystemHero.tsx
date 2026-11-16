@@ -5,11 +5,12 @@ import { useReducedMotion } from 'framer-motion';
 import { AnimatedPageTitle, AnimatedWord } from '@/app/components/AnimatedTitle';
 import { FadeInScroll } from '@/app/components/FadeInScroll';
 import HeroPixelTrail from '@/app/components/HeroPixelTrail';
+import { MATRIX_DATE, LAST_DATE, dateLabel, surveys } from '@/lib/observatorio/model';
 
 export default function EcosystemHero() {
   const reducedMotion = useReducedMotion();
   const brand = <div className="flex items-center gap-3 mb-8"><div className="w-10 h-px bg-[#F48FB1]" /><span className="text-[#F48FB1] text-xs tracking-[0.35em] uppercase font-medium">Fábrica Chile</span></div>;
-  const description = <><p className="text-[#F5F5F5]/60 text-lg max-w-xl leading-relaxed">Evaluación presidencial, fuente por fuente. Una mirada a las mediciones y a cómo cambian en el tiempo.</p><p className="text-[#F5F5F5]/60 text-xs leading-relaxed mt-6">Matriz de origen: 02-11-2026 · 126 mediciones · 5 encuestadoras<br />Última medición registrada: 01-11-2026 · Sin actualización automática</p></>;
+  const description = <><p className="text-[#F5F5F5]/60 text-lg max-w-xl leading-relaxed">Evaluación presidencial, fuente por fuente. Una mirada a las mediciones y a cómo cambian en el tiempo.</p><p className="text-[#F5F5F5]/60 text-xs leading-relaxed mt-6">Matriz de origen: {dateLabel(MATRIX_DATE)} · {surveys.reduce((total, survey) => total + survey.data.length, 0)} mediciones · {surveys.length} encuestadoras<br />Última medición registrada: {dateLabel(LAST_DATE)} · Sin actualización automática</p></>;
 
   return <header className="min-h-[60vh] bg-[#880E4F] flex flex-col justify-end pt-32 pb-20 px-6 relative">
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">

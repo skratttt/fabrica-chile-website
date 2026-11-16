@@ -3,7 +3,7 @@ import original from './measurements.json';
 export type Measurement = [string, number | null, number | null, number | null];
 export type Survey = { id: string; name: string; data: Measurement[] };
 export const surveys: Survey[] = original as unknown as Survey[];
-export const MATRIX_DATE = '2026-11-02';
+export const MATRIX_DATE = '2026-11-16';
 export const FIRST_DATE = surveys.flatMap(s => s.data.map(p => p[0])).sort()[0];
 export const LAST_DATE = surveys.flatMap(s => s.data.map(p => p[0])).sort().at(-1)!;
 export const metrics = [
@@ -50,5 +50,5 @@ export function deltaLabel(n: number | null) {
   return n > 0 ? `↑ +${value} pp` : n < 0 ? `↓ −${value} pp` : '— 0,0 pp';
 }
 export function csv(selected: string[], cut: string) {
-  return '\uFEFFEncuestadora;Fecha;Aprobación;Desaprobación;NS/NR;Origen\r\n' + surveys.filter(s => selected.includes(s.id)).flatMap(s => s.data.filter(p => p[0] <= cut).map(p => [s.name, p[0], ...p.slice(1).map(v => v === null ? '' : String(v).replace('.', ',')), 'Matriz 02-11-2026, sin reverificar informes'].join(';'))).join('\r\n');
+  return '\uFEFFEncuestadora;Fecha;Aprobación;Desaprobación;NS/NR;Origen\r\n' + surveys.filter(s => selected.includes(s.id)).flatMap(s => s.data.filter(p => p[0] <= cut).map(p => [s.name, p[0], ...p.slice(1).map(v => v === null ? '' : String(v).replace('.', ',')), `Matriz ${dateLabel(MATRIX_DATE)}, sin reverificar informes`].join(';'))).join('\r\n');
 }

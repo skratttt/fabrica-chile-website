@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import { Measurement, average, age, dateLabel, metrics, numberLabel, time, variation, surveys, shift } from '@/lib/observatorio/model';
+import { MATRIX_DATE, Measurement, average, age, dateLabel, metrics, numberLabel, time, variation, surveys, shift } from '@/lib/observatorio/model';
 
 import Delta from './Delta';
 import { sourceColors, indicatorDashes } from '@/lib/observatorio/appearance';
@@ -79,7 +79,7 @@ export default function Chart({ title, series, start, end, visible, legendSeries
       {ticks.map(d => <text key={d} x={x(d)} y={height-15} textAnchor={d===start?'start':d===end?'end':'middle'}>{dateLabel(d)}</text>)}
       {plotted.map(s => <g key={s.id} className="obs-source-lines" opacity={highlight && highlight!==s.id ? .16 : 1}>{metrics.map((m,i) => visible[i] && <g key={m.name} fill={sourceColors[s.id]} stroke={sourceColors[s.id]}>{s.points.map((p,j) => {
         const value=p[i+1] as number|null,prev=s.points[j-1];if(value===null)return null;
-        return <g key={p[0]}><title>{`${s.name} · ${dateLabel(p[0])} · ${m.name}: ${numberLabel(value)} % · Matriz 02-11-2026`}</title>{prev && prev[i+1]!==null && <line x1={x(prev[0])} y1={y(prev[i+1] as number)} x2={x(p[0])} y2={y(value)} strokeWidth={s.isAverage?3.5:highlight===s.id?2.5:1.6} strokeDasharray={indicatorDashes[i]} strokeOpacity={!s.isAverage && age(p[0],prev[0])>30?.4:1}/>}{(!s.isAverage || s.points.length===1 || p[0]===activeDate) && <Marker x={x(p[0])} y={y(value)} kind={s.marker??0} color={sourceColors[s.id]} large={p[0]===activeDate}/>}</g>;
+        return <g key={p[0]}><title>{`${s.name} · ${dateLabel(p[0])} · ${m.name}: ${numberLabel(value)} % · Matriz ${dateLabel(MATRIX_DATE)}`}</title>{prev && prev[i+1]!==null && <line x1={x(prev[0])} y1={y(prev[i+1] as number)} x2={x(p[0])} y2={y(value)} strokeWidth={s.isAverage?3.5:highlight===s.id?2.5:1.6} strokeDasharray={indicatorDashes[i]} strokeOpacity={!s.isAverage && age(p[0],prev[0])>30?.4:1}/>}{(!s.isAverage || s.points.length===1 || p[0]===activeDate) && <Marker x={x(p[0])} y={y(value)} kind={s.marker??0} color={sourceColors[s.id]} large={p[0]===activeDate}/>}</g>;
       })}</g>)}</g>)}
       {activeDate && <line x1={x(activeDate)} x2={x(activeDate)} y1="20" y2={bottom} stroke="#424242" strokeDasharray="3 4" pointerEvents="none"/>}
       {!dates.length && <text x={width/2} y={height/2} textAnchor="middle">{!visible.some(Boolean)?'Active al menos un indicador':!series.length?'Selecciona una encuestadora':'Sin datos en este intervalo'}</text>}

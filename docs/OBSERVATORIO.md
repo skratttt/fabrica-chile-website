@@ -1,5 +1,15 @@
 # Observatorio de Fábrica Chile
 
+## Actualización de datos del 16-11-2026
+
+La sección `/ecosistema` usa `MATRIZ_actualizada_16-11-2026.xlsx`, conservada también en `public/observatorio/`. Se importaron las cinco hojas de encuestadoras a `measurements.json`: 140 mediciones, distribuidas en Cadem (67), Criteria (36), Pulso Ciudadano (13), Data Influye (8) y Panel Ciudadano (16). Se conservaron las 126 observaciones anteriores y se agregaron 14, incluidas diez de Panel Ciudadano desde junio. Las series se ordenan por fecha y los porcentajes se leen del Excel sin completar ni normalizar indicadores.
+
+La última medición es del 15-11-2026. Las cinco fuentes están vigentes en la ventana de 30 días: aprobación 23,22 %, desaprobación 66,50 % y NS/NR 10,30 %. La incorporación del historial de Panel Ciudadano también actualiza los promedios históricos calculados. `workbook_averages.json` conserva por separado los 109 promedios cacheados de la nueva matriz; no alimenta los gráficos.
+
+El banner calcula la cantidad de mediciones y la última fecha desde los datos. El banner, el pie de fuentes, los títulos de puntos, los metadatos y la procedencia CSV comparten `MATRIX_DATE`. Se mantienen las reglas de cálculo y el diseño. Verificación: `node scripts/observatorio/check.cjs` (283 comprobaciones), `npx tsc --noEmit --incremental false` y `npm run build` correctos. Las 140 mediciones se cotejaron mediante lectura XML independiente del Excel; el HTML de producción muestra las nuevas fechas, el total y el promedio. El parámetro ZIP opcional solo comprueba el Excel anterior conservado para trazabilidad.
+
+Las notas siguientes documentan la implementación inicial y sus ajustes de presentación; las cifras y verificaciones anteriores corresponden a la matriz del 02-11-2026.
+
 Acceso: `/observatorio`, enlace «Observatorio» en la navegación de escritorio y móvil. No se desplegó a producción.
 
 ## Estructura
